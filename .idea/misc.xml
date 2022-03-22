@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/baseline_3d_rotation_black_24dp.xml" value="0.3755" />
+        <entry key="app/src/main/res/drawable/baseline_build_black_24dp.xml" value="0.3755" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3305" />
+        <entry key="app/src/main/res/drawable/primary_button.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/second_button.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_sign.xml" value="0.3582427536231884" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/layout.xml" value="0.26790571169537625" />
+        <entry key="app/src/main/res/layout/stroke_background.xml" value="0.30782385634886705" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
