@@ -11,5 +11,7 @@
     <string name="type8">Synthetic</string>
     <string name="autoName">Grand Court</string>
     <string name="autoPrice">$83.03</string>
+    <string name="autoCategory">Category</string>
+    <string name="intro">©2022 G007 VN, Inc. All rights reserved.</string>
 
 </resources>

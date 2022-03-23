@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
-            android:name=".checkout.CheckoutActivity"
-            android:exported="true" />
+            android:name=".homepage.GroupItem"
+            android:exported="false" />
         <activity
             android:name=".homepage.ItemDetail"
             android:exported="false" />

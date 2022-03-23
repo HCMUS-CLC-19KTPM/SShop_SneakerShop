@@ -7,7 +7,7 @@
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_margin="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:cardCornerRadius="10dp">
@@ -20,7 +20,7 @@
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="150dp"
-                    android:layout_height="130dp"
+                    android:layout_height="170dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/shoe" />

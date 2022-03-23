@@ -13,4 +13,21 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <!-- 1. -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- 2. -->
+        <item name="windowSplashScreenBackground">@color/primary</item>
+
+        <!-- 3. -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_size</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <!-- 4. -->
+        <item name="android:windowSplashScreenIconBackgroundColor">
+            @color/white
+        </item>
+
+        <!-- 5. -->
+        <!-- 6. -->
+        <item name="postSplashScreenTheme">@style/Theme.SShop_SneakerShop</item>
+    </style>
 </resources>
