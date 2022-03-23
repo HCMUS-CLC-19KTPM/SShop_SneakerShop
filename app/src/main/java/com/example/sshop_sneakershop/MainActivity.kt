@@ -12,13 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
-        setContentView(R.layout.activity_app_settings)
-
-        var topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
-
-        topAppBar.setNavigationOnClickListener {
-            // Handle navigation icon press
-            Toast.makeText(this, "Navigation Icon Pressed", Toast.LENGTH_SHORT).show()
-        }
+        setContentView(R.layout.activity_sign_in)
     }
 }
