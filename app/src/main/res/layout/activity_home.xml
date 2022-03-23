@@ -10,131 +10,131 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerMain"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="240dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:src="@drawable/banner1"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/category1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
+            android:text="@string/type1"
+            android:textAlignment="center"
+            android:textColor="@color/primary" />
+    </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/icon1"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:src="@drawable/banner1"
-                app:civ_border_color="@color/primary"
-                app:civ_border_width="2dp" />
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
 
-            <TextView
-                android:id="@+id/category1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/type1"
-                android:textAlignment="center"
-                android:textColor="@color/primary" />
-        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:src="@drawable/banner1"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+        <TextView
+            android:id="@+id/category2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
+            android:text="@string/type2"
+            android:textAlignment="center"
+            android:textColor="@color/primary" />
+    </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/icon2"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:src="@drawable/banner1"
-                app:civ_border_color="@color/primary"
-                app:civ_border_width="2dp" />
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
 
-            <TextView
-                android:id="@+id/category2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/type2"
-                android:textAlignment="center"
-                android:textColor="@color/primary" />
-        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:src="@drawable/banner1"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout3"
+        <TextView
+            android:id="@+id/category3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
+            android:text="@string/type3"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            tools:layout_editor_absoluteX="236dp"
+            tools:layout_editor_absoluteY="267dp" />
+    </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/icon3"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:src="@drawable/banner1"
-                app:civ_border_color="@color/primary"
-                app:civ_border_width="2dp" />
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
 
-            <TextView
-                android:id="@+id/category3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/type3"
-                android:textAlignment="center"
-                android:textColor="@color/primary"
-                tools:layout_editor_absoluteX="236dp"
-                tools:layout_editor_absoluteY="267dp" />
-        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:src="@drawable/banner1"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout4"
+        <TextView
+            android:id="@+id/category4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/viewPagerMain">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/icon4"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:src="@drawable/banner1"
-                app:civ_border_color="@color/primary"
-                app:civ_border_width="2dp" />
-
-            <TextView
-                android:id="@+id/category4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/type4"
-                android:textAlignment="center"
-                android:textColor="@color/primary"
-                tools:layout_editor_absoluteX="279dp"
-                tools:layout_editor_absoluteY="266dp" />
-        </LinearLayout>
+            android:text="@string/type4"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            tools:layout_editor_absoluteX="279dp"
+            tools:layout_editor_absoluteY="266dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout6"
@@ -282,12 +282,14 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/newProduct"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newProduct" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newProduct" />
     </androidx.constraintlayout.widget.ConstraintLayout>

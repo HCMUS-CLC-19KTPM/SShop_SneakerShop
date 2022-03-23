@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.example.sshop_sneakershop.R
@@ -40,11 +41,54 @@ class Home : AppCompatActivity(),ItemClickListener {
             adapter = ItemAdapter(itemList,mainActivity)
         }
 
+        //Set categories listener
+        val intent = Intent(this, GroupItem::class.java)
+        binding.icon1.setOnClickListener {
+            intent.putExtra("categoryID","Plimsoll")
+            startActivity(intent)
+            finish()
+        }
+        binding.icon2.setOnClickListener {
+            intent.putExtra("categoryID","High-Top")
+            startActivity(intent)
+            finish()
+        }
+        binding.icon3.setOnClickListener {
+            intent.putExtra("categoryID","Athletic")
+            startActivity(intent)
+            finish()
+        }
+        binding.icon4.setOnClickListener {
+            intent.putExtra("categoryID","Slip-on")
+            startActivity(intent)
+            finish()
+        }
+        binding.icon5.setOnClickListener {
+            intent.putExtra("categoryID","Authentic")
+            startActivity(intent)
+            finish()
+        }
+        binding.icon6.setOnClickListener {
+            intent.putExtra("categoryID","Leather")
+            startActivity(intent)
+            finish()
+        }
+        binding.icon7.setOnClickListener {
+            intent.putExtra("categoryID","Canvas")
+            startActivity(intent)
+            finish()
+        }
+        binding.icon8.setOnClickListener {
+            intent.putExtra("categoryID","Synthetic")
+            startActivity(intent)
+            finish()
+        }
     }
     override fun onClick(item: Item)
     {
         val intent = Intent(applicationContext, ItemDetail::class.java)
         intent.putExtra("itemID", item.id)
         startActivity(intent)
+        finish()
     }
 }

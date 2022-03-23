@@ -11,5 +11,6 @@
     <string name="type8">Synthetic</string>
     <string name="autoName">Grand Court</string>
     <string name="autoPrice">$83.03</string>
+    <string name="autoCategory">Category</string>
 
 </resources>

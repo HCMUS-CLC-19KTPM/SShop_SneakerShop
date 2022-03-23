@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
+            android:name=".homepage.GroupItem"
+            android:exported="false" />
+        <activity
             android:name=".homepage.ItemDetail"
             android:exported="false" />
         <activity
@@ -23,7 +26,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
