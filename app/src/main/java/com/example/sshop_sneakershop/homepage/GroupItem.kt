@@ -22,7 +22,8 @@ class GroupItem : AppCompatActivity(), ItemClickListener {
         binding.title.text = category
 
         val myItem = Item(83.03,"Grand Court",R.drawable.shoe)
-        itemList = listOf(myItem,myItem,myItem,myItem)
+        itemList = listOf(myItem,myItem,myItem,myItem,myItem,myItem,myItem,myItem
+            ,myItem,myItem,myItem,myItem)
 
         val mainActivity = this
         binding.recyclerView.apply {
