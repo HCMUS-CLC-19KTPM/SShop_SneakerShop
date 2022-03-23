@@ -15,16 +15,15 @@
     </style>
     <!-- 1. -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-
         <!-- 2. -->
         <item name="windowSplashScreenBackground">@color/primary</item>
 
         <!-- 3. -->
         <item name="windowSplashScreenAnimatedIcon">@drawable/logo_size</item>
-        <item name="windowSplashScreenAnimationDuration">10000</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
         <!-- 4. -->
         <item name="android:windowSplashScreenIconBackgroundColor">
-            @color/primary
+            @color/white
         </item>
 
         <!-- 5. -->
