@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
+            android:name=".orders.OrderListActivity"
+            android:exported="true" />
+        <activity
             android:name=".homepage.GroupItem"
             android:exported="false" />
         <activity
