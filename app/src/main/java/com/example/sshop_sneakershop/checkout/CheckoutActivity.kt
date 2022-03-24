@@ -2,6 +2,8 @@ package com.example.sshop_sneakershop.checkout
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
@@ -24,5 +26,6 @@ class CheckoutActivity : AppCompatActivity() {
         productRecyclerView.adapter = adapter
 
         productRecyclerView.layoutManager = LinearLayoutManager(this) //GridLayoutManager(this, 2)
+
     }
 }

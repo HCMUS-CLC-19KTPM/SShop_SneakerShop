@@ -223,7 +223,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Button
-                android:id="@+id/signInBtn_1"
+                android:id="@+id/checkout_confirm_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -240,6 +240,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkout_recycler_view" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
