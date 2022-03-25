@@ -6,18 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
 
-class CheckoutActivity : AppCompatActivity() {
-    lateinit var products: ArrayList<ProductItem>
-
+class Cart : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_checkout)
+        setContentView(R.layout.activity_cart)
 
-        // Lookup the recyclerview in activity layout
         val productRecyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         val myProduct = ProductItem("",100.0, "Shoe", "image url", "Description", 2)
-        products = listOf(myProduct, myProduct, myProduct).toCollection(ArrayList())
+        val products = listOf(myProduct, myProduct, myProduct,myProduct,myProduct,myProduct
+                ,myProduct,myProduct)
 
         val adapter = ProductItemAdapter(products)
 
