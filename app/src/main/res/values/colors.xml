@@ -10,4 +10,6 @@
     <color name="primary">#EA7422</color>
     <color name="faded_orange">#fdddcb</color>
     <color name="gainsboro">#DCDCDC</color>
+    <color name="dark_gray">#808080</color>
+    <color name="green">#00FF00</color>
 </resources>
