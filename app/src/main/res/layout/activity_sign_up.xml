@@ -19,42 +19,42 @@
         app:srcCompat="@drawable/ic_app_icon" />
 
     <Button
-        android:id="@+id/signInBtn_2"
+        android:id="@+id/signup_register_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:backgroundTint="@color/primary"
-        android:text="Sign In"
+        android:text="Sign up"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_confirm_password" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_confirm_password" />
 
     <Button
-        android:id="@+id/signUpBtn_2"
+        android:id="@+id/signup_login_button"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="30dp"
-        android:text="Sign up"
+        android:text="Sign in"
         android:textAllCaps="false"
         android:textColor="@color/primary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInBtn_2"
+        app:layout_constraintTop_toBottomOf="@+id/signup_register_button"
         app:strokeColor="@color/primary" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/sign_up_input_email"
+        android:id="@+id/signup_input_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -66,13 +66,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/sign_up_input_password"
+        android:id="@+id/signup_input_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -83,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_input_email">
+        app:layout_constraintTop_toBottomOf="@+id/signup_input_email">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +92,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/sign_up_confirm_password"
+        android:id="@+id/signup_confirm_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -102,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_input_password">
+        app:layout_constraintTop_toBottomOf="@+id/signup_input_password">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

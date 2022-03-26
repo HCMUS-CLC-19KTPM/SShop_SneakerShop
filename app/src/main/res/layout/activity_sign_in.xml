@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_app_icon" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sign_in_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
     <Button
-        android:id="@+id/signInBtn_1"
+        android:id="@+id/signin_loginBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -42,10 +42,10 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_forgot_password" />
 
     <Button
-        android:id="@+id/signUpBtn_1"
+        android:id="@+id/sigin_register_button"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,11 +58,11 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInBtn_1"
+        app:layout_constraintTop_toBottomOf="@+id/signin_loginBtn"
         app:strokeColor="@color/primary" />
 
     <Button
-        android:id="@+id/signInGoogleBtn"
+        android:id="@+id/sigin_connect_google_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -86,7 +86,7 @@
         android:layout_marginEnd="28dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpBtn_1" />
+        app:layout_constraintTop_toBottomOf="@+id/sigin_register_button" />
 
     <View
         android:id="@+id/divider2"
@@ -96,7 +96,7 @@
         android:layout_marginTop="20dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpBtn_1" />
+        app:layout_constraintTop_toBottomOf="@+id/sigin_register_button" />
 
     <TextView
         android:id="@+id/textView"
@@ -107,7 +107,7 @@
         app:layout_constraintEnd_toStartOf="@+id/divider3"
         app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toEndOf="@+id/divider2"
-        app:layout_constraintTop_toBottomOf="@+id/signUpBtn_1" />
+        app:layout_constraintTop_toBottomOf="@+id/sigin_register_button" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputEmail"
@@ -122,7 +122,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sigin_in_input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -140,10 +142,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sigin_input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
@@ -153,8 +157,8 @@
         android:layout_marginStart="68dp"
         android:backgroundTint="@color/white"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="@+id/signInGoogleBtn"
-        app:layout_constraintStart_toStartOf="@+id/signInGoogleBtn"
-        app:layout_constraintTop_toTopOf="@+id/signInGoogleBtn" />
+        app:layout_constraintBottom_toBottomOf="@+id/sigin_connect_google_button"
+        app:layout_constraintStart_toStartOf="@+id/sigin_connect_google_button"
+        app:layout_constraintTop_toTopOf="@+id/sigin_connect_google_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
