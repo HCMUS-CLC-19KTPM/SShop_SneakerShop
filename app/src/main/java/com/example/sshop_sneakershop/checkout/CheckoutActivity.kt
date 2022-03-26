@@ -14,7 +14,7 @@ class CheckoutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_checkout)
 
         // Lookup the recyclerview in activity layout
-        val productRecyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val productRecyclerView = findViewById<RecyclerView>(R.id.checkout_recycler_view)
 
         val myProduct = ProductItem("",100.0, "Shoe", "image url", "Description", 2)
         products = listOf(myProduct, myProduct, myProduct).toCollection(ArrayList())
