@@ -1,10 +1,11 @@
-package com.example.sshop_sneakershop.orders
+package com.example.sshop_sneakershop.Order.Views
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Order.Order
 import com.example.sshop_sneakershop.R
 
 class OrderAdapter(private val orders:List<Order>): RecyclerView.Adapter<OrderAdapter.ViewHolder>() {

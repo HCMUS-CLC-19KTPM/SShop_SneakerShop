@@ -1,9 +1,9 @@
-package com.example.sshop_sneakershop.homepage
+package com.example.sshop_sneakershop.Review.Views
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.databinding.HomeProductBinding
+import com.example.sshop_sneakershop.Review.Review
 import com.example.sshop_sneakershop.databinding.ProductReviewItemBinding
 
 

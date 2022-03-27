@@ -1,8 +1,8 @@
-package com.example.sshop_sneakershop.admin.account
+package com.example.sshop_sneakershop.Account
 
 class Account(
     var id: String,
-    var fullname: String,
+    var fullName: String,
     var username: String,
     var password: String,
     var status: Boolean,

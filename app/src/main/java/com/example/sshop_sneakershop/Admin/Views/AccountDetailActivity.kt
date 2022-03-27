@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.admin.account
+package com.example.sshop_sneakershop.Admin.Views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,15 +7,15 @@ import com.example.sshop_sneakershop.R
 
 class AccountDetailActivity : AppCompatActivity() {
 
-    var username: EditText? = null
-    var address: EditText? = null
-    var phone: EditText? = null
-    var gender: EditText? = null
-    var birthday: EditText? = null
-    var status: Spinner? = null
-    var deleteBtn: Button? = null
-    var submitBtn: Button? = null
-    var editProfileTV: TextView? = null
+    private var username: EditText? = null
+    private var address: EditText? = null
+    private var phone: EditText? = null
+    private var gender: EditText? = null
+    private var birthday: EditText? = null
+    private var status: Spinner? = null
+    private var deleteBtn: Button? = null
+    private var submitBtn: Button? = null
+    private var editProfileTV: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class AccountDetailActivity : AppCompatActivity() {
             phone!!.isFocusableInTouchMode = true
             gender!!.isFocusableInTouchMode=true
             birthday!!.isFocusableInTouchMode=true
-            editProfileTV!!.setText("Editing Mode")
+            editProfileTV!!.text = "Editing Mode"
         }
         submitBtn!!.setOnClickListener {
             username!!.clearFocus()
@@ -51,7 +51,7 @@ class AccountDetailActivity : AppCompatActivity() {
             phone!!.isFocusableInTouchMode = false
             gender!!.isFocusableInTouchMode=false
             birthday!!.isFocusableInTouchMode=false
-            editProfileTV!!.setText("Edit Profile")
+            editProfileTV!!.text = "Edit Profile"
         }
 
         deleteBtn!!.setOnClickListener{

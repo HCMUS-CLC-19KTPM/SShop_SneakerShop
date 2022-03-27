@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.admin.account.Account
+import com.example.sshop_sneakershop.Account.Account
 
 class AccountAdapter(private val accounts:List<Account>): RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
@@ -27,7 +27,7 @@ class AccountAdapter(private val accounts:List<Account>): RecyclerView.Adapter<A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val account = accounts[position]
-        holder.nameTextView.text = account.fullname
+        holder.nameTextView.text = account.fullName
         holder.emailTextView.text = account.email
         if (account.status) {
             holder.statusTextView.text = "Active"

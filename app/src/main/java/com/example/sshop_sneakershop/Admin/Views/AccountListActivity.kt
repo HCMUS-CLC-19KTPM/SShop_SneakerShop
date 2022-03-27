@@ -1,16 +1,17 @@
-package com.example.sshop_sneakershop.admin.account
+package com.example.sshop_sneakershop.Admin.Views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Account.Account
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.checkout.AccountAdapter
 
 
 
 class AccountListActivity : AppCompatActivity() {
-    lateinit var accounts : ArrayList<Account>
+    private lateinit var accounts : ArrayList<Account>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_account_list)

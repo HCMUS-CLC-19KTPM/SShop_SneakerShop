@@ -4,16 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.R
+import com.example.sshop_sneakershop.Review.Review
+import com.example.sshop_sneakershop.Review.Views.ReviewAdapter
 import com.example.sshop_sneakershop.databinding.ActivityItemDetailBinding
-import java.time.LocalDate
-import java.util.*
 
 class ItemDetail : AppCompatActivity(), ItemClickListener {
     private lateinit var binding: ActivityItemDetailBinding
-    private lateinit var itemList: List<Item>
+    private lateinit var productList: List<Product>
     private lateinit var reviewList: List<Review>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,14 +40,14 @@ class ItemDetail : AppCompatActivity(), ItemClickListener {
 
         //Related products
         //Item list initialization
-        val myItem = Item(83.03, "Grand Court", R.drawable.shoe)
-        itemList = listOf(myItem, myItem, myItem, myItem)
+        val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
+        productList = listOf(myItem, myItem, myItem, myItem)
 
         val mainActivity = this
         binding.recyclerViewRelated.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ItemAdapter(itemList, mainActivity)
+            adapter = ItemAdapter(productList, mainActivity)
         }
 
         //Reviews
@@ -64,9 +64,9 @@ class ItemDetail : AppCompatActivity(), ItemClickListener {
 
 
     }
-    override fun onClick(item: Item) {
+    override fun onClick(product: Product) {
         val intent = Intent(applicationContext, ItemDetail::class.java)
-        intent.putExtra("itemID", item.id)
+        intent.putExtra("itemID", product.id)
         startActivity(intent)
         finish()
     }

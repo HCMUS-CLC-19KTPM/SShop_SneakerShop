@@ -1,6 +1,8 @@
 package com.example.sshop_sneakershop.homepage
 
+import com.example.sshop_sneakershop.Product.Product
+
 interface ItemClickListener
 {
-    fun onClick(item: Item)
+    fun onClick(product: Product)
 }

@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.checkout
+package com.example.sshop_sneakershop.Product.Views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.R
 
-class ProductItemAdapter(private val products:List<ProductItem>): RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
+class ProductItemAdapter(private val products:List<Product>): RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
         val nameTextView = listItemView.findViewById(R.id.product_textview_name) as TextView
         val priceTextView = listItemView.findViewById(R.id.product_textview_price) as TextView

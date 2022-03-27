@@ -3,11 +3,12 @@ package com.example.sshop_sneakershop.homepage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.databinding.HomeProductBinding
 
 
 class ItemAdapter(
-    private val items: List<Item>,
+    private val products: List<Product>,
     private val clickListener: ItemClickListener
 ) : RecyclerView.Adapter<CardViewHolder>()
 {
@@ -20,8 +21,8 @@ class ItemAdapter(
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int)
     {
-        holder.bindItem(items[position])
+        holder.bindItem(products[position])
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = products.size
 }
