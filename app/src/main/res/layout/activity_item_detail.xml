@@ -467,7 +467,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/checkout_confirm_button"
+            android:id="@+id/item_detail_button_add_to_cart"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"

@@ -31,7 +31,7 @@
             <!-- Scrollable content -->
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/user_toolbar"
+                android:id="@+id/checkout_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="@color/primary"
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/order_detail_bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkout_coordinator_layout">
@@ -84,7 +84,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/checkout_current_info_button"
+                        android:id="@+id/checkout_button_current_info"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -100,7 +100,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                     <Button
-                        android:id="@+id/checkout_add_info_button"
+                        android:id="@+id/checkout_button_add_new_info"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -113,7 +113,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkout_current_info_button" />
+                        app:layout_constraintTop_toBottomOf="@+id/checkout_button_current_info" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -147,7 +147,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/checkout_current_payment_button"
+                        android:id="@+id/checkout_button_current_payment_method"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -163,7 +163,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                     <Button
-                        android:id="@+id/checkout_add_payment_button"
+                        android:id="@+id/checkout_button_add_payment_method"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -176,7 +176,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkout_current_payment_button" />
+                        app:layout_constraintTop_toBottomOf="@+id/checkout_button_current_payment_method" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -223,7 +223,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Button
-                android:id="@+id/checkout_confirm_button"
+                android:id="@+id/checkout_button_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -248,7 +248,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/order_detail_bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:background="@drawable/nav_background_curved"

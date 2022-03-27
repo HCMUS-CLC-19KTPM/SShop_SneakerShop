@@ -21,34 +21,35 @@
             android:orientation="vertical">
 
             <!-- Media -->
+
             <ImageView
-                android:id="@+id/product_image"
-                android:layout_width="141dp"
-                android:layout_height="140dp"
-                android:contentDescription="shoe"
+                android:id="@+id/account_avatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="avatar"
                 android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/shoe" />
+                app:srcCompat="@drawable/account_avatar" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
                 android:orientation="vertical"
                 android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/product_image"
+                app:layout_constraintEnd_toEndOf="@+id/account_avatar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <!-- Title, secondary and supporting text -->
 
                 <TextView
-                    android:id="@+id/product_textview_name"
+                    android:id="@+id/account_textview_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shoe Title"
+                    android:text="Nguyen Van A"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -56,57 +57,64 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/product_textview_description"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Description DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/product_textview_name" />
-
-                <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantity:"
+                    android:text="Email:"
                     android:textColor="@color/primary"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/product_textview_description" />
+                    app:layout_constraintTop_toBottomOf="@+id/account_textview_username" />
 
                 <TextView
-                    android:id="@+id/product_textview_quantity"
+                    android:id="@+id/account_textview_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="20"
+                    android:text="nguyenvana123@gmail.com"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary"
                     app:layout_constraintStart_toEndOf="@+id/textView10"
-                    app:layout_constraintTop_toBottomOf="@+id/product_textview_description" />
+                    app:layout_constraintTop_toBottomOf="@+id/account_textview_username" />
 
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Price:"
+                    android:text="ID:"
                     android:textColor="@color/primary"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                 <TextView
-                    android:id="@+id/product_textview_price"
+                    android:id="@+id/account_textview_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="200$"
+                    android:text="11234124234dmad1343423"
                     app:layout_constraintStart_toEndOf="@+id/textView13"
-                    app:layout_constraintTop_toBottomOf="@+id/product_textview_quantity" />
+                    app:layout_constraintTop_toBottomOf="@+id/account_textview_email" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Account Status:"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                <TextView
+                    android:id="@+id/account_textview_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Active"
+                    app:layout_constraintStart_toEndOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/account_textview_id" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
