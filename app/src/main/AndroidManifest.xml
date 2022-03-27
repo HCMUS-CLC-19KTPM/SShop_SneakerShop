@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
+            android:name=".admin.account.AccountDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".admin.account.AccountListActivity"
             android:exported="true" />
         <activity
