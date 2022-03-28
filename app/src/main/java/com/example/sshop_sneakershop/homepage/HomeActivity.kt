@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity(), ItemClickListener {
         doApiCalls()
 
         //Banner - slider
-        mViewPager = findViewById<View>(R.id.viewPagerMain) as ViewPager
+        mViewPager = findViewById<View>(R.id.banner_view_pager) as ViewPager
         mViewPagerAdapter = BannerAdapter(this, images)
         mViewPager!!.adapter = mViewPagerAdapter
 
@@ -42,7 +42,7 @@ class HomeActivity : AppCompatActivity(), ItemClickListener {
         productList = listOf(myItem, myItem, myItem, myItem)
 
         val mainActivity = this
-        binding.recyclerView.apply {
+        binding.homeRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
             adapter = ItemAdapter(productList, mainActivity)

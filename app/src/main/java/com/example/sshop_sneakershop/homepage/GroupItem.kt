@@ -38,7 +38,7 @@ class GroupItem : AppCompatActivity(), ItemClickListener {
         )
 
         val mainActivity = this
-        binding.recyclerView.apply {
+        binding.productRecyclerView.apply {
             layoutManager = GridLayoutManager(applicationContext, 2)
             adapter = ItemAdapter(productList, mainActivity)
         }

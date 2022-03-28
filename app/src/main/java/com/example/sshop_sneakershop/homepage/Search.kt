@@ -24,7 +24,7 @@ class Search : AppCompatActivity(), ItemClickListener {
             ,myItem,myItem,myItem,myItem)
 
         val mainActivity = this
-        binding.recyclerView.apply {
+        binding.searchRecyclerView.apply {
             layoutManager = GridLayoutManager(applicationContext, 2)
             adapter = ItemAdapter(productList,mainActivity)
         }

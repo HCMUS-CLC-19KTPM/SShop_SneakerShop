@@ -13,7 +13,7 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
-        val productRecyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val productRecyclerView = findViewById<RecyclerView>(R.id.cart_recycler_view)
 
         val myProduct = Product("",100.0, "Shoe", "image url", "Description", 2)
         val products = listOf(myProduct, myProduct, myProduct,myProduct,myProduct,myProduct

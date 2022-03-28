@@ -2,11 +2,11 @@ package com.example.sshop_sneakershop.homepage
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Product.Product
-import com.example.sshop_sneakershop.databinding.HomeProductBinding
+import com.example.sshop_sneakershop.databinding.RelatedProductListItemBinding
 
 
 class CardViewHolder(
-    private val cardCellBinding: HomeProductBinding,
+    private val cardCellBinding: RelatedProductListItemBinding,
     private val clickListener: ItemClickListener
     ) : RecyclerView.ViewHolder(cardCellBinding.root)
 {

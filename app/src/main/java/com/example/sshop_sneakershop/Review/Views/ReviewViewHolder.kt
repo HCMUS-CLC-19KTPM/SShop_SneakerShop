@@ -3,11 +3,11 @@ package com.example.sshop_sneakershop.Review.Views
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Review.Review
-import com.example.sshop_sneakershop.databinding.ProductReviewItemBinding
+import com.example.sshop_sneakershop.databinding.ReviewListItemBinding
 
 
 class ReviewViewHolder(
-    private val cardCellBinding: ProductReviewItemBinding,
+    private val cardCellBinding: ReviewListItemBinding,
     ) : RecyclerView.ViewHolder(cardCellBinding.root)
 {
     fun bindItem(review: Review)

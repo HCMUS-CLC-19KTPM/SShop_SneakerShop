@@ -11,17 +11,19 @@
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
             android:name=".Admin.Views.AccountDetailActivity"
-            android:exported="true" />
+            android:exported="true" >
+    </activity>
         <activity
             android:name=".Admin.Views.AccountListActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".Order.Views.OrderDetailActivity"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".Cart.CartActivity"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".homepage.Search"

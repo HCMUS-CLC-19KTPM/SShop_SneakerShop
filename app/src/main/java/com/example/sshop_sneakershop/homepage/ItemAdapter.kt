@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Product.Product
-import com.example.sshop_sneakershop.databinding.HomeProductBinding
+import com.example.sshop_sneakershop.databinding.RelatedProductListItemBinding
 
 
 class ItemAdapter(
@@ -15,7 +15,7 @@ class ItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder
     {
         val from = LayoutInflater.from(parent.context)
-        val binding = HomeProductBinding.inflate(from, parent, false)
+        val binding = RelatedProductListItemBinding.inflate(from, parent, false)
         return CardViewHolder(binding, clickListener)
     }
 

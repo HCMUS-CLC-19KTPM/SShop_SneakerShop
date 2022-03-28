@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Review.Review
-import com.example.sshop_sneakershop.databinding.ProductReviewItemBinding
+import com.example.sshop_sneakershop.databinding.ReviewListItemBinding
 
 
 class ReviewAdapter(
@@ -14,7 +14,7 @@ class ReviewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder
     {
         val from = LayoutInflater.from(parent.context)
-        val binding = ProductReviewItemBinding.inflate(from, parent, false)
+        val binding = ReviewListItemBinding.inflate(from, parent, false)
         return ReviewViewHolder(binding)
     }
 
