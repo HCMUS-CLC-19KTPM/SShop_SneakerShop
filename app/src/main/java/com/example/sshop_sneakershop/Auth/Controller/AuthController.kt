@@ -1,8 +1,11 @@
 package com.example.sshop_sneakershop.Auth.Controller
 
 import android.content.ContentValues.TAG
+import android.provider.Settings.Secure.getString
 import android.util.Log
 import com.example.sshop_sneakershop.Auth.View.IAuthView
+import com.example.sshop_sneakershop.R
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -22,7 +25,17 @@ class AuthController(private var view: IAuthView) : IAuthController {
     }
 
     override fun onLoginWithGoogle() {
-
+        TODO("Not yet implemented")
+//        BeginSignInRequest.builder()
+//            .setGoogleIdTokenRequestOptions(
+//                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+//                    .setSupported(true)
+//                    // Your server's client ID, not your Android client ID.
+//                    .setServerClientId(getString(R.string.your_web_client_id))
+//                    // Only show accounts previously used to sign in.
+//                    .setFilterByAuthorizedAccounts(true)
+//                    .build())
+//            .build()
     }
 
     override fun onRegister(email: String, password: String) {
