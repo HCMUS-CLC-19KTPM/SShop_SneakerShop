@@ -73,7 +73,7 @@
                 app:civ_border_color="@color/primary"
                 app:civ_border_width="4dp"
                 app:civ_shadow="true"
-                app:civ_shadow_color="@color/primary"
+                app:civ_shadow_color="@color/gainsboro"
                 app:civ_shadow_radius="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/profile_text_username"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,12 +121,12 @@
                     android:id="@+id/profile_button_showAccDetail"
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/ic_menu_more" />
+                    android:background="@drawable/ic_baseline_keyboard_arrow_down_24" />
             </LinearLayout>
 
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/gridLayout"
-                android:layout_width="match_parent"
+                android:layout_width="346dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
@@ -300,7 +300,7 @@
                     android:id="@+id/profile_button_showPayment"
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/ic_menu_more" />
+                    android:background="@drawable/ic_baseline_keyboard_arrow_down_24" />
             </LinearLayout>
 
 

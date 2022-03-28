@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.GridLayout
+import androidx.gridlayout.widget.GridLayout
 import com.example.sshop_sneakershop.R
 
 class UserActivity : AppCompatActivity() {
