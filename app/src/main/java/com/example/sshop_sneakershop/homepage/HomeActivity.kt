@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.example.sshop_sneakershop.Auth.Controller.AuthController
 import com.example.sshop_sneakershop.Auth.View.AuthActivity
 import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.R
@@ -32,6 +33,7 @@ class HomeActivity : AppCompatActivity(), ItemClickListener {
         if (auth.currentUser != null) {
             startActivity(Intent(this, AuthActivity::class.java))
             finish()
+
         }
     }
 

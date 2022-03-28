@@ -1,18 +1,21 @@
 package com.example.sshop_sneakershop.Auth.Controller
 
 import android.content.ContentValues.TAG
-import android.provider.Settings.Secure.getString
 import android.util.Log
 import com.example.sshop_sneakershop.Auth.View.IAuthView
-import com.example.sshop_sneakershop.R
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class AuthController(private var view: IAuthView) : IAuthController {
     private val auth = Firebase.auth
 
-    override fun onLogin(email: String, password: String) {
+    /**
+     * Sign in with email and password
+     * @param email String
+     * @param password String
+     */
+    override fun onSignIn(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d(TAG, "signInWithEmail:success")
@@ -24,21 +27,28 @@ class AuthController(private var view: IAuthView) : IAuthController {
         }
     }
 
-    override fun onLoginWithGoogle() {
-        TODO("Not yet implemented")
-//        BeginSignInRequest.builder()
-//            .setGoogleIdTokenRequestOptions(
-//                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-//                    .setSupported(true)
-//                    // Your server's client ID, not your Android client ID.
-//                    .setServerClientId(getString(R.string.your_web_client_id))
-//                    // Only show accounts previously used to sign in.
-//                    .setFilterByAuthorizedAccounts(true)
-//                    .build())
-//            .build()
+    /**
+     * Sign in with credential
+     * @param credential AuthCredential
+     */
+    override fun onSignInWithGoogle(credential: AuthCredential) {
+        auth.signInWithCredential(credential).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Log.d(TAG, "signInWithCredential:success")
+                view.onLoginSuccess("Login Success")
+            } else {
+                Log.w(TAG, "signInWithCredential:failure", it.exception)
+                view.onLoginFailed("Login Failed")
+            }
+        }
     }
 
-    override fun onRegister(email: String, password: String) {
+    /**
+     * Sign up with email and password
+     * @param email String
+     * @param password String
+     */
+    override fun onSignUp(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -51,11 +61,17 @@ class AuthController(private var view: IAuthView) : IAuthController {
             }
     }
 
+    /**
+     * Forgot password
+     */
     override fun onForgotPassword(email: String) {
         TODO("Not yet implemented")
     }
 
-    override fun onLogout() {
-        TODO("Not yet implemented")
+    /**
+     * Sign out
+     */
+    override fun onSignOut() {
+        auth.signOut()
     }
 }
