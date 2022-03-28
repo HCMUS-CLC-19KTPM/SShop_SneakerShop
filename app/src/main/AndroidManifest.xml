@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
+            android:name=".user.EditProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".orders.OrderDetailActivity"
             android:exported="true" />
         <activity
@@ -38,7 +41,7 @@
             android:exported="false" />
         <activity
             android:name=".homepage.Home"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

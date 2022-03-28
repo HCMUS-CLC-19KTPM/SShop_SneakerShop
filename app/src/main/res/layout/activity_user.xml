@@ -30,7 +30,7 @@
             <!-- Scrollable content -->
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/user_toolbar"
+                android:id="@+id/profile_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="@color/primary"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/titleProfile"
+                android:id="@+id/profile_text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/circularImageView"
+                android:id="@+id/profile_image_avatar"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:src="@drawable/user"
@@ -75,26 +75,27 @@
                 app:civ_shadow="true"
                 app:civ_shadow_color="@color/primary"
                 app:civ_shadow_radius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/usernameTV"
+                app:layout_constraintBottom_toTopOf="@+id/profile_text_username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleProfile"
+                app:layout_constraintTop_toBottomOf="@+id/profile_text_title"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/usernameTV"
+                android:id="@+id/profile_text_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayoutAccDetail"
+                app:layout_constraintBottom_toTopOf="@+id/profile_linearLayout_accDetail"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/circularImageView"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image_avatar"
                 tools:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/linearLayoutAccDetail"
+                android:id="@+id/profile_linearLayout_accDetail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -104,10 +105,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/usernameTV">
+                app:layout_constraintTop_toBottomOf="@+id/profile_text_username">
 
                 <TextView
-                    android:id="@+id/titleAccountTV"
+                    android:id="@+id/profile_text_accDetail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -117,7 +118,7 @@
                     android:textSize="22sp" />
 
                 <Button
-                    android:id="@+id/showInfoBtn"
+                    android:id="@+id/profile_button_showAccDetail"
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/ic_menu_more" />
@@ -130,15 +131,15 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 app:columnCount="2"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayoutPayment"
+                app:layout_constraintBottom_toTopOf="@+id/profile_button_editInfo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutAccDetail"
+                app:layout_constraintTop_toBottomOf="@+id/profile_linearLayout_accDetail"
                 app:useDefaultMargins="true">
 
                 <TextView
-                    android:id="@+id/valueName"
-                    android:layout_width="260dp"
+                    android:id="@+id/profile_text_valueName"
+                    android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:text="Nguyen Van A"
                     android:textAlignment="textEnd"
@@ -147,8 +148,8 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/valueAddress"
-                    android:layout_width="260dp"
+                    android:id="@+id/profile_text_valueAddress"
+                    android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:text="227 Nguyen Van Cu"
                     android:textAlignment="textEnd"
@@ -157,8 +158,8 @@
                     app:layout_row="2" />
 
                 <TextView
-                    android:id="@+id/valuePhone"
-                    android:layout_width="260dp"
+                    android:id="@+id/profile_text_valuePhone"
+                    android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:text="0123456789"
                     android:textAlignment="textEnd"
@@ -167,8 +168,8 @@
                     app:layout_row="3" />
 
                 <TextView
-                    android:id="@+id/valueGender"
-                    android:layout_width="260dp"
+                    android:id="@+id/profile_text_valueGender"
+                    android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:text="male"
                     android:textAlignment="textEnd"
@@ -177,8 +178,8 @@
                     app:layout_row="4" />
 
                 <TextView
-                    android:id="@+id/valueDob"
-                    android:layout_width="260dp"
+                    android:id="@+id/profile_text_valueDob"
+                    android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:text="01/01/2001"
                     android:textAlignment="textEnd"
@@ -187,8 +188,8 @@
                     app:layout_row="5" />
 
                 <TextView
-                    android:id="@+id/valueEmail"
-                    android:layout_width="260dp"
+                    android:id="@+id/profile_text_valueEmail"
+                    android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:text="username@gmail.com"
                     android:textAlignment="textEnd"
@@ -197,7 +198,7 @@
                     app:layout_row="1" />
 
                 <TextView
-                    android:id="@+id/labelGender"
+                    android:id="@+id/profile_text_labelGender"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:text="Gender"
@@ -207,7 +208,7 @@
                     app:layout_row="4" />
 
                 <TextView
-                    android:id="@+id/labelDob"
+                    android:id="@+id/profile_text_labelDob"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:text="Birthday"
@@ -217,7 +218,7 @@
                     app:layout_row="5" />
 
                 <TextView
-                    android:id="@+id/labelPhone"
+                    android:id="@+id/profile_text_labelPhone"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:text="Phone"
@@ -227,7 +228,7 @@
                     app:layout_row="3" />
 
                 <TextView
-                    android:id="@+id/labelName"
+                    android:id="@+id/profile_text_lableName"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:text="Name"
@@ -237,7 +238,7 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/labelEmail"
+                    android:id="@+id/profile_text_lableEmail"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:text="Email"
@@ -247,7 +248,7 @@
                     app:layout_row="1" />
 
                 <TextView
-                    android:id="@+id/labelAddress"
+                    android:id="@+id/profile_text_labelAddress"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:text="Address"
@@ -256,22 +257,25 @@
                     app:layout_column="0"
                     app:layout_row="2" />
 
-                <TextView
-                    android:id="@+id/editTV"
-                    android:layout_width="260dp"
-                    android:layout_height="35dp"
-                    android:text="Edit Profile"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/primary"
-                    android:textSize="20sp"
-                    app:layout_column="1"
-                    app:layout_row="6"
-                    tools:textStyle="italic|bold" />
-
             </androidx.gridlayout.widget.GridLayout>
 
+            <Button
+                android:id="@+id/profile_button_editInfo"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textAlignment="textEnd"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/profile_linearLayout_payment"
+                app:layout_constraintEnd_toEndOf="@+id/profile_linearLayout_accDetail"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_linearLayout_accDetail"
+                app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+                tools:textStyle="bold|italic" />
+
             <LinearLayout
-                android:id="@+id/linearLayoutPayment"
+                android:id="@+id/profile_linearLayout_payment"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -280,10 +284,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gridLayout">
+                app:layout_constraintTop_toBottomOf="@+id/profile_button_editInfo">
 
                 <TextView
-                    android:id="@+id/titlePaymentTV"
+                    android:id="@+id/profile_text_payment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -293,7 +297,7 @@
                     android:textSize="22sp" />
 
                 <Button
-                    android:id="@+id/showPaymentBtn"
+                    android:id="@+id/profile_button_showPayment"
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/ic_menu_more" />

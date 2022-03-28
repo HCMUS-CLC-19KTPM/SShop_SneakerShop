@@ -8,11 +8,12 @@
     <string name="type5">Authentic</string>
     <string name="type6">Leather</string>
     <string name="type7">Canvas</string>
-    <string name="type8">Synthetic</string>
+    <string name="type8">Synthetic</string>s
     <string name="autoName">Grand Court</string>
     <string name="autoPrice">$83.03</string>
     <string name="autoCategory">Category</string>
     <string name="autoProfile">Profile</string>
+    <string name="autoEditProfile">Edit Profile</string>
     <string name="intro">©2022 G007 VN, Inc. All rights reserved.</string>
     <string name="result">Result</string>
 
