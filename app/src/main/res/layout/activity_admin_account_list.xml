@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/order_list_coordinator_layout"
+        android:id="@+id/admin_account_list_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +20,7 @@
 
         <!-- Note: A RecyclerView can also be used -->
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/order_list_nested_scroll_view"
+            android:id="@+id/admin_account_list_nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -29,44 +28,47 @@
             <!-- Scrollable content -->
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/order_list_toolbar"
+                android:id="@+id/admin_account_list_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="@color/primary"
-                app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                app:title="Orders"
+                app:title="Accounts Management"
                 app:titleTextColor="@color/white" />
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/order_list_recycler_view"
+        android:id="@+id/admin_account_list_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/order_list_bottom_navigation"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/admin_account_list_button_add_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_list_coordinator_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/admin_account_list_coordinator_layout" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/order_list_bottom_navigation"
+    <Button
+        android:id="@+id/admin_account_list_button_add_account"
         android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:background="@drawable/nav_background_curved"
-        app:backgroundTint="@color/primary"
-        app:iconGravity="textTop"
-        app:itemActiveIndicatorStyle="@null"
-        app:itemIconTint="@color/bottom_navigation_color"
-        app:itemTextColor="@color/bottom_navigation_color"
-        app:labelVisibilityMode="auto"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/primary"
+        android:text="Add New Account"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_person_add_alt_1_24"
+        app:iconGravity="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

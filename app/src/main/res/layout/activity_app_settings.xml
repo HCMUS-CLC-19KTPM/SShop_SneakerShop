@@ -41,7 +41,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_show_notifications"
+        android:id="@+id/app_settings_switch_show_notifications"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -64,9 +64,9 @@
         android:layout_height="wrap_content"
         android:text="Show the notification contents"
         app:layout_anchorGravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_show_notifications"
-        app:layout_constraintStart_toStartOf="@+id/switch_show_notifications"
-        app:layout_constraintTop_toTopOf="@+id/switch_show_notifications"
+        app:layout_constraintBottom_toBottomOf="@+id/app_settings_switch_show_notifications"
+        app:layout_constraintStart_toStartOf="@+id/app_settings_switch_show_notifications"
+        app:layout_constraintTop_toTopOf="@+id/app_settings_switch_show_notifications"
         app:layout_constraintVertical_bias="1.0" />
 
     <View
@@ -79,10 +79,10 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_show_notifications" />
+        app:layout_constraintTop_toBottomOf="@+id/app_settings_switch_show_notifications" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchMaterial"
+        android:id="@+id/app_settings_switch_show_notifications_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -104,9 +104,9 @@
         android:layout_height="wrap_content"
         android:text="Show the notification contents"
         app:layout_anchorGravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/switchMaterial"
-        app:layout_constraintStart_toStartOf="@+id/switchMaterial"
-        app:layout_constraintTop_toTopOf="@+id/switchMaterial"
+        app:layout_constraintBottom_toBottomOf="@+id/app_settings_switch_show_notifications_2"
+        app:layout_constraintStart_toStartOf="@+id/app_settings_switch_show_notifications_2"
+        app:layout_constraintTop_toTopOf="@+id/app_settings_switch_show_notifications_2"
         app:layout_constraintVertical_bias="1.0" />
 
     <View
@@ -119,10 +119,10 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchMaterial" />
+        app:layout_constraintTop_toBottomOf="@+id/app_settings_switch_show_notifications_2" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/app_settings_bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:background="@drawable/nav_background_curved"

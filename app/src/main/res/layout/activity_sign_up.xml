@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_app_icon" />
 
     <Button
-        android:id="@+id/signup_register_button"
+        android:id="@+id/signup_button_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -33,10 +33,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_confirm_password" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_edittext_confirm_password" />
 
     <Button
-        android:id="@+id/signup_login_button"
+        android:id="@+id/signup_button_login"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,11 +50,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_register_button"
+        app:layout_constraintTop_toBottomOf="@+id/signup_button_register"
         app:strokeColor="@color/primary" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signup_input_email"
+        android:id="@+id/signup_edittext_input_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -73,7 +73,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signup_input_password"
+        android:id="@+id/signup_edittext_input_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
-        app:layout_constraintTop_toBottomOf="@+id/signup_input_email">
+        app:layout_constraintTop_toBottomOf="@+id/signup_edittext_input_email">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signup_confirm_password"
+        android:id="@+id/signup_edittext_confirm_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -103,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
-        app:layout_constraintTop_toBottomOf="@+id/signup_input_password">
+        app:layout_constraintTop_toBottomOf="@+id/signup_edittext_input_password">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

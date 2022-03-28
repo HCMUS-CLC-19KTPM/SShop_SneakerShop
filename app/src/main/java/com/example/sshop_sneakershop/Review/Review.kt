@@ -1,7 +1,4 @@
-package com.example.sshop_sneakershop.homepage
-
-import android.media.Image
-import java.util.*
+package com.example.sshop_sneakershop.Review
 
 var reviewList = mutableListOf<Review>()
 

@@ -37,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/order_list_delivery_description"
+                android:id="@+id/order_list_textview_delivery_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -60,7 +60,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/order_list_delivery_description">
+                app:layout_constraintTop_toBottomOf="@+id/order_list_textview_delivery_description">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -99,7 +99,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/order_list_end_date"
+                        android:id="@+id/order_list_textview_end_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -122,7 +122,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/order_list_customer_name"
+                        android:id="@+id/order_list_textview_customer_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -145,7 +145,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/order_list_customer_address"
+                        android:id="@+id/order_list_textview_customer_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -168,7 +168,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/order_list_customer_phone"
+                        android:id="@+id/order_list_textview_customer_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -191,7 +191,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/order_list_total_cost"
+                        android:id="@+id/order_list_textview_total_cost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"

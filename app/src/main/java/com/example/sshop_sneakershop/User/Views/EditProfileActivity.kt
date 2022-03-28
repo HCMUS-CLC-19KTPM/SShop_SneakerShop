@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.user
+package com.example.sshop_sneakershop.User.Views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

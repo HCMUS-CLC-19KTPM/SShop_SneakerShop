@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.UserActivity">
+    tools:context=".User.Views.UserActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/user_coordinator_layout"
+        android:id="@+id/profile_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
 
         <!-- Note: A RecyclerView can also be used -->
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/user_nested_scroll_view"
+            android:id="@+id/profile_nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -42,13 +42,13 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <ScrollView
-        android:id="@+id/checkout_scroll_view"
+        android:id="@+id/profile_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/profile_bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_coordinator_layout">
+        app:layout_constraintTop_toBottomOf="@+id/profile_coordinator_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -128,8 +128,8 @@
                 android:id="@+id/gridLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 app:columnCount="2"
                 app:layout_constraintBottom_toTopOf="@+id/profile_button_editInfo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -308,7 +308,7 @@
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/profile_bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:background="@drawable/nav_background_curved"

@@ -19,17 +19,17 @@
         app:srcCompat="@drawable/ic_app_icon" />
 
     <TextView
-        android:id="@+id/sign_in_forgot_password"
+        android:id="@+id/sign_in_textview_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:text="Forgot your password?"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_edittext_input_password" />
 
     <Button
-        android:id="@+id/signin_loginBtn"
+        android:id="@+id/signin_button_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -42,10 +42,10 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_forgot_password" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_textview_forgot_password" />
 
     <Button
-        android:id="@+id/sigin_register_button"
+        android:id="@+id/signin_button_register"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,11 +58,11 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_loginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/signin_button_login"
         app:strokeColor="@color/primary" />
 
     <Button
-        android:id="@+id/sigin_connect_google_button"
+        android:id="@+id/sigin_button_connect_google"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -86,7 +86,7 @@
         android:layout_marginEnd="28dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sigin_register_button" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_button_register" />
 
     <View
         android:id="@+id/divider2"
@@ -96,7 +96,7 @@
         android:layout_marginTop="20dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sigin_register_button" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_button_register" />
 
     <TextView
         android:id="@+id/textView"
@@ -107,10 +107,10 @@
         app:layout_constraintEnd_toStartOf="@+id/divider3"
         app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toEndOf="@+id/divider2"
-        app:layout_constraintTop_toBottomOf="@+id/sigin_register_button" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_button_register" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputEmail"
+        android:id="@+id/signin_edittext_input_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -130,7 +130,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputPassword"
+        android:id="@+id/signin_edittext_input_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -141,7 +141,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:boxStrokeColor="@color/primary"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail">
+        app:layout_constraintTop_toBottomOf="@+id/signin_edittext_input_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sigin_input_password"
@@ -157,8 +157,8 @@
         android:layout_marginStart="68dp"
         android:backgroundTint="@color/white"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="@+id/sigin_connect_google_button"
-        app:layout_constraintStart_toStartOf="@+id/sigin_connect_google_button"
-        app:layout_constraintTop_toTopOf="@+id/sigin_connect_google_button" />
+        app:layout_constraintBottom_toBottomOf="@+id/sigin_button_connect_google"
+        app:layout_constraintStart_toStartOf="@+id/sigin_button_connect_google"
+        app:layout_constraintTop_toTopOf="@+id/sigin_button_connect_google" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,13 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.databinding.ActivityGroupItemBinding
 import com.example.sshop_sneakershop.databinding.ActivitySearchBinding
 
 class Search : AppCompatActivity(), ItemClickListener {
     private lateinit var binding: ActivitySearchBinding
-    private lateinit var itemList: List<Item>
+    private lateinit var productList: List<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,21 +19,21 @@ class Search : AppCompatActivity(), ItemClickListener {
 
         binding.title.text = "Result for 'Very chonk'"
 
-        val myItem = Item(83.03,"Grand Court",R.drawable.shoe)
-        itemList = listOf(myItem,myItem,myItem,myItem,myItem,myItem,myItem,myItem
+        val myItem = Product("", 83.03,"Grand Court",R.drawable.shoe)
+        productList = listOf(myItem,myItem,myItem,myItem,myItem,myItem,myItem,myItem
             ,myItem,myItem,myItem,myItem)
 
         val mainActivity = this
-        binding.recyclerView.apply {
+        binding.searchRecyclerView.apply {
             layoutManager = GridLayoutManager(applicationContext, 2)
-            adapter = ItemAdapter(itemList,mainActivity)
+            adapter = ItemAdapter(productList,mainActivity)
         }
 
     }
-    override fun onClick(item: Item)
+    override fun onClick(product: Product)
     {
         val intent = Intent(applicationContext, ItemDetail::class.java)
-        intent.putExtra("itemID", item.id)
+        intent.putExtra("itemID", product.id)
         startActivity(intent)
     }
 }

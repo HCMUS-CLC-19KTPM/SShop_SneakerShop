@@ -1,12 +1,11 @@
-package com.example.sshop_sneakershop.orders
+package com.example.sshop_sneakershop.Order.Views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Order.Order
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.checkout.ProductItem
-import com.example.sshop_sneakershop.checkout.ProductItemAdapter
 
 class OrderListActivity : AppCompatActivity() {
     lateinit var orders: ArrayList<Order>

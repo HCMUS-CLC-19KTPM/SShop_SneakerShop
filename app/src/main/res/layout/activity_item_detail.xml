@@ -262,7 +262,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewRelated"
             android:layout_width="0dp"
-            android:layout_height="269dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
@@ -467,7 +467,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/checkout_confirm_button"
+            android:id="@+id/item_detail_button_add_to_cart"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"

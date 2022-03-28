@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/order_detail_bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_detail_coordinator_layout">
@@ -85,7 +85,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/order_detail_end_date_1"
+                        android:id="@+id/order_detail_textview_estimate_date_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -112,7 +112,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/order_detail_text_view_1" />
 
                     <Button
-                        android:id="@+id/order_detail_report_button"
+                        android:id="@+id/order_detail_button_report"
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
@@ -167,7 +167,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/order_detail_delivery_description"
+                        android:id="@+id/order_detail_textview_delivery_description"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -190,7 +190,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/order_detail_delivery_description">
+                        app:layout_constraintTop_toBottomOf="@+id/order_detail_textview_delivery_description">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -206,7 +206,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/order_detail_start_date"
+                                android:id="@+id/order_detail_textview_start_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -229,7 +229,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/order_detail_end_date_2"
+                                android:id="@+id/order_detail_textview_estimated_date_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="8dp"
@@ -252,7 +252,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/order_detail_customer_name"
+                                android:id="@+id/order_detail_textview_customer_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -275,7 +275,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/order_detail_customer_address"
+                                android:id="@+id/order_detail_textview_customer_address"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -298,7 +298,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/order_detail_customer_phone"
+                                android:id="@+id/order_detail_textview_customer_phone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -321,7 +321,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/order_detail_total_cost"
+                                android:id="@+id/order_detail_textview_total_cost"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -370,14 +370,14 @@
                 android:id="@+id/order_detail_recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/order_detail_confirm_button"
+                app:layout_constraintBottom_toTopOf="@+id/order_detail_button_confirm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Button
-                android:id="@+id/order_detail_confirm_button"
+                android:id="@+id/order_detail_button_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -398,7 +398,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/order_detail_bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:background="@drawable/nav_background_curved"

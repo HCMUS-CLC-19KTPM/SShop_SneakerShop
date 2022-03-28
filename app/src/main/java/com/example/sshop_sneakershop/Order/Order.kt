@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.orders
+package com.example.sshop_sneakershop.Order
 
 class Order (
     var id: String,

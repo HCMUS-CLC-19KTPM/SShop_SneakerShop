@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.checkout
+package com.example.sshop_sneakershop.Product.Views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.R
 
-class ProductItemAdapter(private val products:List<ProductItem>): RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
+class ProductItemAdapter(private val products:List<Product>): RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
-        val nameTextView = listItemView.findViewById(R.id.checkout_product_title) as TextView
-        val priceTextView = listItemView.findViewById(R.id.checkout_product_price) as TextView
-        val quantityTextView = listItemView.findViewById(R.id.checkout_product_quantity) as TextView
-        val descriptonTextView = listItemView.findViewById(R.id.checkout_product_description) as TextView
-        val imageView = listItemView.findViewById(R.id.checkout_product_image) as ImageView
+        val nameTextView = listItemView.findViewById(R.id.product_textview_name) as TextView
+        val priceTextView = listItemView.findViewById(R.id.product_textview_price) as TextView
+        val quantityTextView = listItemView.findViewById(R.id.product_textview_quantity) as TextView
+        val descriptonTextView = listItemView.findViewById(R.id.product_textview_description) as TextView
+        val imageView = listItemView.findViewById(R.id.product_image) as ImageView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
