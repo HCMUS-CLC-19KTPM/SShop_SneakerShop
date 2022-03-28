@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.example.sshop_sneakershop.Auth.View.AuthActivity
 import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityHomeBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class HomeActivity : AppCompatActivity(), ItemClickListener {
@@ -22,6 +25,15 @@ class HomeActivity : AppCompatActivity(), ItemClickListener {
     //Item binder
     private lateinit var binding: ActivityHomeBinding
     private lateinit var productList: List<Product>
+
+    override fun onStart() {
+        super.onStart()
+        val auth = Firebase.auth
+        if (auth.currentUser != null) {
+            startActivity(Intent(this, AuthActivity::class.java))
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

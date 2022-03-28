@@ -58,6 +58,9 @@
         <activity
             android:name=".Cart.Views.CheckoutActivity"
             android:exported="true" />
+        <activity
+                android:name=".Auth.View.AuthActivity"
+                android:exported="true" />
     </application>
 
 </manifest>
