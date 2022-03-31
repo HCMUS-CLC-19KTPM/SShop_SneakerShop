@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.Controller.AuthController
 import com.example.sshop_sneakershop.R
+import com.example.sshop_sneakershop.homepage.HomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -35,13 +36,13 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        controller = AuthController(this)
+
         emailEditText = findViewById(R.id.signin_input_email)
         passwordEditText = findViewById(R.id.signin_input_password)
         signInButton = findViewById(R.id.signin_button_login)
         signUpButton = findViewById(R.id.signin_button_register)
         signInWithGoogleBtn = findViewById(R.id.signin_button_register_with_google)
-
-        controller = AuthController(this)
 
         signInButton.setOnClickListener {
             controller.onSignIn(emailEditText.text.toString(), passwordEditText.text.toString())
@@ -102,6 +103,9 @@ class AuthActivity : AppCompatActivity(), IAuthView {
     override fun onLoginSuccess(message: String) {
         Log.d("AuthActivity", message)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+        startActivity(Intent(this, HomeActivity::class.java))
+        finish()
     }
 
     /**

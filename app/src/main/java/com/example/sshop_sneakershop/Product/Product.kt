@@ -1,6 +1,5 @@
 package com.example.sshop_sneakershop.Product
 
-
 class Product(
     var id: String,
     var price: Double,
