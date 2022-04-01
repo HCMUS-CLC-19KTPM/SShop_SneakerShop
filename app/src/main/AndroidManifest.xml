@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.example.sshop_sneakershop">
+    package="com.example.sshop_sneakershop">
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.SShop_SneakerShop">
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SShop_SneakerShop">
         <activity
-                android:name=".Admin.Views.AccountDetailActivity"
-                android:exported="true"></activity>
+            android:name=".Admin.Views.TestActivity"
+            android:exported="true" />
         <activity
-                android:name=".Admin.Views.AccountListActivity"
-                android:exported="true"></activity>
+            android:name=".Admin.Views.AccountDetailActivity"
+            android:exported="true" />
         <activity
-                android:name=".Order.Views.OrderDetailActivity"
-                android:exported="true"></activity>
+            android:name=".Admin.Views.AccountListActivity"
+            android:exported="true" />
         <activity
-                android:name=".Cart.CartActivity"
-                android:exported="true"></activity>
+            android:name=".Order.Views.OrderDetailActivity"
+            android:exported="true" />
         <activity
-                android:name=".homepage.Search"
-                android:exported="false" />
+            android:name=".Cart.CartActivity"
+            android:exported="true" />
         <activity
-                android:name=".User.Views.EditProfileActivity"
-                android:exported="true" />
+            android:name=".homepage.Search"
+            android:exported="false" />
         <activity
-                android:name=".User.Views.UserActivity"
-                android:exported="true" />
+            android:name=".User.Views.EditProfileActivity"
+            android:exported="true" />
         <activity
-                android:name=".Order.Views.OrderListActivity"
-                android:exported="true" />
+            android:name=".User.Views.UserActivity"
+            android:exported="true" />
         <activity
-                android:name=".homepage.GroupItem"
-                android:exported="false" />
+            android:name=".Order.Views.OrderListActivity"
+            android:exported="true" />
         <activity
-                android:name=".homepage.ItemDetail"
-                android:exported="false" />
+            android:name=".homepage.GroupItem"
+            android:exported="false" />
         <activity
-                android:name=".homepage.HomeActivity"
-                android:exported="true">
+            android:name=".homepage.ItemDetail"
+            android:exported="false" />
+        <activity
+            android:name=".homepage.HomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,14 +52,14 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".MainActivity"
-                android:exported="true" />
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
-                android:name=".Cart.Views.CheckoutActivity"
-                android:exported="true" />
+            android:name=".Cart.Views.CheckoutActivity"
+            android:exported="true" />
         <activity
-                android:name=".Auth.View.AuthActivity"
-                android:exported="true" />
+            android:name=".Auth.View.AuthActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
