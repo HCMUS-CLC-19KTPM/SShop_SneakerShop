@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.homepage
+package com.example.sshop_sneakershop.Homepage
 
 import android.content.Context
 import android.view.LayoutInflater

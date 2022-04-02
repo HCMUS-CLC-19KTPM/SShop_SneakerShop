@@ -1,10 +1,8 @@
-package com.example.sshop_sneakershop.homepage
+package com.example.sshop_sneakershop.Homepage
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +16,6 @@ import com.example.sshop_sneakershop.Product.Views.IProductView
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityHomeBinding
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

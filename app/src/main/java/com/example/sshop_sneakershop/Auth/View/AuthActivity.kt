@@ -9,10 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.Controller.AuthController
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.homepage.HomeActivity
+import com.example.sshop_sneakershop.Homepage.HomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
@@ -25,8 +24,6 @@ class AuthActivity : AppCompatActivity(), IAuthView {
     private lateinit var signInWithGoogleBtn: Button
 
     private lateinit var controller: AuthController
-
-    private lateinit var googleSignInClient: GoogleSignInClient
 
     /**
      * Initialize the activity
@@ -49,7 +46,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         }
 
         signUpButton.setOnClickListener {
-            controller.onSignUp(emailEditText.text.toString(), passwordEditText.text.toString())
+            startActivity(Intent(this, SignUpViewActivity::class.java))
         }
 
         googleSignIn()
@@ -63,7 +60,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+        val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
 
         signInWithGoogleBtn.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
@@ -115,5 +112,13 @@ class AuthActivity : AppCompatActivity(), IAuthView {
     override fun onLoginFailed(message: String) {
         Log.d("AuthActivity", message)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onSignUpSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSignUpFailed(message: String) {
+        TODO("Not yet implemented")
     }
 }

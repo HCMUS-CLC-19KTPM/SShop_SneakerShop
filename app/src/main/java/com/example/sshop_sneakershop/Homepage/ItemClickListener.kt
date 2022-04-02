@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.homepage
+package com.example.sshop_sneakershop.Homepage
 
 import com.example.sshop_sneakershop.Product.Product
 

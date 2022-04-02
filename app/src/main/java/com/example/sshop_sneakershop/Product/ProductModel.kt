@@ -23,7 +23,7 @@ class ProductModel {
                     products.add(
                         Product(
                             it.id,
-                            (it.data!!["price"] as Long).toDouble(),
+                            it.data!!["price"] as Double,
                             it.data!!["name"] as String,
                             it.data!!["image"] as String,
                             it.data!!["description"] as String,

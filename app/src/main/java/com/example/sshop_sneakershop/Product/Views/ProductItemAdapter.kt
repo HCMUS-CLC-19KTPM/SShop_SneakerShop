@@ -14,7 +14,7 @@ class ProductItemAdapter(private val products:List<Product>): RecyclerView.Adapt
         val nameTextView = listItemView.findViewById(R.id.product_textview_name) as TextView
         val priceTextView = listItemView.findViewById(R.id.product_textview_price) as TextView
         val quantityTextView = listItemView.findViewById(R.id.product_textview_quantity) as TextView
-        val descriptonTextView = listItemView.findViewById(R.id.product_textview_description) as TextView
+        val descriptionTextView = listItemView.findViewById(R.id.product_textview_description) as TextView
         val imageView = listItemView.findViewById(R.id.product_image) as ImageView
     }
 
@@ -30,7 +30,7 @@ class ProductItemAdapter(private val products:List<Product>): RecyclerView.Adapt
         holder.nameTextView.text = product.name
         holder.priceTextView.text = product.price.toString()
         holder.quantityTextView.text = product.quantity.toString()
-        holder.descriptonTextView.text = product.description
+        holder.descriptionTextView.text = product.description
         holder.imageView.setImageResource(R.drawable.shoe)
     }
 

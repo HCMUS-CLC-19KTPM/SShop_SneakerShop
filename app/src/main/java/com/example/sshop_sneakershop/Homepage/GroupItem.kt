@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.homepage
+package com.example.sshop_sneakershop.Homepage
 
 import android.content.Intent
 import android.os.Bundle
