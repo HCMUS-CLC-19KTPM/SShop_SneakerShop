@@ -24,21 +24,24 @@
         android:id="@+id/review_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:numStars="5"
-        android:rating="5"
         android:progressTint="@color/primary"
+        android:rating="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        tools:ignore="SpeakableTextPresentCheck">
 
     </RatingBar>
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="409dp"
-        android:layout_height="193dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
@@ -48,7 +51,11 @@
         android:id="@+id/review_edittext_feedback"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:hint="Feedback"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Enter your opinion here."
+
         app:boxStrokeColor="@color/primary"
         app:hintTextColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,18 +65,23 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/signin_input_email"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:ellipsize="start"
+            android:layout_centerInParent="true"
+            android:gravity="start"
+            android:singleLine="true"/>
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/review_button_submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/primary"
         android:text="Submit"
         android:textColor="@color/white"
-        android:backgroundTint="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/review_edittext_feedback" />
