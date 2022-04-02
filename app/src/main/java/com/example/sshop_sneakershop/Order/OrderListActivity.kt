@@ -1,10 +1,10 @@
-package com.example.sshop_sneakershop.Order.Views
+package com.example.sshop_sneakershop.Order
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Order.Order
+import com.example.sshop_sneakershop.Order.Views.OrderAdapter
 import com.example.sshop_sneakershop.R
 
 class OrderListActivity : AppCompatActivity() {

@@ -19,7 +19,7 @@
             android:name=".Admin.Views.AccountListActivity"
             android:exported="true" />
         <activity
-            android:name=".Order.Views.OrderDetailActivity"
+            android:name=".Order.OrderDetailActivity"
             android:exported="true" />
         <activity
             android:name=".Cart.CartActivity"
@@ -34,7 +34,7 @@
             android:name=".User.Views.UserActivity"
             android:exported="true" />
         <activity
-            android:name=".Order.Views.OrderListActivity"
+            android:name=".Order.OrderListActivity"
             android:exported="true" />
         <activity
             android:name=".homepage.GroupItem"
