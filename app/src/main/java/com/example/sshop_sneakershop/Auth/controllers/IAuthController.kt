@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Auth.Controller
+package com.example.sshop_sneakershop.Auth.controllers
 
 import com.google.firebase.auth.AuthCredential
 

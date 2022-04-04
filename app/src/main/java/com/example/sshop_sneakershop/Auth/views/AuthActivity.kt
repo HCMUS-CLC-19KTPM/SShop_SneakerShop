@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Auth.View
+package com.example.sshop_sneakershop.Auth.views
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.sshop_sneakershop.Auth.Controller.AuthController
+import com.example.sshop_sneakershop.Auth.controllers.AuthController
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Homepage.HomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn

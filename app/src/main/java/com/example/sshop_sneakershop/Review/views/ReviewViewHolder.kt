@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Review.Views
+package com.example.sshop_sneakershop.Review.views
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R

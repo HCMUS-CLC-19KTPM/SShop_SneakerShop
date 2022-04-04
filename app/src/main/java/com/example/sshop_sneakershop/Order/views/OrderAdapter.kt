@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Order.Views
+package com.example.sshop_sneakershop.Order.views
 
 import android.view.LayoutInflater
 import android.view.View

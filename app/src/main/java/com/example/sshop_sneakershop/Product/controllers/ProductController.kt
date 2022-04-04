@@ -1,8 +1,8 @@
-package com.example.sshop_sneakershop.Product.Controller
+package com.example.sshop_sneakershop.Product.controllers
 
 import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.Product.ProductModel
-import com.example.sshop_sneakershop.Product.Views.IProductView
+import com.example.sshop_sneakershop.Product.views.IProductView
 
 class ProductController(private var view: IProductView) : IProductController {
 
@@ -10,5 +10,9 @@ class ProductController(private var view: IProductView) : IProductController {
 
     override suspend fun getAllProducts(): ArrayList<Product> {
         return model.getAllProducts()
+    }
+
+    override suspend fun getProductById(id: String): Product {
+        return model.getProductById(id)
     }
 }

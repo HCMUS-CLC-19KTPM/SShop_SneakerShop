@@ -11,15 +11,15 @@
             android:theme="@style/Theme.SShop_SneakerShop">
 
         <activity
-                android:name=".Admin.Views.TestActivity"
+                android:name=".Admin.views.TestActivity"
                 android:exported="true" />
 
         <activity
-                android:name=".Admin.Views.AccountDetailActivity"
+                android:name=".Admin.views.AccountDetailActivity"
                 android:exported="true" />
 
         <activity
-                android:name=".Admin.Views.AccountListActivity"
+                android:name=".Admin.views.AccountListActivity"
                 android:exported="true" />
 
         <activity
@@ -35,11 +35,11 @@
                 android:exported="false" />
 
         <activity
-                android:name=".User.Views.EditProfileActivity"
+                android:name=".User.views.EditProfileActivity"
                 android:exported="true" />
 
         <activity
-                android:name=".User.Views.UserActivity"
+                android:name=".User.views.UserActivity"
                 android:exported="true" />
 
         <activity
@@ -51,7 +51,7 @@
                 android:exported="false" />
 
         <activity
-                android:name=".Homepage.ItemDetail"
+                android:name=".Product.views.ProductDetail"
                 android:exported="false" />
 
         <activity
@@ -69,15 +69,15 @@
                 android:exported="true" />
 
         <activity
-                android:name=".Cart.Views.CheckoutActivity"
+                android:name=".Cart.views.CheckoutActivity"
                 android:exported="true" />
 
         <activity
-                android:name=".Auth.View.AuthActivity"
+                android:name=".Auth.views.AuthActivity"
                 android:exported="true" />
 
         <activity
-                android:name=".Auth.View.SignUpViewActivity"
+                android:name=".Auth.views.SignUpViewActivity"
                 android:exported="true" />
     </application>
 

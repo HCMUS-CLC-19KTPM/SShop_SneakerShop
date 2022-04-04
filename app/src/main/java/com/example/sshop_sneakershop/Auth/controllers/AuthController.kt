@@ -1,7 +1,7 @@
-package com.example.sshop_sneakershop.Auth.Controller
+package com.example.sshop_sneakershop.Auth.controllers
 
 import com.example.sshop_sneakershop.Auth.AuthService
-import com.example.sshop_sneakershop.Auth.View.IAuthView
+import com.example.sshop_sneakershop.Auth.views.IAuthView
 import com.google.firebase.auth.AuthCredential
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

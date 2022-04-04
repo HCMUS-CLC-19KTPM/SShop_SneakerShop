@@ -9,10 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
-import com.example.sshop_sneakershop.Auth.View.AuthActivity
-import com.example.sshop_sneakershop.Product.Controller.ProductController
+import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.Product
-import com.example.sshop_sneakershop.Product.Views.IProductView
+import com.example.sshop_sneakershop.Product.views.IProductView
+import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityHomeBinding
 import com.google.firebase.auth.ktx.auth
@@ -50,7 +51,7 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         super.onCreate(savedInstanceState)
 
         productController = ProductController(this)
-        doApiCalls()
+        getAllProducts()
 
         val splash = installSplashScreen()
         splash.setKeepOnScreenCondition { isLoading }
@@ -119,17 +120,15 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
     }
 
     override fun onClick(product: Product) {
-        val intent = Intent(applicationContext, ItemDetail::class.java)
-        intent.putExtra("itemID", product.id)
+        val intent = Intent(applicationContext, ProductDetail::class.java)
+        intent.putExtra("item-id", product.id)
         startActivity(intent)
         finish()
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun doApiCalls() {
+    private fun getAllProducts() {
         //Load data
-        isLoading = false
-
         GlobalScope.launch {
             try {
                 productList.addAll(productController.getAllProducts())
@@ -138,6 +137,8 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
                     binding.homeRecyclerView.adapter?.notifyDataSetChanged()
                     Toast.makeText(applicationContext, productList.size.toString(), Toast.LENGTH_LONG)
                         .show()
+
+                    isLoading = false
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
@@ -146,9 +147,5 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
                 }
             }
         }
-    }
-
-    override fun showAllProducts(products: ArrayList<Product>) {
-        TODO("Not yet implemented")
     }
 }

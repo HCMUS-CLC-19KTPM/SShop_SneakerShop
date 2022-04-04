@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Auth.View
+package com.example.sshop_sneakershop.Auth.views
 
 interface IAuthView {
     fun onLoginSuccess(message: String)

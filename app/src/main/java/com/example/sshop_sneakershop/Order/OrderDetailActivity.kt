@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Product.Product
-import com.example.sshop_sneakershop.Product.Views.ProductItemAdapter
+import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
 import com.example.sshop_sneakershop.Review.ReviewBottomSheetDialog
 
 class OrderDetailActivity : AppCompatActivity() {

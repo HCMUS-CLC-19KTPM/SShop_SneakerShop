@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityGroupItemBinding
 
@@ -46,7 +47,7 @@ class GroupItem : AppCompatActivity(), ItemClickListener {
     }
 
     override fun onClick(product: Product) {
-        val intent = Intent(applicationContext, ItemDetail::class.java)
+        val intent = Intent(applicationContext, ProductDetail::class.java)
         intent.putExtra("itemID", product.id)
         startActivity(intent)
     }

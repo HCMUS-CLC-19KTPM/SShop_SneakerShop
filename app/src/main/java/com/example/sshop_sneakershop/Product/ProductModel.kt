@@ -20,21 +20,35 @@ class ProductModel {
                 .await()
                 .documents
                 .forEach {
-                    products.add(
-                        Product(
-                            it.id,
-                            it.data!!["price"] as Double,
-                            it.data!!["name"] as String,
-                            it.data!!["image"] as String,
-                            it.data!!["description"] as String,
-                            (it.data!!["quantity"] as Long).toInt(),
-                        )
-                    )
+                    val product = it.toObject(Product::class.java)
+                    product!!.id = it.id
+                    products.add(product)
                 }
         } catch (e: Exception) {
             Log.d(TAG, "Error getting documents: ", e)
         }
 
         return products
+    }
+
+    /**
+     * Get product by id
+     */
+    suspend fun getProductById(id: String): Product {
+        var product = Product()
+        try {
+            db.collection("product")
+                .document(id)
+                .get()
+                .await()
+                .toObject(Product::class.java)
+                ?.let {
+                    product = it
+                }
+        } catch (e: Exception) {
+            Log.d(TAG, "Error getting documents: ", e)
+        }
+
+        return product
     }
 }
