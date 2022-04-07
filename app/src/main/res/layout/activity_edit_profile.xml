@@ -224,7 +224,8 @@
                     android:id="@+id/editProfile_textInputET_dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="01/01/2001" />
+                    android:text="01/01/2001"
+                    android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

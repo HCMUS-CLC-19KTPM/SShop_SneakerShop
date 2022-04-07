@@ -13,6 +13,7 @@ import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.Product.views.IProductView
+import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityHomeBinding
@@ -51,6 +52,8 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         super.onCreate(savedInstanceState)
 
         productController = ProductController(this)
+
+        //Item list initialization
         getAllProducts()
 
         val splash = installSplashScreen()
@@ -64,15 +67,11 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         mViewPagerAdapter = BannerAdapter(this, images)
         mViewPager!!.adapter = mViewPagerAdapter
 
-        //Item list initialization
-        val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
-//        productList = listOf(myItem, myItem, myItem, myItem)
-
         val mainActivity = this
         binding.homeRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ItemAdapter(productList, mainActivity)
+            adapter = ProductAdapter(productList, mainActivity)
         }
 
         //Set categories listener
@@ -80,42 +79,34 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         binding.icon1.setOnClickListener {
             intent.putExtra("categoryID", "Plimsoll")
             startActivity(intent)
-            finish()
         }
         binding.icon2.setOnClickListener {
             intent.putExtra("categoryID", "High-Top")
             startActivity(intent)
-            finish()
         }
         binding.icon3.setOnClickListener {
             intent.putExtra("categoryID", "Athletic")
             startActivity(intent)
-            finish()
         }
         binding.icon4.setOnClickListener {
             intent.putExtra("categoryID", "Slip-on")
             startActivity(intent)
-            finish()
         }
         binding.icon5.setOnClickListener {
             intent.putExtra("categoryID", "Authentic")
             startActivity(intent)
-            finish()
         }
         binding.icon6.setOnClickListener {
             intent.putExtra("categoryID", "Leather")
             startActivity(intent)
-            finish()
         }
         binding.icon7.setOnClickListener {
             intent.putExtra("categoryID", "Canvas")
             startActivity(intent)
-            finish()
         }
         binding.icon8.setOnClickListener {
             intent.putExtra("categoryID", "Synthetic")
             startActivity(intent)
-            finish()
         }
     }
 
@@ -123,7 +114,6 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         val intent = Intent(applicationContext, ProductDetail::class.java)
         intent.putExtra("item-id", product.id)
         startActivity(intent)
-        finish()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -135,7 +125,11 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
 
                 withContext(Dispatchers.Main) {
                     binding.homeRecyclerView.adapter?.notifyDataSetChanged()
-                    Toast.makeText(applicationContext, productList.size.toString(), Toast.LENGTH_LONG)
+                    Toast.makeText(
+                        applicationContext,
+                        productList.size.toString(),
+                        Toast.LENGTH_LONG
+                    )
                         .show()
 
                     isLoading = false

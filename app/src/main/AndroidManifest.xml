@@ -11,10 +11,6 @@
             android:theme="@style/Theme.SShop_SneakerShop">
 
         <activity
-                android:name=".Admin.views.TestActivity"
-                android:exported="true" />
-
-        <activity
                 android:name=".Admin.views.AccountDetailActivity"
                 android:exported="true" />
 
@@ -79,6 +75,9 @@
         <activity
                 android:name=".Auth.views.SignUpViewActivity"
                 android:exported="true" />
+
+        <activity android:name=".Account.views.AccountEditActivity"
+                  android:exported="true" />
     </application>
 
 </manifest>

@@ -1,7 +1,8 @@
-package com.example.sshop_sneakershop.Homepage
+package com.example.sshop_sneakershop.Product.views
 
 import android.text.TextUtils
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Homepage.ItemClickListener
 import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.RelatedProductListItemBinding
