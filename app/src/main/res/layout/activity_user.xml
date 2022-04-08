@@ -367,7 +367,7 @@
                     android:id="@+id/profile_button_showOrder"
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_arrow" />
+                    android:background="@drawable/ic_baseline_arrow_right_alt_24" />
             </LinearLayout>
 
             <LinearLayout
@@ -399,7 +399,7 @@
                     android:id="@+id/profile_button_showCart"
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_arrow" />
+                    android:background="@drawable/ic_baseline_arrow_right_alt_24" />
             </LinearLayout>
 
             <Button
