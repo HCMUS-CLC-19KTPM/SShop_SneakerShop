@@ -45,5 +45,4 @@ import java.util.*
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as LinearLayout)
     }
-
  }

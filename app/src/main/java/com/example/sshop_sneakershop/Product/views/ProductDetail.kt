@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sshop_sneakershop.Homepage.ItemAdapter
 import com.example.sshop_sneakershop.Homepage.ItemClickListener
 import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.Product.controllers.ProductController
@@ -18,7 +17,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 
 class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
     private lateinit var binding: ActivityItemDetailBinding
@@ -49,7 +47,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         binding.recyclerViewRelated.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ItemAdapter(productList, mainActivity)
+            adapter = ProductAdapter(productList, mainActivity)
         }
 
         //Reviews
@@ -90,8 +88,6 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
                 binding.rating.text = "$ratingValue/5.00"
                 binding.descriptionContent.text = product.description
 
-                val origin = product.origin
-                val category = product.category
 
                 val formatter = SimpleDateFormat("dd-MM-yyyy")
                 val releaseDate = formatter.format(product.releaseDate)

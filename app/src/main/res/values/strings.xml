@@ -13,7 +13,7 @@
     <string name="autoPrice">$83.03</string>
     <string name="autoCategory">Category</string>
     <string name="autoProfile">Profile</string>
-    <string name="autoEditProfile">Edit Profile</string>
+    <string name="autoEditProfile">Profile</string>
     <string name="intro">©2022 G007 VN, Inc. All rights reserved.</string>
     <string name="result">Result</string>
 </resources>

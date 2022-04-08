@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sshop_sneakershop">
+        package="com.example.sshop_sneakershop">
 
     <application
         android:allowBackup="true"
@@ -16,56 +16,73 @@
 <!--            android:name=".Admin.views.TestActivity"-->
 <!--            android:exported="true" />-->
         <activity
-            android:name=".Admin.views.AccountDetailActivity"
-            android:exported="true" />
+                android:name=".Admin.views.AccountDetailActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Admin.views.AccountListActivity"
-            android:exported="true" />
+                android:name=".Admin.views.AccountListActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Order.OrderDetailActivity"
-            android:exported="true" />
+                android:name=".Order.OrderDetailActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Cart.CartActivity"
-            android:exported="true" />
+                android:name=".Cart.CartActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Homepage.Search"
-            android:exported="false" />
+                android:name=".Homepage.Search"
+                android:exported="false" />
+
         <activity
-            android:name=".User.views.EditProfileActivity"
-            android:exported="true" />
+                android:name=".User.views.EditProfileActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".User.views.UserActivity"
-            android:exported="true" />
+                android:name=".User.views.UserActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Order.OrderListActivity"
-            android:exported="true" />
+                android:name=".Order.OrderListActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Homepage.GroupItem"
-            android:exported="false" />
+                android:name=".Homepage.GroupItem"
+                android:exported="false" />
+
         <activity
-            android:name=".Product.views.ProductDetail"
-            android:exported="false" />
+                android:name=".Product.views.ProductDetail"
+                android:exported="false" />
+
         <activity
-            android:name=".Homepage.HomeActivity"
-            android:exported="true">
+                android:name=".Homepage.HomeActivity"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+                android:name=".MainActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Cart.views.CheckoutActivity"
-            android:exported="true" />
+                android:name=".Cart.views.CheckoutActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Auth.views.AuthActivity"
-            android:exported="true" />
+                android:name=".Auth.views.AuthActivity"
+                android:exported="true" />
+
         <activity
-            android:name=".Auth.views.SignUpViewActivity"
-            android:exported="true" />
+                android:name=".Auth.views.SignUpViewActivity"
+                android:exported="true" />
+
+        <activity android:name=".Account.views.AccountEditActivity"
+                  android:exported="true" />
     </application>
 
 </manifest>

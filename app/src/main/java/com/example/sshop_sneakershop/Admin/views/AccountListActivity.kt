@@ -10,7 +10,7 @@ import com.example.sshop_sneakershop.checkout.AccountAdapter
 
 
 class AccountListActivity : AppCompatActivity() {
-    private lateinit var accounts : ArrayList<Account>
+    private lateinit var accounts: ArrayList<Account>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_account_list)
@@ -20,11 +20,10 @@ class AccountListActivity : AppCompatActivity() {
         val account = Account(
             "1234nsnnnd32312",
             "Nguyễn Văn A",
-            "123456789",
+            "nguyenvana123@gmail.com",
             "dsaj@#mdsa",
             true,
-            "nguyenvana123@gmail.com"
-        )
+            )
         accounts = listOf(
             account,
             account,

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivitySearchBinding
@@ -27,7 +28,7 @@ class Search : AppCompatActivity(), ItemClickListener {
         val mainActivity = this
         binding.searchRecyclerView.apply {
             layoutManager = GridLayoutManager(applicationContext, 2)
-            adapter = ItemAdapter(productList,mainActivity)
+            adapter = ProductAdapter(productList,mainActivity)
         }
 
     }
