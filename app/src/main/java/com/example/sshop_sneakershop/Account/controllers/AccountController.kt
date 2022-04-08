@@ -10,4 +10,8 @@ class AccountController : IAccountController {
     override suspend fun getUser(email: String): Account {
         return accountModel.getUser(email)
     }
+
+    override suspend fun updateUser(account: Account): Account {
+        return accountModel.updateUser(account)
+    }
 }

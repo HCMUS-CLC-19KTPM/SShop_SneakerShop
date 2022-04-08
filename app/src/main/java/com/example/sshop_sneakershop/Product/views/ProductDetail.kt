@@ -2,6 +2,7 @@ package com.example.sshop_sneakershop.Product.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Review.Review
 import com.example.sshop_sneakershop.Review.views.ReviewAdapter
 import com.example.sshop_sneakershop.databinding.ActivityItemDetailBinding
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -77,6 +79,12 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
             val product = productController.getProductById(id)
 
             withContext(Dispatchers.Main) {
+                if (TextUtils.isEmpty(product.image)) {
+                    binding.backgroundImageView.setImageResource(R.drawable.shoe)
+                } else {
+                    Picasso.get().load(product.image).into(binding.backgroundImageView)
+                }
+
                 binding.pictureTitle.text = product.brand
                 binding.categoryTag.text = product.category
                 binding.productName.text = product.name

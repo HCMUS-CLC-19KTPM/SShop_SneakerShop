@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
@@ -22,6 +23,7 @@ class AccountEditActivity : AppCompatActivity() {
     private val auth = Firebase.auth
 
     private lateinit var avatarImageView: CircularImageView
+    private lateinit var usernameTextView: TextView
     private lateinit var editTextName: EditText
     private lateinit var editTextEmail: EditText
     private lateinit var editTextAddress: EditText
@@ -43,6 +45,7 @@ class AccountEditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_profile)
 
         avatarImageView = findViewById(R.id.editProfile_image_avatar)
+        usernameTextView = findViewById(R.id.editProfile_text_username)
         editTextName = findViewById(R.id.editProfile_textInputET_name)
         editTextEmail = findViewById(R.id.editProfile_textInputET_email)
         editTextAddress = findViewById(R.id.editProfile_textInputET_address)
@@ -59,6 +62,7 @@ class AccountEditActivity : AppCompatActivity() {
 
             if (!TextUtils.isEmpty(account.avatar)) Picasso.get()
                 .load(account.avatar).into(avatarImageView)
+            usernameTextView.text = account.email
             editTextName.setText(account.fullName)
             editTextEmail.setText(account.email)
             editTextAddress.setText(account.address)

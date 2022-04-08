@@ -4,4 +4,5 @@ import com.example.sshop_sneakershop.Account.Account
 
 interface IAccountController {
     suspend fun getUser(email: String): Account
+    suspend fun updateUser(account: Account): Account
 }

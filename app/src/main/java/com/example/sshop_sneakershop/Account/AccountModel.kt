@@ -19,6 +19,23 @@ class AccountModel {
             e.printStackTrace()
         }
 
-        return account?: Account()
+        return account ?: Account()
+    }
+
+    suspend fun updateUser(account: Account): Account {
+        var modifiedAccount: Account? = null
+
+        try {
+            db.collection("account").document(account.id).set(account).await()
+
+            db.collection("account").document(account.id).get().await()
+                .toObject(Account::class.java)?.let {
+                    modifiedAccount = it
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return modifiedAccount ?: Account()
     }
 }

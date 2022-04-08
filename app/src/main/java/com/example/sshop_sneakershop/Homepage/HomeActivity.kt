@@ -10,8 +10,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
-import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.views.IProductView
 import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
@@ -30,7 +30,6 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
     private var mViewPager: ViewPager? = null
     private var images = intArrayOf(R.drawable.banner1, R.drawable.banner2, R.drawable.banner3)
     private var mViewPagerAdapter: BannerAdapter? = null
-    private var isLoading = true
 
     //Item binder
     private lateinit var binding: ActivityHomeBinding
@@ -55,9 +54,6 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
 
         //Item list initialization
         getAllProducts()
-
-        val splash = installSplashScreen()
-        splash.setKeepOnScreenCondition { isLoading }
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -121,6 +117,9 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         //Load data
         GlobalScope.launch {
             try {
+                val splash = installSplashScreen()
+                splash.setKeepOnScreenCondition { true }
+
                 productList.addAll(productController.getAllProducts())
 
                 withContext(Dispatchers.Main) {
@@ -129,10 +128,9 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
                         applicationContext,
                         productList.size.toString(),
                         Toast.LENGTH_LONG
-                    )
-                        .show()
+                    ).show()
 
-                    isLoading = false
+                    splash.setKeepOnScreenCondition { false }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
