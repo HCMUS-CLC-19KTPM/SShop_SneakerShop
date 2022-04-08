@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         super.onStart()
 
         val auth = Firebase.auth
-        if (auth.currentUser == null) {
+        if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
             startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
@@ -124,12 +124,6 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
 
                 withContext(Dispatchers.Main) {
                     binding.homeRecyclerView.adapter?.notifyDataSetChanged()
-                    Toast.makeText(
-                        applicationContext,
-                        productList.size.toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
-
                     splash.setKeepOnScreenCondition { false }
                 }
             } catch (e: Exception) {

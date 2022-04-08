@@ -75,6 +75,10 @@
                 android:name=".Auth.views.SignUpViewActivity"
                 android:exported="true" />
 
+        <activity
+                android:name=".Auth.views.ForgotPasswordActivity"
+                android:exported="true" />
+
         <activity android:name=".Account.views.AccountEditActivity"
                   android:exported="true" />
     </application>

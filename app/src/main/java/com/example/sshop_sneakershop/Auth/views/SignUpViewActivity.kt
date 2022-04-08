@@ -48,6 +48,14 @@ class SignUpViewActivity : AppCompatActivity(), IAuthView {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    override fun onForgotPasswordSuccess(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onForgotPasswordFailed(message: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onLoginSuccess(message: String) {
         TODO("Not yet implemented")
     }

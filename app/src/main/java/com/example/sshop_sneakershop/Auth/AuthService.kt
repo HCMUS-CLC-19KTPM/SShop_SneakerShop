@@ -10,17 +10,20 @@ import kotlinx.coroutines.tasks.await
 class AuthService {
     private val auth = Firebase.auth
 
-    suspend fun signIn(email: String, password: String): String {
+    suspend fun signIn(email: String, password: String): Boolean {
         try {
             auth.signInWithEmailAndPassword(email, password).await()
-            Log.d("AuthService", "signInWithEmail:success")
 
-            return "Login success"
+            if (!auth.currentUser!!.isEmailVerified) {
+                return false
+            }
+            Log.d("AuthService", "signInWithEmail:success")
+            return true
         } catch (e: Exception) {
             Log.w("AuthService", "signInWithEmail:failure", e)
         }
 
-        return "Login failed. Invalid email or password"
+        return false
     }
 
     suspend fun signInWithGoogle(credential: AuthCredential): String {
@@ -43,6 +46,10 @@ class AuthService {
                 return "Password and confirm password do not match"
             }
             auth.createUserWithEmailAndPassword(email, password).await()
+
+            val user = auth.currentUser
+            user!!.sendEmailVerification().await()
+
             Log.d("AuthService", "createUserWithEmail:success")
 
             return "Sign up success"
@@ -51,6 +58,19 @@ class AuthService {
         }
 
         return "Sign up failed. Invalid email or password"
+    }
+
+    suspend fun sendResetPasswordEmail(email: String): Boolean {
+        try {
+            auth.sendPasswordResetEmail(email).await()
+            Log.d("AuthService", "sendPasswordResetEmail:success")
+
+            return true
+        } catch (e: Exception) {
+            Log.w("AuthService", "sendPasswordResetEmail:failure", e)
+        }
+
+        return false
     }
 
     fun signOut() {
