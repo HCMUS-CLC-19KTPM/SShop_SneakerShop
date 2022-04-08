@@ -8,9 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.R
+import com.example.sshop_sneakershop.User.views.EditPaymentActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mikhaellopez.circularimageview.CircularImageView
@@ -95,6 +97,28 @@ class AccountActivity : AppCompatActivity() {
 
         editInfoBtn.setOnClickListener {
             val intent = Intent(this, AccountEditActivity::class.java)
+            startActivity(intent)
+        }
+
+        val editPaymentBtn = findViewById<Button>(R.id.profile_button_editPayment)
+        editPaymentBtn.setVisibility(View.GONE)
+
+        val paymentRcView = findViewById<RecyclerView>(R.id.recyclerView)
+        paymentRcView.setVisibility(View.GONE)
+
+        val showPaymentBtn = findViewById<Button>(R.id.profile_button_showPayment)
+        showPaymentBtn.setOnClickListener {
+            if(paymentRcView.getVisibility() == View.GONE) {
+                paymentRcView.setVisibility(View.VISIBLE)
+                editPaymentBtn.setVisibility(View.VISIBLE)
+            } else {
+                paymentRcView.setVisibility(View.GONE)
+                editPaymentBtn.setVisibility(View.GONE)
+            }
+        }
+
+        editPaymentBtn.setOnClickListener {
+            val intent = Intent(this, EditPaymentActivity::class.java)
             startActivity(intent)
         }
     }
