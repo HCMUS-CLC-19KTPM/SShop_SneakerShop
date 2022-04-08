@@ -85,7 +85,8 @@
                 android:id="@+id/profile_text_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginBottom="8dp"
+                android:text="Nguyen Van A"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/profile_linearLayout_accDetail"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +99,8 @@
                 android:id="@+id/profile_linearLayout_accDetail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/rectangle"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/gridLayout"
@@ -278,11 +280,14 @@
                 android:id="@+id/profile_linearLayout_payment"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/rectangle"
                 android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_button_editInfo">
 
@@ -301,6 +306,101 @@
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_baseline_keyboard_arrow_down_24" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/profile_button_editPayment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_linearLayout_payment">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/profile_button_editPayment"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manage payment methods"
+                android:textAlignment="textEnd"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/profile_linearLayout_order"
+                app:layout_constraintEnd_toEndOf="@+id/profile_linearLayout_payment"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/profile_linearLayout_payment"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+                tools:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:id="@+id/profile_linearLayout_order"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rectangle"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/profile_linearLayout_cart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_button_editPayment">
+
+                <TextView
+                    android:id="@+id/profile_text_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:text="My Order"
+                    android:textSize="22sp" />
+
+                <Button
+                    android:id="@+id/profile_button_showOrder"
+                    android:layout_width="47dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_arrow" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_linearLayout_cart"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rectangle"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_linearLayout_order">
+
+                <TextView
+                    android:id="@+id/profile_text_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:text="My Cart"
+                    android:textSize="22sp" />
+
+                <Button
+                    android:id="@+id/profile_button_showCart"
+                    android:layout_width="47dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_arrow" />
             </LinearLayout>
 
 
@@ -322,7 +422,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
