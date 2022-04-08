@@ -12,9 +12,7 @@
         <activity
             android:name=".User.views.EditPaymentActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Admin.views.TestActivity"-->
-<!--            android:exported="true" />-->
+
         <activity
                 android:name=".Admin.views.AccountDetailActivity"
                 android:exported="true" />
