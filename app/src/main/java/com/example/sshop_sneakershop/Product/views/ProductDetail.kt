@@ -92,7 +92,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
                 binding.productPrice.text = "$$priceValue"
                 val priceOldValue = product.price
                 binding.productOldPrice.text = "$$priceOldValue"
-                val ratingValue = 3.0
+                val ratingValue = product.rating
                 binding.rating.text = "$ratingValue/5.00"
                 binding.descriptionContent.text = product.description
 

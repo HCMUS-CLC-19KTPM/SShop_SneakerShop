@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User.views.EditPaymentActivity">
+    tools:context=".Account.views.EditPaymentActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

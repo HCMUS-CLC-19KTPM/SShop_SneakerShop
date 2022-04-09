@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.User.views.EditPaymentActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mikhaellopez.circularimageview.CircularImageView

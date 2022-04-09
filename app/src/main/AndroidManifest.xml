@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
-            android:name=".User.views.EditPaymentActivity"
+            android:name=".Account.views.EditPaymentActivity"
             android:exported="false" />
 
         <activity

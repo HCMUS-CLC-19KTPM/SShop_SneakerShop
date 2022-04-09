@@ -1,18 +1,19 @@
 package com.example.sshop_sneakershop.Product
 
 import java.util.*
+import kotlin.collections.ArrayList
 
 class Product {
     var id: String = ""
     var price: Double = 0.0
-    var name: String = ""
-    var image: String? = ""
-    var description: String? = ""
-    var quantity: Int = 0
-    var category: String = ""
-    var brand: String = ""
-    var size: String = ""
-    var origin: String = ""
+    var name: String? = null
+    var image: String? = null
+    var description: String? = null
+    var quantity: ArrayList<Int>? = null
+    var category: String? = null
+    var brand: String? = null
+    var size: String? = null
+    var origin: String? = null
     var releaseDate: Date? = null
     var rating: Double = 0.0
 
@@ -39,7 +40,7 @@ class Product {
         name: String,
         image: String?,
         description: String?,
-        quantity: Int
+        quantity: ArrayList<Int>
     ) {
         this.id = id
         this.price = price
@@ -55,7 +56,7 @@ class Product {
         name: String,
         image: String?,
         description: String?,
-        quantity: Int,
+        quantity: ArrayList<Int>,
         category: String,
         brand: String,
         size: String,

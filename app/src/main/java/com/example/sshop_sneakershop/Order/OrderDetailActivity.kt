@@ -20,7 +20,7 @@ class OrderDetailActivity : AppCompatActivity() {
         val productRecyclerView = findViewById<RecyclerView>(R.id.order_detail_recycler_view)
         confirmBtn = findViewById(R.id.order_detail_button_confirm)
 
-        val myProduct = Product("",100.0, "Shoe", "image url", "Description", 2)
+        val myProduct = Product("",100.0, "Shoe", "image url", "Description", ArrayList())
         products = listOf(myProduct, myProduct, myProduct,myProduct, myProduct, myProduct,myProduct, myProduct, myProduct).toCollection(ArrayList())
 
         val adapter = ProductItemAdapter(products)

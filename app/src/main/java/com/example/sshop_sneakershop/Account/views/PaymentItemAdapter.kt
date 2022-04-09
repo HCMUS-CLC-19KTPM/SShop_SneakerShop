@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.User.views
+package com.example.sshop_sneakershop.Account.views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
+import com.example.sshop_sneakershop.Account.Payment
 
 class PaymentItemAdapter(private val payments:List<Payment>): RecyclerView.Adapter<PaymentItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){

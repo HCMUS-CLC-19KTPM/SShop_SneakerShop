@@ -19,7 +19,7 @@ class CardViewHolder(
             .load(product.image).into(cardCellBinding.image)
 
         cardCellBinding.name.text =
-            if (product.name.length >= 20) "${product.name.substring(20)}..." else product.name
+            if (product.name!!.length >= 20) "${product.name!!.substring(20)}..." else product.name
 
         val price = "$" + product.price.toString()
         cardCellBinding.price.text = price
