@@ -25,7 +25,7 @@ class ProductModel {
                     products.add(product)
                 }
         } catch (e: Exception) {
-            Log.d(TAG, "Error getting documents: ", e)
+            Log.w(TAG, "Error getting documents.", e)
         }
 
         return products

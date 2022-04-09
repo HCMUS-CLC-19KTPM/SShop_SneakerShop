@@ -8,20 +8,26 @@ data class Account(
     val phone: String?,
     val gender: String?,
     val dob: String?,
-    val password: String,
     val avatar: String?,
     val status: Boolean,
-    val payment: ArrayList<Payment>?
+    val payment: ArrayList<Payment>?,
+    val numOfReview: Int = 0
 ) {
-    constructor() : this("", null, "", null, null, null, null, "", null, false, null)
+    constructor() : this("", null, "", null, null, null, null, null, false, null)
 
     constructor(
         id: String,
         fullName: String,
         email: String,
-        password: String,
         status: Boolean
-    ) : this(id, fullName, email, null, null, null, null, password, null, status)
+    ) : this(id, fullName, email, null, null, null, null, null, status, null)
+
+    constructor(
+        id: String,
+        fullName: String,
+        email: String,
+        avatar: String?,
+    ) : this(id, fullName, email, null, null, null, null, avatar, false, null)
 
     constructor(
         id: String,
@@ -31,8 +37,7 @@ data class Account(
         phone: String?,
         gender: String?,
         dob: String?,
-        password: String,
         avatar: String?,
         status: Boolean
-    ) : this(id, fullName, email, address, phone, gender, dob, password, avatar, status, null)
+    ) : this(id, fullName, email, address, phone, gender, dob, avatar, status, null)
 }

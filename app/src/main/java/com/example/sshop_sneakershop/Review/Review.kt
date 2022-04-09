@@ -1,14 +1,20 @@
 package com.example.sshop_sneakershop.Review
 
-var reviewList = mutableListOf<Review>()
+import com.example.sshop_sneakershop.Account.Account
+import java.util.*
 
 class Review(
-    var avatar: Int,
-    var reviewer: String,
-    var count: Int, //Number of reviews posted
-    var date: String,
-    var upvote: Boolean, //True = Up-vote, False = Down-vote
+    var id: String,
+    var user: Account,
+    var date: Date,
     var rate: Double, //Int vale scale from 0-5
     var content: String,
-    val id: Int? = reviewList.size
-)
+) {
+    constructor() : this(
+        "",
+        Account(),
+        Date(),
+        0.0,
+        ""
+    )
+}

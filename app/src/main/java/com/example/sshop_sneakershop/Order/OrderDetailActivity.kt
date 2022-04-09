@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
-import com.example.sshop_sneakershop.Review.ReviewBottomSheetDialog
+import com.example.sshop_sneakershop.Review.views.ReviewBottomSheetDialog
 
 class OrderDetailActivity : AppCompatActivity() {
     lateinit var products: ArrayList<Product>

@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop.Product.views
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -14,16 +15,13 @@ import com.example.sshop_sneakershop.Review.Review
 import com.example.sshop_sneakershop.Review.views.ReviewAdapter
 import com.example.sshop_sneakershop.databinding.ActivityItemDetailBinding
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 
 class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
     private lateinit var binding: ActivityItemDetailBinding
     private lateinit var productList: List<Product>
-    private lateinit var reviewList: List<Review>
+    private val reviewList: ArrayList<Review> = ArrayList()
 
     private lateinit var productController: ProductController
 
@@ -52,14 +50,6 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
             adapter = ProductAdapter(productList, mainActivity)
         }
 
-        //Reviews
-        //Review list initialization
-        val myReview = Review(
-            R.drawable.shoe, "Lewis Hamilton", 100, "19-04-2021 5:13PM", true, 3.5,
-            "This is the review content. This line should be less than 200 words and has no special character."
-        )
-        reviewList = listOf(myReview, myReview, myReview, myReview, myReview)
-
         binding.recyclerViewReview.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
@@ -74,9 +64,15 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         finish()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n", "SimpleDateFormat")
     private fun getProductDetail(id: String) {
         GlobalScope.launch {
             val product = productController.getProductById(id)
+
+            if (product.reviews != null) {
+                reviewList.addAll(product.reviews!!)
+            }
 
             withContext(Dispatchers.Main) {
                 if (TextUtils.isEmpty(product.image)) {
@@ -98,8 +94,11 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
 
 
                 val formatter = SimpleDateFormat("dd-MM-yyyy")
-                val releaseDate = formatter.format(product.releaseDate)
-                binding.infoContent.text = "Orgin: ${product.origin}\nStyle: ${product.category}\nReleased date: ${releaseDate}"
+                val releaseDate = formatter.format(product.releaseDate!!)
+                binding.infoContent.text =
+                    "Origin: ${product.origin}\nStyle: ${product.category}\nReleased date: $releaseDate"
+
+                binding.recyclerViewReview.adapter?.notifyDataSetChanged()
             }
         }
     }
