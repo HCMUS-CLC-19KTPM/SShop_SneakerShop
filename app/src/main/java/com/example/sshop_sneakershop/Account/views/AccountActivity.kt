@@ -36,31 +36,7 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var genderTextView: TextView
     private lateinit var birthdayTextView: TextView
 
-    private fun getAccountsProfile() {
-
-        avatarImageView = findViewById(R.id.profile_image_avatar)
-        usernameTextView = findViewById(R.id.profile_text_username)
-        nameTextView = findViewById(R.id.profile_text_valueName)
-        emailTextView = findViewById(R.id.profile_text_valueEmail)
-        addressTextView = findViewById(R.id.profile_text_valueAddress)
-        phoneTextView = findViewById(R.id.profile_text_valuePhone)
-        genderTextView = findViewById(R.id.profile_text_valueGender)
-        birthdayTextView = findViewById(R.id.profile_text_valueDob)
-
-        GlobalScope.launch(Dispatchers.Main) {
-            val account = accountController.getUser(auth.currentUser!!.email!!)
-
-            if (!TextUtils.isEmpty(account.avatar)) Picasso.get().load(account.avatar)
-                .into(avatarImageView)
-            usernameTextView.text = account.email
-            nameTextView.text = account.fullName
-            emailTextView.text = account.email
-            addressTextView.text = account.address
-            phoneTextView.text = account.phone
-            genderTextView.text = account.gender
-            birthdayTextView.text = account.dob
-        }
-    }
+    private lateinit var logoutBtn: Button
 
     override fun onStart() {
         super.onStart()
@@ -75,8 +51,30 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
 
-        // Get account's profile
-        getAccountsProfile()
+        // Create account's profile info
+        createAccountsProfile()
+
+        // Create payment methods info
+        createPaymentMethods()
+
+        logoutBtn = findViewById(R.id.profile_button_logout)
+        logoutBtn.setOnClickListener {
+            auth.signOut()
+            startActivity(Intent(this, AuthActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun createAccountsProfile() {
+
+        avatarImageView = findViewById(R.id.profile_image_avatar)
+        usernameTextView = findViewById(R.id.profile_text_username)
+        nameTextView = findViewById(R.id.profile_text_valueName)
+        emailTextView = findViewById(R.id.profile_text_valueEmail)
+        addressTextView = findViewById(R.id.profile_text_valueAddress)
+        phoneTextView = findViewById(R.id.profile_text_valuePhone)
+        genderTextView = findViewById(R.id.profile_text_valueGender)
+        birthdayTextView = findViewById(R.id.profile_text_valueDob)
 
         editInfoBtn = findViewById(R.id.profile_button_editInfo)
         editInfoBtn.visibility = View.GONE
@@ -100,20 +98,36 @@ class AccountActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        GlobalScope.launch(Dispatchers.Main) {
+            val account = accountController.getUser(auth.currentUser!!.email!!)
+
+            if (!TextUtils.isEmpty(account.avatar)) Picasso.get().load(account.avatar)
+                .into(avatarImageView)
+            usernameTextView.text = account.email
+            nameTextView.text = account.fullName
+            emailTextView.text = account.email
+            addressTextView.text = account.address
+            phoneTextView.text = account.phone
+            genderTextView.text = account.gender
+            birthdayTextView.text = account.dob
+        }
+    }
+
+    private fun createPaymentMethods() {
         val editPaymentBtn = findViewById<Button>(R.id.profile_button_editPayment)
-        editPaymentBtn.setVisibility(View.GONE)
+        editPaymentBtn.visibility = View.GONE
 
         val paymentRcView = findViewById<RecyclerView>(R.id.recyclerView)
-        paymentRcView.setVisibility(View.GONE)
+        paymentRcView.visibility = View.GONE
 
         val showPaymentBtn = findViewById<Button>(R.id.profile_button_showPayment)
         showPaymentBtn.setOnClickListener {
-            if(paymentRcView.getVisibility() == View.GONE) {
-                paymentRcView.setVisibility(View.VISIBLE)
-                editPaymentBtn.setVisibility(View.VISIBLE)
+            if(paymentRcView.visibility == View.GONE) {
+                paymentRcView.visibility = View.VISIBLE
+                editPaymentBtn.visibility = View.VISIBLE
             } else {
-                paymentRcView.setVisibility(View.GONE)
-                editPaymentBtn.setVisibility(View.GONE)
+                paymentRcView.visibility = View.GONE
+                editPaymentBtn.visibility = View.GONE
             }
         }
 

@@ -379,7 +379,7 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/rectangle"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/editProfile_button_changePassword"
+                app:layout_constraintBottom_toTopOf="@+id/profile_button_logout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -403,7 +403,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/editProfile_button_changePassword"
+                android:id="@+id/profile_button_logout"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

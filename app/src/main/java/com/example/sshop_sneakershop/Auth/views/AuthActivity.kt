@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
@@ -19,6 +20,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 class AuthActivity : AppCompatActivity(), IAuthView {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
+    private lateinit var forgotPasswordTextView: TextView
     private lateinit var signInButton: Button
     private lateinit var signUpButton: Button
     private lateinit var signInWithGoogleBtn: Button
@@ -37,9 +39,14 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
         emailEditText = findViewById(R.id.signin_input_email)
         passwordEditText = findViewById(R.id.signin_input_password)
+        forgotPasswordTextView = findViewById(R.id.signin_textview_forgot_password)
         signInButton = findViewById(R.id.signin_button_login)
         signUpButton = findViewById(R.id.signin_button_register)
         signInWithGoogleBtn = findViewById(R.id.signin_button_register_with_google)
+
+        forgotPasswordTextView.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
 
         signInButton.setOnClickListener {
             controller.onSignIn(emailEditText.text.toString(), passwordEditText.text.toString())
@@ -119,6 +126,14 @@ class AuthActivity : AppCompatActivity(), IAuthView {
     }
 
     override fun onSignUpFailed(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onForgotPasswordSuccess(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onForgotPasswordFailed(message: String) {
         TODO("Not yet implemented")
     }
 }

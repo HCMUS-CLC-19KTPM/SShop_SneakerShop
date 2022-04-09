@@ -5,4 +5,6 @@ interface IAuthView {
     fun onLoginFailed(message: String)
     fun onSignUpSuccess()
     fun onSignUpFailed(message: String)
+    fun onForgotPasswordSuccess(message: String)
+    fun onForgotPasswordFailed(message: String)
 }
