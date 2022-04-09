@@ -12,8 +12,7 @@ class ReviewBottomSheetDialog: BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_bottom_review, container, false)
-        return view
+    ): View {
+        return inflater.inflate(R.layout.fragment_bottom_review, container, false)
     }
 }
