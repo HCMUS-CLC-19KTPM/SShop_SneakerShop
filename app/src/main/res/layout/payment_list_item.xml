@@ -35,7 +35,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@color/material_dynamic_primary80" />
+                app:srcCompat="@color/material_dynamic_secondary60" />
 
             <ImageView
                 android:id="@+id/Payment_CardType_IV"
@@ -58,6 +58,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="NGUYEN VAN A"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/Payment_CardNumber_TV"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +74,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="4000 1234 5678 9012"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/Payment_DateCreate_TV"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -113,6 +115,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="04/2022"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/payment_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
