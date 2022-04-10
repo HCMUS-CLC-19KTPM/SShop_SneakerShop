@@ -86,10 +86,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_recycler_view"
         android:layout_width="0dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="32dp"
+        android:layout_height="450dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
