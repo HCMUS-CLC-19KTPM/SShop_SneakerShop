@@ -1,7 +1,7 @@
 package com.example.sshop_sneakershop.Product.controllers
 
-import com.example.sshop_sneakershop.Product.Product
-import com.example.sshop_sneakershop.Product.ProductModel
+import com.example.sshop_sneakershop.Product.models.Product
+import com.example.sshop_sneakershop.Product.models.ProductModel
 import com.example.sshop_sneakershop.Product.views.IProductView
 
 class ProductController(private var view: IProductView) : IProductController {

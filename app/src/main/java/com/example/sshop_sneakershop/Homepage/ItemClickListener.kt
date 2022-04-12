@@ -1,6 +1,6 @@
 package com.example.sshop_sneakershop.Homepage
 
-import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.models.Product
 
 interface ItemClickListener
 {

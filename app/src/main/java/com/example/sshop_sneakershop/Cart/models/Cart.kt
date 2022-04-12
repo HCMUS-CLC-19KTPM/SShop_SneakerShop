@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Cart
+package com.example.sshop_sneakershop.Cart.models
 
 class Cart {
     var id: String = ""

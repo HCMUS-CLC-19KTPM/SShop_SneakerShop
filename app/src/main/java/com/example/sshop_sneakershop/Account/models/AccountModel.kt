@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Account;
+package com.example.sshop_sneakershop.Account.models;
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -20,6 +20,18 @@ class AccountModel {
         }
 
         return account ?: Account()
+    }
+
+    suspend fun insertUser(account: Account) {
+        try {
+            val id = db.collection("account").document().id
+            account.id = id
+            db.collection("account").document(id).set(account).await()
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     suspend fun updateUser(account: Account): Account {

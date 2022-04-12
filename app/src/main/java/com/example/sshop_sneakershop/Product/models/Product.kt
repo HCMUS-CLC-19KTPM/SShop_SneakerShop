@@ -1,6 +1,6 @@
-package com.example.sshop_sneakershop.Product
+package com.example.sshop_sneakershop.Product.models
 
-import com.example.sshop_sneakershop.Review.Review
+import com.example.sshop_sneakershop.Review.models.Review
 import java.util.*
 import kotlin.collections.ArrayList
 

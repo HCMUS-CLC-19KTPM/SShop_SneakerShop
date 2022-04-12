@@ -3,12 +3,9 @@ package com.example.sshop_sneakershop.Cart.views
 
 import android.text.TextUtils
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Cart.Cart
-import com.example.sshop_sneakershop.Homepage.ItemClickListener
-import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.CartListItemBinding
-import com.example.sshop_sneakershop.databinding.RelatedProductListItemBinding
 import com.squareup.picasso.Picasso
 
 

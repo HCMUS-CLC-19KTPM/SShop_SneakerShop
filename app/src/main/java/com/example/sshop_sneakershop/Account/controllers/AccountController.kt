@@ -1,7 +1,7 @@
 package com.example.sshop_sneakershop.Account.controllers
 
-import com.example.sshop_sneakershop.Account.Account
-import com.example.sshop_sneakershop.Account.AccountModel
+import com.example.sshop_sneakershop.Account.models.Account
+import com.example.sshop_sneakershop.Account.models.AccountModel
 
 class AccountController : IAccountController {
 

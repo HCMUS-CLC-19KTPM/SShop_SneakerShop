@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Cart.views.CartAdapter
 import com.example.sshop_sneakershop.Cart.views.CartClickListener
-import com.example.sshop_sneakershop.Homepage.ItemClickListener
-import com.example.sshop_sneakershop.Product.Product
 import com.example.sshop_sneakershop.Product.views.ProductDetail
-import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
 import com.example.sshop_sneakershop.R
 
 class CartActivity : AppCompatActivity(),CartClickListener {

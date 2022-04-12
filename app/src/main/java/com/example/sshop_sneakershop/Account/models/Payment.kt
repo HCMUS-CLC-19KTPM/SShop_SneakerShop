@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Account
+package com.example.sshop_sneakershop.Account.models
 
 data class Payment(
     val name: String,

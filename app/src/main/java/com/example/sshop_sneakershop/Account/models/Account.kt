@@ -1,7 +1,7 @@
-package com.example.sshop_sneakershop.Account
+package com.example.sshop_sneakershop.Account.models
 
 data class Account(
-    val id: String,
+    var id: String,
     val fullName: String?,
     val email: String,
     val address: String?,
@@ -13,7 +13,7 @@ data class Account(
     val payment: ArrayList<Payment>?,
     val numOfReview: Int = 0
 ) {
-    constructor() : this("", null, "", null, null, null, null, null, false, null)
+    constructor() : this("", null, "", null, null, null, null, null, true, null)
 
     constructor(
         id: String,
@@ -22,12 +22,14 @@ data class Account(
         status: Boolean
     ) : this(id, fullName, email, null, null, null, null, null, status, null)
 
+    constructor(email: String) : this("", null, email, null, null, null, null, null, true, null)
+
     constructor(
         id: String,
         fullName: String,
         email: String,
         avatar: String?,
-    ) : this(id, fullName, email, null, null, null, null, avatar, false, null)
+    ) : this(id, fullName, email, null, null, null, null, avatar, true, null)
 
     constructor(
         id: String,

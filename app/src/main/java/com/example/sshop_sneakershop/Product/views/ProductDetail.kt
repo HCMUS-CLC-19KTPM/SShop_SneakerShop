@@ -8,10 +8,10 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop.Homepage.ItemClickListener
-import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.Review.Review
+import com.example.sshop_sneakershop.Review.models.Review
 import com.example.sshop_sneakershop.Review.views.ReviewAdapter
 import com.example.sshop_sneakershop.databinding.ActivityItemDetailBinding
 import com.squareup.picasso.Picasso

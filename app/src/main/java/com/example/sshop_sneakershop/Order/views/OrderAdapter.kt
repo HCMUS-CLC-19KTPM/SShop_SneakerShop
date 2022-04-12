@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Order.Order
+import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.R
 
 class OrderAdapter(private val orders:List<Order>): RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
@@ -28,12 +28,12 @@ class OrderAdapter(private val orders:List<Order>): RecyclerView.Adapter<OrderAd
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = orders[position]
-        holder.customerNameTextView.text = order.customer_name
-        holder.customerPhoneTextView.text = order.customer_phone
-        holder.customerAddressTextView.text = order.customer_address
-        holder.startDateTextView.text = order.start_date
-        holder.endDateTextView.text = order.end_date
-        holder.totalCostTextView.text = order.total_cost.toString()
+        holder.customerNameTextView.text = order.name
+        holder.customerPhoneTextView.text = order.phone
+        holder.customerAddressTextView.text = order.address
+        holder.startDateTextView.text = order.startDate.toString()
+        holder.endDateTextView.text = order.endDate.toString()
+        holder.totalCostTextView.text = order.totalCost.toString()
         holder.deliveryDescriptionTextView.text = order.id
     }
 
