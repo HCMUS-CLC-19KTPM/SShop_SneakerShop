@@ -1,34 +1,35 @@
 package com.example.sshop_sneakershop.Homepage
 
+import android.accounts.Account
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.example.sshop_sneakershop.Account.views.AccountActivity
+import com.example.sshop_sneakershop.Cart.CartActivity
+import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityNavigationBinding
+import com.google.android.material.navigation.NavigationView
 
-class Navigation : AppCompatActivity(), ItemClickListener {
+class Home : AppCompatActivity(), ItemClickListener,
+    NavigationView.OnNavigationItemSelectedListener {
     // creating object of ViewPager
     private var mViewPager: ViewPager? = null
     private var images = intArrayOf(R.drawable.banner1, R.drawable.banner2, R.drawable.banner3)
     private var mViewPagerAdapter: BannerAdapter? = null
     private var productList: List<Product> = ArrayList()
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var bindings: ActivityNavigationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,23 +39,16 @@ class Navigation : AppCompatActivity(), ItemClickListener {
         setContentView(bindings.root)
 
         setSupportActionBar(bindings.appBarNavigation.toolbar)
+        supportActionBar?.title = "Home"
 
-        val drawerLayout: DrawerLayout = bindings.drawerLayout
         val navView: NavigationView = bindings.navView
-       /* val navController = findNavController(R.id.nav_host_fragment_content_navigation)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
-        )
-
-
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
-        */
+        navView.setNavigationItemSelectedListener(this)
+        val toolbar: androidx.appcompat.widget.Toolbar = bindings.appBarNavigation.toolbar
+        val drawerLayout: DrawerLayout = bindings.drawerLayout
+        val openState: Int = 1
+        val closeState: Int = 0
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, openState, closeState)
+        //drawerLayout.setDrawerListener(toggle)
         //Get binding inside content
         val binding = bindings.appBarNavigation.contentHome
 
@@ -116,14 +110,44 @@ class Navigation : AppCompatActivity(), ItemClickListener {
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_navigation)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    override fun onBackPressed() {
+        val drawerLayout: DrawerLayout = bindings.drawerLayout
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
     }
 
     override fun onClick(product: Product) {
         val intent = Intent(applicationContext, ProductDetail::class.java)
         intent.putExtra("itemID", product.id)
         startActivity(intent)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        return if (id == R.id.action_settings) true
+        else super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_home -> {
+                val intent = Intent(this, Home::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_profile -> {
+                val intent = Intent(this, AccountActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        val drawerLayout: DrawerLayout = bindings.drawerLayout
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+
     }
 }

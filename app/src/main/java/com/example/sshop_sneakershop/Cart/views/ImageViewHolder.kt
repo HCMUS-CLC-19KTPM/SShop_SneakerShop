@@ -19,7 +19,7 @@ class ImageViewHolder(
             .load(product.image).into(ImageCellBinding.productImage)
 
         ImageCellBinding.itemTitle.text =
-            if (product.name.length > 20) "${product.name!!.substring(13)}..." else product.name
+            if (product.name.length > 20) "${product.name.substring(13)}..." else product.name
 
         val price = "$" + product.price.toString()
         ImageCellBinding.itemPrice.text = price

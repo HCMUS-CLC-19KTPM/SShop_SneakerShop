@@ -70,6 +70,9 @@ class AccountActivity : AppCompatActivity() {
             startActivity(Intent(this, OrderListActivity::class.java))
         }
 
+        //Back to home
+        binding.profileToolbar.setNavigationOnClickListener { finish() }
+
         logoutBtn = findViewById(R.id.profile_button_logout)
         logoutBtn.setOnClickListener {
             auth.signOut()

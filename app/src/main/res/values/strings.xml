@@ -29,4 +29,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="nav_header">SShop - Sneaker Shop</string>
     <string name="nav_author">Group007</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
 </resources>

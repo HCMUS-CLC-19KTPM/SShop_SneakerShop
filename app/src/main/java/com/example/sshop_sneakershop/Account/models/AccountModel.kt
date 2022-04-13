@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Account.models;
+package com.example.sshop_sneakershop.Account.models
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
