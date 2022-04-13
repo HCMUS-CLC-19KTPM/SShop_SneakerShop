@@ -3,7 +3,7 @@ package com.example.sshop_sneakershop.Review.views
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Review.Review
+import com.example.sshop_sneakershop.Review.models.Review
 import com.example.sshop_sneakershop.databinding.ReviewListItemBinding
 
 

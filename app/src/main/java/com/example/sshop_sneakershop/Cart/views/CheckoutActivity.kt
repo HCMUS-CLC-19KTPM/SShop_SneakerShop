@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.models.Product
+import com.example.sshop_sneakershop.Product.models.ProductInCart
 import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
 import com.example.sshop_sneakershop.R
 
@@ -21,7 +22,7 @@ class CheckoutActivity : AppCompatActivity() {
         val myProduct = Product("",100.0, "Shoe", "", "Description", ArrayList())
         products = listOf(myProduct, myProduct, myProduct, myProduct, myProduct, myProduct,myProduct, myProduct, myProduct).toCollection(ArrayList())
 
-        val adapter = ProductItemAdapter(products)
+        val adapter = ProductItemAdapter(ArrayList())
 
         productRecyclerView.adapter = adapter
 

@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Product
+package com.example.sshop_sneakershop.Product.models
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -8,12 +8,13 @@ import kotlinx.coroutines.tasks.await
 
 class ProductModel {
     private var db = Firebase.firestore
-    val products = ArrayList<Product>()
 
     /**
      * Get all products
      */
     suspend fun getAllProducts(): ArrayList<Product> {
+        val products = ArrayList<Product>()
+
         try {
             db.collection("product")
                 .get()

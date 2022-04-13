@@ -10,7 +10,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
-import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.views.IProductView
 import com.example.sshop_sneakershop.Product.views.ProductAdapter

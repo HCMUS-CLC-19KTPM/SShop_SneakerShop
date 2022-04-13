@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.Account.Payment
+import com.example.sshop_sneakershop.Account.models.Payment
 
 class PaymentItemAdapter(private val payments:List<Payment>): RecyclerView.Adapter<PaymentItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){

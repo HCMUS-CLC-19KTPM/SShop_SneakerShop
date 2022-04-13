@@ -1,8 +1,17 @@
-package com.example.sshop_sneakershop.Product
+package com.example.sshop_sneakershop.Product.models
 
-import com.example.sshop_sneakershop.Review.Review
+import com.example.sshop_sneakershop.Review.models.Review
 import java.util.*
 import kotlin.collections.ArrayList
+
+object ProductInCart {
+    var id: String = ""
+    var image: String = ""
+    var name: String = ""
+    var price: Double = 0.0
+    var quantity: Int = 0
+    var size: String = ""
+}
 
 class Product {
     var id: String = ""
@@ -28,12 +37,12 @@ class Product {
         this.image = image.toString()
     }
 
-    constructor(id: String, price: Double, name: String, image: String, category: String) {
+    constructor(id: String, price: Double, name: String, image: String, size: String) {
         this.id = id
         this.price = price
         this.name = name
         this.image = image
-        this.category = category
+        this.size = size
     }
 
     constructor(

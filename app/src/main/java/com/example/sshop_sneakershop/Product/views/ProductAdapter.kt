@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Homepage.ItemClickListener
-import com.example.sshop_sneakershop.Product.Product
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.databinding.RelatedProductListItemBinding
 
 

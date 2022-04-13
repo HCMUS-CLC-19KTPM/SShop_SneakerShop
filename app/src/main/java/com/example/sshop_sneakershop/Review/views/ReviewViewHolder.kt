@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.text.TextUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.Review.Review
+import com.example.sshop_sneakershop.Review.models.Review
 import com.example.sshop_sneakershop.databinding.ReviewListItemBinding
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat

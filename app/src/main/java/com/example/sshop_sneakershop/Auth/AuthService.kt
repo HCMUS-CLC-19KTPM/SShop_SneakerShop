@@ -2,6 +2,8 @@ package com.example.sshop_sneakershop.Auth
 
 import android.content.ContentValues
 import android.util.Log
+import com.example.sshop_sneakershop.Account.models.Account
+import com.example.sshop_sneakershop.Account.models.AccountModel
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -9,6 +11,7 @@ import kotlinx.coroutines.tasks.await
 
 class AuthService {
     private val auth = Firebase.auth
+    private val accountModel = AccountModel()
 
     suspend fun signIn(email: String, password: String): Boolean {
         try {
@@ -29,6 +32,12 @@ class AuthService {
     suspend fun signInWithGoogle(credential: AuthCredential): String {
         try {
             auth.signInWithCredential(credential).await()
+
+            val email: String? = auth.currentUser!!.email
+            if (accountModel.getUser(email!!) == null) {
+                accountModel.insertUser(Account(email))
+            }
+
             Log.d("AuthService", "signInWithCredential:success")
 
             return "Login Success"
@@ -49,6 +58,10 @@ class AuthService {
 
             val user = auth.currentUser
             user!!.sendEmailVerification().await()
+
+            val newAccount = Account(email)
+            newAccount.id = auth.currentUser!!.uid
+            accountModel.insertUser(newAccount)
 
             Log.d("AuthService", "createUserWithEmail:success")
 

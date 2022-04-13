@@ -1,6 +1,6 @@
-package com.example.sshop_sneakershop.Review
+package com.example.sshop_sneakershop.Review.models
 
-import com.example.sshop_sneakershop.Account.Account
+import com.example.sshop_sneakershop.Account.models.Account
 import java.util.*
 
 class Review(
