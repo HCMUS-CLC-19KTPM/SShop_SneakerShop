@@ -30,14 +30,12 @@ class OrderListActivity : AppCompatActivity() {
         // Lookup the recyclerview in activity layout
         orderRecyclerView = findViewById(R.id.order_list_recycler_view)
 
-//        val myOrder = Order("Standard Express - VN2221342314234231K", "Nguyen Van A", "113 Nguyen Van Cu, District 5, HCM", "18001166", 1000.0, "22/2/2022", "1/3/2022")
-//        orders = listOf(myOrder, myOrder, myOrder, myOrder, myOrder).toCollection(ArrayList())
-
         val adapter = OrderAdapter(orders)
         orderRecyclerView.adapter = adapter
         orderRecyclerView.layoutManager = LinearLayoutManager(this) //GridLayoutManager(this, 2)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun getAllOrder() {
         GlobalScope.launch(Dispatchers.Main) {
             orders.addAll(orderController.getAllOrder())

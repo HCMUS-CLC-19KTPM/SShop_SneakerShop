@@ -37,9 +37,6 @@ class CartActivity : AppCompatActivity(), CartClickListener {
         totalPriceTextView = findViewById(R.id.cart_tv_total_price)
         checkoutButton = findViewById(R.id.cart_button_confirm)
 
-//        val myProduct = Cart("1",100.0, "AIR JORDAN 1 LOW OLIVE MOYEN", "", 15, "US6")
-//        val products = listOf(myProduct, myProduct, myProduct)
-
         val mainActivity = this
         productRecyclerView.apply {
             layoutManager =

@@ -8,9 +8,8 @@ class Cart(
     var userId: String = "",
     var productList: ArrayList<ProductInCart>? = null
 ) {
-
-
     constructor() : this("", 0.0, "", null)
+
     constructor(
         totalCost: Double,
         userId: String,

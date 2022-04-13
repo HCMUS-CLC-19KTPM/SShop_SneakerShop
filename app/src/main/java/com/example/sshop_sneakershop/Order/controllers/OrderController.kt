@@ -6,4 +6,6 @@ class OrderController {
     private val orderModel = OrderModel()
 
     suspend fun getAllOrder() = orderModel.getAllOrders()
+
+    suspend fun getOrderById(id: String) = orderModel.getOrderById(id)
 }

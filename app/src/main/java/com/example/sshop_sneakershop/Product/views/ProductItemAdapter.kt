@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Product.models.Product
+import com.example.sshop_sneakershop.Product.models.ProductInCart
 import com.example.sshop_sneakershop.R
 import com.squareup.picasso.Picasso
 
-class ProductItemAdapter(private val products: List<Product>) :
+class ProductItemAdapter(private val products: ArrayList<ProductInCart>) :
     RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val nameTextView = listItemView.findViewById(R.id.product_textview_name) as TextView
@@ -34,7 +35,7 @@ class ProductItemAdapter(private val products: List<Product>) :
         holder.nameTextView.text = product.name
         holder.priceTextView.text = product.price.toString()
         holder.quantityTextView.text = product.quantity.toString()
-        holder.descriptionTextView.text = product.description
+        holder.descriptionTextView.text = "product.description"
 
         if (TextUtils.isEmpty(product.image)) {
             holder.imageView.setImageResource(R.drawable.shoe)

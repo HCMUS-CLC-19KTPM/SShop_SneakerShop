@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop.Order.views
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,13 +27,16 @@ class OrderAdapter(private val orders:List<Order>): RecyclerView.Adapter<OrderAd
         return ViewHolder(orderView)
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = orders[position]
         holder.customerNameTextView.text = order.name
         holder.customerPhoneTextView.text = order.phone
         holder.customerAddressTextView.text = order.address
-        holder.startDateTextView.text = order.startDate.toString()
-        holder.endDateTextView.text = order.endDate.toString()
+
+        val formatter = java.text.SimpleDateFormat("E, dd MMM yyyy HH:mm:ss")
+        holder.startDateTextView.text = formatter.format(order.startDate)
+        holder.endDateTextView.text = formatter.format(order.endDate)
         holder.totalCostTextView.text = order.totalCost.toString()
         holder.deliveryDescriptionTextView.text = order.id
     }
