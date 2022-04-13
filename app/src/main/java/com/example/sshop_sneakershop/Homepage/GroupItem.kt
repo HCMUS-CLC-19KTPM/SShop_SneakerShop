@@ -22,6 +22,7 @@ class GroupItem : AppCompatActivity(), ItemClickListener {
 
         category = intent.getStringExtra("categoryID").toString()
         binding.title.text = category
+        binding.groupListToolbar.title = category
 
         val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
         productList = listOf(
@@ -45,6 +46,9 @@ class GroupItem : AppCompatActivity(), ItemClickListener {
             adapter = ProductAdapter(productList, mainActivity)
         }
 
+        binding.groupListToolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     override fun onClick(product: Product) {

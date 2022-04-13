@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.Cart.CartActivity
-import com.example.sshop_sneakershop.Order.OrderListActivity
+import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityUserBinding
 import com.google.firebase.auth.ktx.auth

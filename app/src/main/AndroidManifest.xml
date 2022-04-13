@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.example.sshop_sneakershop">
+    package="com.example.sshop_sneakershop">
 
     <application
         android:allowBackup="true"
@@ -10,70 +10,64 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
-            android:name=".Account.views.EditPaymentActivity"
-            android:exported="false" />
-
-        <activity
-                android:name=".Order.views.OrderDetailActivity"
-                android:exported="true" />
-
-        <activity
-                android:name=".Cart.CartActivity"
-                android:exported="true">
-        </activity>
-
-        <activity
-                android:name=".Homepage.Search"
-                android:exported="false" />
-
-        <activity
-                android:name=".Account.views.AccountActivity"
-                android:exported="true" />
-
-        <activity
-                android:name=".Order.views.OrderListActivity"
-                android:exported="true" />
-
-        <activity
-                android:name=".Homepage.GroupItem"
-                android:exported="false" />
-
-        <activity
-                android:name=".Product.views.ProductDetail"
-                android:exported="false" />
-
-        <activity
-                android:name=".Homepage.HomeActivity"
-                android:exported="true">
+            android:name=".Homepage.Navigation"
+            android:exported="true"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.SShop_SneakerShop.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-                android:name=".MainActivity"
-                android:exported="true" />
-
+            android:name=".Account.views.EditPaymentActivity"
+            android:exported="false" />
         <activity
-                android:name=".Cart.views.CheckoutActivity"
-                android:exported="true" >
+            android:name=".Order.views.OrderDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Cart.CartActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Homepage.Search"
+            android:exported="false" />
+        <activity
+            android:name=".Account.views.AccountActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Order.views.OrderListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Homepage.GroupItem"
+            android:exported="false" />
+        <activity
+            android:name=".Product.views.ProductDetail"
+            android:exported="false" />
+        <activity
+            android:name=".Homepage.HomeActivity"
+            android:exported="true">
+
         </activity>
-
         <activity
-                android:name=".Auth.views.AuthActivity"
-                android:exported="true" />
-
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
-                android:name=".Auth.views.SignUpViewActivity"
-                android:exported="true" />
-
+            android:name=".Cart.views.CheckoutActivity"
+            android:exported="true">
+        </activity>
         <activity
-                android:name=".Auth.views.ForgotPasswordActivity"
-                android:exported="true" />
-
-        <activity android:name=".Account.views.AccountEditActivity"
-                  android:exported="true" />
+            android:name=".Auth.views.AuthActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Auth.views.SignUpViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Auth.views.ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Account.views.AccountEditActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
