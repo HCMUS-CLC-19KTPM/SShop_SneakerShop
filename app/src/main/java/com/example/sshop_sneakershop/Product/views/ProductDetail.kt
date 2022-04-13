@@ -55,6 +55,9 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
             adapter = ReviewAdapter(reviewList)
         }
+        binding.itemDetailToolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     override fun onClick(product: Product) {

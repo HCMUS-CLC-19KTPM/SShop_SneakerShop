@@ -6,6 +6,5 @@ data class Payment(
     val number: String,
     val since: String
 ) {
-
     constructor() : this("", "", "", "")
 }

@@ -46,8 +46,7 @@
         android:id="@+id/checkout_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/order_detail_bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkout_coordinator_layout">
@@ -229,6 +228,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/primary"
                 android:text="Checkout"
                 android:textAllCaps="false"
@@ -237,32 +237,13 @@
                 app:icon="@drawable/ic_baseline_remove_shopping_cart_24"
                 app:iconGravity="textStart"
                 app:iconPadding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkout_recycler_view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/order_detail_bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:background="@drawable/nav_background_curved"
-        app:backgroundTint="@color/primary"
-        app:iconGravity="textTop"
-        app:itemActiveIndicatorStyle="@null"
-        app:itemIconTint="@color/bottom_navigation_color"
-        app:itemTextColor="@color/bottom_navigation_color"
-        app:labelVisibilityMode="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
 
 
 

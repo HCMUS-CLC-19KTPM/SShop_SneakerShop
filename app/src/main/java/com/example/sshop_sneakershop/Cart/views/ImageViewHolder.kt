@@ -42,6 +42,7 @@ class ImageViewHolder (
             val quantity :Int = Integer.valueOf(ImageCellBinding.quantity.text.toString()) - 1
            // if (quantity == 0) Delete item
             ImageCellBinding.quantity.setText(quantity.toString())
+
         }
         ImageCellBinding.plus.setOnClickListener{
             val quantity = Integer.valueOf(ImageCellBinding.quantity.text.toString()) + 1

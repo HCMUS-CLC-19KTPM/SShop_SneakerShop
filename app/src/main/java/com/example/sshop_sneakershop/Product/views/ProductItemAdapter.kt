@@ -19,7 +19,7 @@ class ProductItemAdapter(private val products: List<Product>) :
         val quantityTextView = listItemView.findViewById(R.id.product_textview_quantity) as TextView
         val descriptionTextView =
             listItemView.findViewById(R.id.product_textview_description) as TextView
-        val imageView = listItemView.findViewById(R.id.product_image) as ImageView
+        val imageView = listItemView.findViewById(R.id.product_image_1) as ImageView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
