@@ -24,8 +24,7 @@ class AccountModel {
 
     suspend fun insertUser(account: Account) {
         try {
-            val id = db.collection("account").document().id
-            account.id = id
+            val id = account.id
             db.collection("account").document(id).set(account).await()
 
 

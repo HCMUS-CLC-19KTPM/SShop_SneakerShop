@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cart_recycler_view" />
 
     <TextView
-        android:id="@+id/productPrice2"
+        android:id="@+id/cart_tv_total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <Button
-        android:id="@+id/checkout_button_confirm"
+        android:id="@+id/cart_button_confirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"

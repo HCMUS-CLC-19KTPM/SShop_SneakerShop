@@ -60,6 +60,7 @@ class AuthService {
             user!!.sendEmailVerification().await()
 
             val newAccount = Account(email)
+            newAccount.id = auth.currentUser!!.uid
             accountModel.insertUser(newAccount)
 
             Log.d("AuthService", "createUserWithEmail:success")

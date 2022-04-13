@@ -3,23 +3,20 @@ package com.example.sshop_sneakershop.Cart.views
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Cart.models.Cart
+import com.example.sshop_sneakershop.Product.models.ProductInCart
 import com.example.sshop_sneakershop.databinding.CartListItemBinding
 
 class CartAdapter(
-    private val products: List<Cart>,
+    private val products: ArrayList<ProductInCart>,
     private val clickListener: CartClickListener
-) : RecyclerView.Adapter<ImageViewHolder>()
-{
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder
-    {
+) : RecyclerView.Adapter<ImageViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val from = LayoutInflater.from(parent.context)
         val binding = CartListItemBinding.inflate(from, parent, false)
         return ImageViewHolder(binding, clickListener)
     }
 
-    override fun onBindViewHolder(holder: ImageViewHolder, position: Int)
-    {
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         holder.bindItem(products[position])
     }
 
