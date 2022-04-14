@@ -121,15 +121,15 @@ class Home : AppCompatActivity(), ItemClickListener,
         //val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
         //productList = listOf(myItem, myItem, myItem, myItem, myItem, myItem)
 
-        //Item list initialization
-        getAllProducts()
-
         val mainActivity = this
         binding.homeRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
             adapter = ProductAdapter(productList, mainActivity)
         }
+
+        //Item list initialization
+        getAllProducts()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -148,7 +148,7 @@ class Home : AppCompatActivity(), ItemClickListener,
 
     override fun onClick(product: Product) {
         val intent = Intent(applicationContext, ProductDetail::class.java)
-        intent.putExtra("itemID", product.id)
+        intent.putExtra("item-id", product.id)
         startActivity(intent)
     }
 
