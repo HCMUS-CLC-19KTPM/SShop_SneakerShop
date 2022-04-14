@@ -11,7 +11,10 @@ import androidx.gridlayout.widget.GridLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.Cart.CartActivity
+import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.R
+import com.example.sshop_sneakershop.databinding.ActivityUserBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mikhaellopez.circularimageview.CircularImageView
@@ -36,6 +39,7 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var birthdayTextView: TextView
 
     private lateinit var logoutBtn: Button
+    private lateinit var binding: ActivityUserBinding
 
     override fun onStart() {
         super.onStart()
@@ -48,7 +52,9 @@ class AccountActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user)
+
+        binding = ActivityUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Create account's profile info
         createAccountsProfile()
@@ -56,12 +62,24 @@ class AccountActivity : AppCompatActivity() {
         // Create payment methods info
         createPaymentMethods()
 
+        binding.profileButtonShowCart.setOnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
+        }
+
+        binding.profileButtonShowOrder.setOnClickListener {
+            startActivity(Intent(this, OrderListActivity::class.java))
+        }
+
+        //Back to home
+        binding.profileToolbar.setNavigationOnClickListener { finish() }
+
         logoutBtn = findViewById(R.id.profile_button_logout)
         logoutBtn.setOnClickListener {
             auth.signOut()
             startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
+
     }
 
     private fun createAccountsProfile() {

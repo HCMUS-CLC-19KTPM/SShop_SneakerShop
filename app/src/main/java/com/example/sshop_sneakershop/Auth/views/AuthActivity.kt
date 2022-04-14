@@ -9,8 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
+import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.Homepage.HomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -108,7 +108,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         Log.d("AuthActivity", message)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, Home::class.java))
         finish()
     }
 

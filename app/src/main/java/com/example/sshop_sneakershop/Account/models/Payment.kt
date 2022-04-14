@@ -8,6 +8,5 @@ data class Payment(
     val number: String,
     val since: Date,
 ) {
-
     constructor() : this("", "", "", Date())
 }

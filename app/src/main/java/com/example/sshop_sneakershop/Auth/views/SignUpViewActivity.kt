@@ -7,8 +7,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
+import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.Homepage.HomeActivity
 
 class SignUpViewActivity : AppCompatActivity(), IAuthView {
 
@@ -40,7 +40,7 @@ class SignUpViewActivity : AppCompatActivity(), IAuthView {
     }
 
     override fun onSignUpSuccess() {
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, Home::class.java))
         finish()
     }
 

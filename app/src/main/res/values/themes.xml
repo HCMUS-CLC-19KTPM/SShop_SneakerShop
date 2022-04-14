@@ -30,4 +30,13 @@
         <!-- 6. -->
         <item name="postSplashScreenTheme">@style/Theme.SShop_SneakerShop</item>
     </style>
+
+    <style name="Theme.SShop_SneakerShop.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SShop_SneakerShop.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SShop_SneakerShop.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

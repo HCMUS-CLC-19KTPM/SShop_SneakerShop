@@ -1,22 +1,31 @@
 package com.example.sshop_sneakershop.Homepage
 
+import android.accounts.Account
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.example.sshop_sneakershop.Account.views.AccountActivity
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
-import com.example.sshop_sneakershop.Product.models.Product
+import com.example.sshop_sneakershop.Cart.CartActivity
+import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Product.controllers.ProductController
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.IProductView
 import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.databinding.ActivityHomeBinding
+import com.example.sshop_sneakershop.databinding.ActivityNavigationBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -24,18 +33,18 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
-class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
-    // creating object of ViewPager
+class Home : AppCompatActivity(), ItemClickListener,
+    NavigationView.OnNavigationItemSelectedListener, IProductView {
+    //ViewPager
     private var mViewPager: ViewPager? = null
     private var images = intArrayOf(R.drawable.banner1, R.drawable.banner2, R.drawable.banner3)
     private var mViewPagerAdapter: BannerAdapter? = null
 
-    //Item binder
-    private lateinit var binding: ActivityHomeBinding
-
+    //Adapter
     private lateinit var productController: ProductController
-    private val productList: ArrayList<Product> = ArrayList()
+    private var productList: ArrayList<Product> = ArrayList()
+
+    private lateinit var bindings: ActivityNavigationBinding
 
     override fun onStart() {
         super.onStart()
@@ -49,29 +58,37 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         productController = ProductController(this)
 
-        //Item list initialization
-        getAllProducts()
+        bindings = ActivityNavigationBinding.inflate(layoutInflater)
+        setContentView(bindings.root)
 
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setSupportActionBar(bindings.appBarNavigation.toolbar)
+        supportActionBar?.title = "Home"
+
+        val navView: NavigationView = bindings.navView
+        navView.setNavigationItemSelectedListener(this)
+        val toolbar: androidx.appcompat.widget.Toolbar = bindings.appBarNavigation.toolbar
+        val drawerLayout: DrawerLayout = bindings.drawerLayout
+        val openState: Int = 1
+        val closeState: Int = 0
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, openState, closeState)
+        //drawerLayout.setDrawerListener(toggle)
+        //Get binding inside content
+        val binding = bindings.appBarNavigation.contentHome
 
         //Banner - slider
-        mViewPager = findViewById<View>(R.id.banner_view_pager) as ViewPager
+        mViewPager = binding.bannerViewPager
         mViewPagerAdapter = BannerAdapter(this, images)
         mViewPager!!.adapter = mViewPagerAdapter
 
-        val mainActivity = this
-        binding.homeRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ProductAdapter(productList, mainActivity)
-        }
-
         //Set categories listener
         val intent = Intent(this, GroupItem::class.java)
+
+        binding.viewAll.setOnClickListener {
+            intent.putExtra("categoryID","Plimsoll")
+            startActivity(intent)
+        }
         binding.icon1.setOnClickListener {
             intent.putExtra("categoryID", "Plimsoll")
             startActivity(intent)
@@ -104,6 +121,30 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
             intent.putExtra("categoryID", "Synthetic")
             startActivity(intent)
         }
+
+        val mainActivity = this
+        binding.homeRecyclerView.apply {
+            layoutManager =
+                LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+            adapter = ProductAdapter(productList, mainActivity)
+        }
+
+        //Item list initialization
+        getAllProducts()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.navigation, menu)
+        return true
+    }
+
+    override fun onBackPressed() {
+        val drawerLayout: DrawerLayout = bindings.drawerLayout
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
     }
 
     override fun onClick(product: Product) {
@@ -112,6 +153,32 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
         startActivity(intent)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        return if (id == R.id.action_settings) true
+        else super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_home -> {
+                val intent = Intent(this, Home::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_profile -> {
+                val intent = Intent(this, AccountActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        val drawerLayout: DrawerLayout = bindings.drawerLayout
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+
+    }
     @SuppressLint("NotifyDataSetChanged")
     private fun getAllProducts() {
         //Load data
@@ -123,7 +190,7 @@ class HomeActivity : AppCompatActivity(), ItemClickListener, IProductView {
                 productList.addAll(productController.getAllProducts())
 
                 withContext(Dispatchers.Main) {
-                    binding.homeRecyclerView.adapter?.notifyDataSetChanged()
+                    bindings.appBarNavigation.contentHome.homeRecyclerView.adapter?.notifyDataSetChanged()
                     splash.setKeepOnScreenCondition { false }
                 }
             } catch (e: Exception) {

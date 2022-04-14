@@ -12,6 +12,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/item_detail_coordinator_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <!-- Note: A RecyclerView can also be used -->
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/item_detail_nested_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <!-- Scrollable content -->
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/item_detail_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:background="@color/primary"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                    app:title="Item Detail"
+                    app:titleTextColor="@color/white" />
+            </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
         <TextView
             android:id="@+id/productRelated"
             android:layout_width="wrap_content"
@@ -61,14 +94,14 @@
             app:layout_constraintTop_toBottomOf="@+id/rating" />
 
         <ImageView
-                android:id="@+id/backgroundImageView"
-                android:layout_width="0dp"
-                android:layout_height="240dp"
-                android:scaleType="fitXY"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/shoe_detail" />
+            android:id="@+id/backgroundImageView"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_detail_coordinator_layout"
+            app:srcCompat="@drawable/shoe_detail" />
 
         <TextView
             android:id="@+id/pictureTitle"
