@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
@@ -136,6 +137,16 @@ class AccountActivity : AppCompatActivity() {
 
         val paymentRcView = findViewById<RecyclerView>(R.id.recyclerView)
         paymentRcView.visibility = View.GONE
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val account = accountController.getUser(auth.currentUser!!.email!!)
+            val paymentList = account.payments
+            if(paymentList!==null) {
+                val paymentAdapter = PaymentItemAdapter(paymentList)
+                paymentRcView.adapter = paymentAdapter
+                paymentRcView.layoutManager = LinearLayoutManager(this@AccountActivity)
+            }
+        }
 
         val showPaymentBtn = findViewById<Button>(R.id.profile_button_showPayment)
         showPaymentBtn.setOnClickListener {

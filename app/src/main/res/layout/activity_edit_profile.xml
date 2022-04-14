@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User.views.EditProfileActivity">
+    tools:context=".Account.views.AccountEditActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/editProfile_coordinator_layout"
@@ -45,12 +45,10 @@
         android:id="@+id/checkout_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfile_coordinator_layout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/editProfile_coordinator_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -76,7 +74,6 @@
                 android:id="@+id/editProfile_text_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/editProfile_textInputLayout_name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -213,8 +210,8 @@
                     android:id="@+id/editProfile_textInputET_dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="01/01/2001"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:text="01/01/2001" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

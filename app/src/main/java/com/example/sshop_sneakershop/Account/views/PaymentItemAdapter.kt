@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Account.models.Payment
 
-class PaymentItemAdapter(private val payments:List<Payment>): RecyclerView.Adapter<PaymentItemAdapter.ViewHolder>() {
+class PaymentItemAdapter(private val payments:ArrayList<Payment>?): RecyclerView.Adapter<PaymentItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
         val nameTextView = listItemView.findViewById(R.id.Payment_Username_TV) as TextView
         val cardNumberTextView = listItemView.findViewById(R.id.Payment_CardNumber_TV) as TextView
@@ -25,7 +25,7 @@ class PaymentItemAdapter(private val payments:List<Payment>): RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val payment = payments[position]
+        val payment = payments!![position]
         holder.nameTextView.text = payment.name
         holder.cardNumberTextView.text = payment.number
         holder.dateCreateTextView.text = payment.since
@@ -38,6 +38,6 @@ class PaymentItemAdapter(private val payments:List<Payment>): RecyclerView.Adapt
     }
 
     override fun getItemCount(): Int {
-        return payments.size
+        return payments!!.size
     }
 }
