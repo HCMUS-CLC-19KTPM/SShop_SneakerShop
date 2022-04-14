@@ -28,7 +28,7 @@ class PaymentItemAdapter(private val payments:List<Payment>): RecyclerView.Adapt
         val payment = payments[position]
         holder.nameTextView.text = payment.name
         holder.cardNumberTextView.text = payment.number
-        holder.dateCreateTextView.text = payment.since
+        holder.dateCreateTextView.text = payment.since.toString()
         when (payment.type) {
             "visa" -> holder.cardTypeImageView.setImageResource(R.drawable.ic_visa)
             "mastercard" -> holder.cardTypeImageView.setImageResource(R.drawable.ic_mastercard)
