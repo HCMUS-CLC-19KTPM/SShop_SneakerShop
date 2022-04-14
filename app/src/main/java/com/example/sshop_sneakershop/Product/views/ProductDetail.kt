@@ -33,11 +33,6 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         binding = ActivityItemDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val id = intent.getStringExtra("item-id").toString()
-        //Get item-data base on ID here
-        Log.d("ID", id)
-        getProductDetail(id)
-
         //Related products
         //Item list initialization
         val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
@@ -58,6 +53,10 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         binding.itemDetailToolbar.setNavigationOnClickListener {
             finish()
         }
+
+        //Get item-data base on ID here
+        val id = intent.getStringExtra("item-id").toString()
+        productController.onGetProductById(id)
     }
 
     override fun onClick(product: Product) {
@@ -104,5 +103,46 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
                 binding.recyclerViewReview.adapter?.notifyDataSetChanged()
             }
         }
+    }
+
+    override fun onShowAllProducts(products: ArrayList<Product>) {
+        TODO("Not yet implemented")
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n", "SimpleDateFormat")
+    override fun onShowProductDetail(product: Product) {
+        if (product.reviews != null) {
+            reviewList.addAll(product.reviews!!)
+        }
+
+        if (TextUtils.isEmpty(product.image)) {
+            binding.backgroundImageView.setImageResource(R.drawable.shoe)
+        } else {
+            Picasso.get().load(product.image).into(binding.backgroundImageView)
+        }
+
+        binding.pictureTitle.text = product.brand
+        binding.categoryTag.text = product.category
+        binding.productName.text = product.name
+        val priceValue = product.price - 1.0
+        binding.productPrice.text = "$$priceValue"
+        val priceOldValue = product.price
+        binding.productOldPrice.text = "$$priceOldValue"
+        val ratingValue = product.rating
+        binding.rating.text = "$ratingValue/5.00"
+        binding.descriptionContent.text = product.description
+
+
+        val formatter = SimpleDateFormat("dd-MM-yyyy")
+        val releaseDate = formatter.format(product.releaseDate!!)
+        binding.infoContent.text =
+            "Origin: ${product.origin}\nStyle: ${product.category}\nReleased date: $releaseDate"
+
+        binding.recyclerViewReview.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onShowProductsByCategory(products: ArrayList<Product>) {
+        TODO("Not yet implemented")
     }
 }

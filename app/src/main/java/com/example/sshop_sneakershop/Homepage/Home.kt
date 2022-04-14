@@ -1,6 +1,5 @@
 package com.example.sshop_sneakershop.Homepage
 
-import android.accounts.Account
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +16,6 @@ import androidx.viewpager.widget.ViewPager
 import com.example.sshop_sneakershop.Account.views.AccountActivity
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.Cart.CartActivity
-import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.IProductView
@@ -86,39 +84,39 @@ class Home : AppCompatActivity(), ItemClickListener,
         val intent = Intent(this, GroupItem::class.java)
 
         binding.viewAll.setOnClickListener {
-            intent.putExtra("categoryID","Plimsoll")
+            intent.putExtra("category-id", "all")
             startActivity(intent)
         }
         binding.icon1.setOnClickListener {
-            intent.putExtra("categoryID", "Plimsoll")
+            intent.putExtra("category-id", "Plimsoll")
             startActivity(intent)
         }
         binding.icon2.setOnClickListener {
-            intent.putExtra("categoryID", "High-Top")
+            intent.putExtra("category-id", "High-Top")
             startActivity(intent)
         }
         binding.icon3.setOnClickListener {
-            intent.putExtra("categoryID", "Athletic")
+            intent.putExtra("category-id", "Athletic")
             startActivity(intent)
         }
         binding.icon4.setOnClickListener {
-            intent.putExtra("categoryID", "Slip-on")
+            intent.putExtra("category-id", "Slip-on")
             startActivity(intent)
         }
         binding.icon5.setOnClickListener {
-            intent.putExtra("categoryID", "Authentic")
+            intent.putExtra("category-id", "Authentic")
             startActivity(intent)
         }
         binding.icon6.setOnClickListener {
-            intent.putExtra("categoryID", "Leather")
+            intent.putExtra("category-id", "Leather")
             startActivity(intent)
         }
         binding.icon7.setOnClickListener {
-            intent.putExtra("categoryID", "Canvas")
+            intent.putExtra("category-id", "Canvas")
             startActivity(intent)
         }
         binding.icon8.setOnClickListener {
-            intent.putExtra("categoryID", "Synthetic")
+            intent.putExtra("category-id", "Synthetic")
             startActivity(intent)
         }
 
@@ -130,7 +128,7 @@ class Home : AppCompatActivity(), ItemClickListener,
         }
 
         //Item list initialization
-        getAllProducts()
+        productController.onGetAllProducts()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -200,5 +198,19 @@ class Home : AppCompatActivity(), ItemClickListener,
                 }
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onShowAllProducts(products: ArrayList<Product>) {
+        productList.addAll(products)
+        bindings.appBarNavigation.contentHome.homeRecyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onShowProductDetail(product: Product) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onShowProductsByCategory(products: ArrayList<Product>) {
+        TODO("Not yet implemented")
     }
 }

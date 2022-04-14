@@ -15,4 +15,10 @@ class Cart(
         userId: String,
         productList: ArrayList<ProductInCart>?
     ) : this("", totalCost, userId, productList)
+
+    fun calculateTotalCost() {
+        productList?.forEach {
+            totalCost += it.price * it.quantity
+        }
+    }
 }
