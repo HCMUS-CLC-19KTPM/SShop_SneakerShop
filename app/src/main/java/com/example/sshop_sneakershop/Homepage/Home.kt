@@ -81,9 +81,14 @@ class Home : AppCompatActivity(), ItemClickListener,
         mViewPager = binding.bannerViewPager
         mViewPagerAdapter = BannerAdapter(this, images)
         mViewPager!!.adapter = mViewPagerAdapter
+
         //Set categories listener
         val intent = Intent(this, GroupItem::class.java)
 
+        binding.viewAll.setOnClickListener {
+            intent.putExtra("categoryID","Plimsoll")
+            startActivity(intent)
+        }
         binding.icon1.setOnClickListener {
             intent.putExtra("categoryID", "Plimsoll")
             startActivity(intent)
@@ -116,10 +121,6 @@ class Home : AppCompatActivity(), ItemClickListener,
             intent.putExtra("categoryID", "Synthetic")
             startActivity(intent)
         }
-
-        //Newest Product
-        //val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
-        //productList = listOf(myItem, myItem, myItem, myItem, myItem, myItem)
 
         val mainActivity = this
         binding.homeRecyclerView.apply {

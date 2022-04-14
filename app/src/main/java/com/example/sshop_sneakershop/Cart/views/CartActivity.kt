@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Cart.controllers.CartController
 import com.example.sshop_sneakershop.Cart.views.CartAdapter
 import com.example.sshop_sneakershop.Cart.views.CartClickListener
+import com.example.sshop_sneakershop.Cart.views.CheckoutActivity
 import com.example.sshop_sneakershop.Product.models.ProductInCart
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
@@ -42,6 +43,11 @@ class CartActivity : AppCompatActivity(), CartClickListener {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
             adapter = CartAdapter(productsInCart, mainActivity)
+        }
+
+        checkoutButton.setOnClickListener {
+            val intent = Intent(this, CheckoutActivity::class.java)
+            startActivity(intent)
         }
     }
 

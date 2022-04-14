@@ -21,7 +21,6 @@ class GroupItem : AppCompatActivity(), ItemClickListener {
         setContentView(binding.root)
 
         category = intent.getStringExtra("categoryID").toString()
-        binding.title.text = category
         binding.groupListToolbar.title = category
 
         val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)

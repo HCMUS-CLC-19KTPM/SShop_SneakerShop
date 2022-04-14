@@ -10,7 +10,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/banner_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="220dp"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,11 +35,11 @@
             android:layout_gravity="center"
             android:src="@drawable/plimsoll"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category1"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type1"
             android:textAlignment="center"
@@ -64,11 +64,11 @@
             android:layout_gravity="center"
             android:src="@drawable/high_top"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category2"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type2"
             android:textAlignment="center"
@@ -93,11 +93,11 @@
             android:layout_gravity="center"
             android:src="@drawable/athletic"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category3"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type3"
             android:textAlignment="center"
@@ -122,13 +122,13 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:src="@drawable/banner1"
+            android:src="@drawable/slip_on"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category4"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type4"
             android:textAlignment="center"
@@ -153,13 +153,13 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:src="@drawable/banner1"
+            android:src="@drawable/authentic"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category5"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type5"
             android:textAlignment="center"
@@ -184,13 +184,13 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:src="@drawable/banner1"
+            android:src="@drawable/leather"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category6"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type6"
             android:textAlignment="center"
@@ -215,13 +215,13 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:src="@drawable/banner1"
+            android:src="@drawable/canvas"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category7"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type7"
             android:textAlignment="center"
@@ -246,13 +246,13 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:src="@drawable/banner1"
+            android:src="@drawable/synthentic"
             app:civ_border_color="@color/primary"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/category8"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:text="@string/type8"
             android:textAlignment="center"
@@ -266,7 +266,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="Newest Product"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -274,7 +274,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/view_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
