@@ -9,11 +9,7 @@ import kotlinx.coroutines.launch
 
 class AuthController(private var view: IAuthView) : IAuthController {
 
-    private lateinit var authService: AuthService
-
-    init {
-        authService = AuthService()
-    }
+    private var authService: AuthService = AuthService()
 
     /**
      * Sign in with email and password

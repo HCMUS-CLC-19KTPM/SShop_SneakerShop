@@ -1,10 +1,13 @@
 package com.example.sshop_sneakershop.Order.views
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Account.views.AccountActivity
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.R
@@ -33,6 +36,13 @@ class OrderListActivity : AppCompatActivity() {
         val adapter = OrderAdapter(orders)
         orderRecyclerView.adapter = adapter
         orderRecyclerView.layoutManager = LinearLayoutManager(this) //GridLayoutManager(this, 2)
+
+        val toolbar = findViewById<Toolbar>(R.id.checkout_toolbar)
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, AccountActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

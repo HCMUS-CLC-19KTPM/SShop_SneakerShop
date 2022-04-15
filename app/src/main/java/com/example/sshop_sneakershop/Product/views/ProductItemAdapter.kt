@@ -33,7 +33,7 @@ class ProductItemAdapter(private val products: ArrayList<ProductInCart>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
         holder.nameTextView.text = product.name
-        holder.priceTextView.text = product.price.toString()
+        holder.priceTextView.text = (product.price*product.quantity).toString()
         holder.quantityTextView.text = product.quantity.toString()
         holder.descriptionTextView.text = "product.description"
 
