@@ -6,7 +6,7 @@ import com.example.sshop_sneakershop.Cart.models.CartModel
 class CartController {
     private val cartModel = CartModel()
 
-    suspend fun getCartByUser(): Cart {
+    suspend fun getCartByUser(): Cart? {
         return cartModel.getCartByUser()
     }
 }

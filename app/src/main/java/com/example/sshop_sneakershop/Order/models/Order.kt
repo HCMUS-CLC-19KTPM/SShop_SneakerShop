@@ -1,6 +1,6 @@
 package com.example.sshop_sneakershop.Order.models
 
-import com.example.sshop_sneakershop.Product.models.ProductInCart
+import com.example.sshop_sneakershop.Product.models.Product
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -9,7 +9,7 @@ data class Order(
     var name: String,
     var phone: String,
     var address: String,
-    var productInCart: ArrayList<ProductInCart>,
+    var productInCart: ArrayList<Product>,
     var deliveryStatus: String,
     var orderedDate: Date,
     var startDate: Date,

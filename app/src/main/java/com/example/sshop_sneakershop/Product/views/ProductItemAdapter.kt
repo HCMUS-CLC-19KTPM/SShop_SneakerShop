@@ -8,11 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Product.models.Product
-import com.example.sshop_sneakershop.Product.models.ProductInCart
 import com.example.sshop_sneakershop.R
 import com.squareup.picasso.Picasso
 
-class ProductItemAdapter(private val products: ArrayList<ProductInCart>) :
+class ProductItemAdapter(private val products: ArrayList<Product>) :
     RecyclerView.Adapter<ProductItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val nameTextView = listItemView.findViewById(R.id.product_textview_name) as TextView

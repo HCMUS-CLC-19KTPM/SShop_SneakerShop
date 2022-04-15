@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.Cart.controllers.CartController
+import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Cart.views.CartAdapter
 import com.example.sshop_sneakershop.Cart.views.CartClickListener
 import com.example.sshop_sneakershop.Cart.views.CheckoutActivity
-import com.example.sshop_sneakershop.Product.models.ProductInCart
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.google.firebase.auth.ktx.auth
@@ -24,7 +25,9 @@ import kotlinx.coroutines.launch
 class CartActivity : AppCompatActivity(), CartClickListener {
 
     private lateinit var cartController: CartController
-    private val productsInCart = ArrayList<ProductInCart>()
+
+    private lateinit var cart: Cart
+    private val productsInCart = ArrayList<Product>()
 
     private lateinit var productRecyclerView: RecyclerView
     private lateinit var totalPriceTextView: TextView
@@ -64,15 +67,22 @@ class CartActivity : AppCompatActivity(), CartClickListener {
         }
     }
 
-    override fun onClick(cart: ProductInCart) {
+    override fun onClick(cart: Product) {
         val intent = Intent(applicationContext, ProductDetail::class.java)
         intent.putExtra("item-id", cart.id)
         startActivity(intent)
     }
 
+    override fun onChangeQuantity(position: Int, quantity: Int) {
+        cart.productList?.get(position)!!.quantity = quantity
+        cart.calculateTotalCost()
+
+        totalPriceTextView.text = cart.totalCost.toString()
+    }
+
     private fun getCart() {
         GlobalScope.launch(Dispatchers.Main) {
-            val cart = cartController.getCartByUser()
+            cart = cartController.getCartByUser()!!
 
             if (cart.productList != null) {
                 productsInCart.addAll(cart.productList!!)

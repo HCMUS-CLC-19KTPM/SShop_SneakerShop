@@ -2,11 +2,9 @@ package com.example.sshop_sneakershop.Cart.views
 
 
 import android.text.TextUtils
-import android.util.Log
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Product.models.ProductInCart
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.CartListItemBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -17,7 +15,7 @@ class ImageViewHolder(
     private val ImageCellBinding: CartListItemBinding,
     private val clickListener: CartClickListener
 ) : RecyclerView.ViewHolder(ImageCellBinding.root) {
-    fun bindItem(product: ProductInCart) {
+    fun bindItem(product: Product, position: Int) {
 
         if (TextUtils.isEmpty(product.image)) ImageCellBinding.productImage.setImageResource(R.drawable.shoe) else Picasso.get()
             .load(product.image).into(ImageCellBinding.productImage)
@@ -75,11 +73,15 @@ class ImageViewHolder(
             } else{
                 ImageCellBinding.quantity.setText(quantity.toString())
             }
+
+            clickListener.onChangeQuantity(position, quantity)
         }
 
         ImageCellBinding.plus.setOnClickListener {
             val quantity = Integer.valueOf(ImageCellBinding.quantity.text.toString()) + 1
             ImageCellBinding.quantity.setText(quantity.toString())
+
+            clickListener.onChangeQuantity(position, quantity)
         }
     }
 }

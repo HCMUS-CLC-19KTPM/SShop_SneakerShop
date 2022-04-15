@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Order.controllers.OrderController
-import com.example.sshop_sneakershop.Product.models.ProductInCart
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Review.views.ReviewBottomSheetDialog
@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat
 class OrderDetailActivity : AppCompatActivity() {
 
     private lateinit var orderController: OrderController
-    private val products: ArrayList<ProductInCart> = ArrayList()
+    private val products: ArrayList<Product> = ArrayList()
 
     private lateinit var estimateDateTextView: TextView
     private lateinit var deliveryDescriptionTextView: TextView

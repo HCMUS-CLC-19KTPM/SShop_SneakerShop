@@ -8,7 +8,7 @@ import kotlinx.coroutines.tasks.await
 class CartModel {
     private val db = Firebase.firestore
 
-    suspend fun getCartByUser(): Cart {
+    suspend fun getCartByUser(): Cart? {
         var cart: Cart? = null
         val userId = Firebase.auth.currentUser?.uid
 
@@ -22,6 +22,6 @@ class CartModel {
             e.printStackTrace()
         }
 
-        return cart ?: Cart()
+        return cart
     }
 }
