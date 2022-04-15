@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.Cart.controllers.CartController
 import com.example.sshop_sneakershop.Cart.views.CartAdapter
 import com.example.sshop_sneakershop.Cart.views.CartClickListener
@@ -14,6 +15,8 @@ import com.example.sshop_sneakershop.Cart.views.CheckoutActivity
 import com.example.sshop_sneakershop.Product.models.ProductInCart
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,6 +29,16 @@ class CartActivity : AppCompatActivity(), CartClickListener {
     private lateinit var productRecyclerView: RecyclerView
     private lateinit var totalPriceTextView: TextView
     private lateinit var checkoutButton: Button
+
+    override fun onStart() {
+        super.onStart()
+
+        val auth = Firebase.auth
+        if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
+            startActivity(Intent(this, AuthActivity::class.java))
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

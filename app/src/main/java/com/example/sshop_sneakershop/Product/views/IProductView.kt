@@ -1,6 +1,9 @@
 package com.example.sshop_sneakershop.Product.views
 
+import com.example.sshop_sneakershop.Product.models.Product
+
 interface IProductView {
-//    fun showAllProducts(products: ArrayList<Product>)
-//    fun showProductDetail(product: Product)
+    fun onShowAllProducts(products: ArrayList<Product>)
+    fun onShowProductDetail(product: Product)
+    fun onShowProductsByCategory(products: ArrayList<Product>)
 }

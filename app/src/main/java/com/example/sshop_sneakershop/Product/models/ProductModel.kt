@@ -22,8 +22,7 @@ class ProductModel {
                 .documents
                 .forEach {
                     val product = it.toObject(Product::class.java)
-                    product!!.id = it.id
-                    products.add(product)
+                    products.add(product!!)
                 }
         } catch (e: Exception) {
             Log.w(TAG, "Error getting documents.", e)
@@ -51,5 +50,28 @@ class ProductModel {
         }
 
         return product
+    }
+
+    /**
+     * Get product by category
+     */
+    suspend fun getProductsByCategory(category: String): ArrayList<Product> {
+        val products = ArrayList<Product>()
+
+        try {
+            db.collection("product")
+                .whereEqualTo("category", category)
+                .get()
+                .await()
+                .documents
+                .forEach {
+                    val product = it.toObject(Product::class.java)!!
+                    products.add(product)
+                }
+        } catch (e: Exception) {
+            Log.w(TAG, "Error getting documents.", e)
+        }
+
+        return products
     }
 }

@@ -1,43 +1,38 @@
 package com.example.sshop_sneakershop.Homepage
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.models.Product
+import com.example.sshop_sneakershop.Product.views.IProductView
 import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
-import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityGroupItemBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class GroupItem : AppCompatActivity(), ItemClickListener {
+class GroupItem : AppCompatActivity(), ItemClickListener, IProductView {
+    private lateinit var productList: ArrayList<Product>
+    private lateinit var productController: ProductController
+
     private lateinit var category: String
     private lateinit var binding: ActivityGroupItemBinding
-    private lateinit var productList: List<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGroupItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        category = intent.getStringExtra("categoryID").toString()
-        binding.groupListToolbar.title = category
+        productList = ArrayList()
+        productController = ProductController(this)
 
-        val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
-        productList = listOf(
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem,
-            myItem
-        )
+        category = intent.getStringExtra("category-id").toString()
+        binding.groupListToolbar.title = category
 
         val mainActivity = this
         binding.productRecyclerView.apply {
@@ -48,11 +43,38 @@ class GroupItem : AppCompatActivity(), ItemClickListener {
         binding.groupListToolbar.setNavigationOnClickListener {
             finish()
         }
+
+        productController.onGetProductsByCategory(category)
     }
 
     override fun onClick(product: Product) {
         val intent = Intent(applicationContext, ProductDetail::class.java)
-        intent.putExtra("itemID", product.id)
+        intent.putExtra("item-id", product.id)
         startActivity(intent)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getProducts() {
+        GlobalScope.launch(Dispatchers.Main) {
+            productList.addAll(productController.getProductsByCategory(category))
+
+            withContext(Dispatchers.Main) {
+                binding.productRecyclerView.adapter?.notifyDataSetChanged()
+            }
+        }
+    }
+
+    override fun onShowAllProducts(products: ArrayList<Product>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onShowProductDetail(product: Product) {
+        TODO("Not yet implemented")
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onShowProductsByCategory(products: ArrayList<Product>) {
+        productList.addAll(products)
+        binding.productRecyclerView.adapter?.notifyDataSetChanged()
     }
 }
