@@ -1,13 +1,14 @@
 package com.example.sshop_sneakershop.Account.views
 
+import android.icu.text.SimpleDateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Account.models.Payment
+import com.example.sshop_sneakershop.R
 
 class PaymentItemAdapter(private val payments:ArrayList<Payment>?): RecyclerView.Adapter<PaymentItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
@@ -28,10 +29,13 @@ class PaymentItemAdapter(private val payments:ArrayList<Payment>?): RecyclerView
         val payment = payments!![position]
         holder.nameTextView.text = payment.name
         holder.cardNumberTextView.text = payment.number
-        holder.dateCreateTextView.text = payment.since.toString()
+        val pattern = "MM-dd-yyyy"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        val date: String = simpleDateFormat.format(payment.since)
+        holder.dateCreateTextView.text = date
         when (payment.type) {
             "visa" -> holder.cardTypeImageView.setImageResource(R.drawable.ic_visa)
-            "mastercard" -> holder.cardTypeImageView.setImageResource(R.drawable.ic_mastercard)
+            "master" -> holder.cardTypeImageView.setImageResource(R.drawable.ic_mastercard)
             "atm" -> holder.cardTypeImageView.setImageResource(R.drawable.ic_atm)
         }
 

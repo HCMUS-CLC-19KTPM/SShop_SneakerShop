@@ -42,9 +42,10 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <ScrollView
-        android:id="@+id/checkout_scroll_view"
+        android:id="@+id/editProfile_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +75,7 @@
                 android:id="@+id/editProfile_text_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/editProfile_textInputLayout_name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -170,6 +172,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:id="@+id/editProfile_textInputLayout_gender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -182,13 +185,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_phone">
+                app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_phone" >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editProfile_textInputET_gender"
+                <AutoCompleteTextView
+                    android:id="@+id/editProfile_gender_dropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="male" />
+                    android:inputType="none"/>
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

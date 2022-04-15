@@ -3,8 +3,7 @@ package com.example.sshop_sneakershop.Account.views
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
@@ -17,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
 class AccountEditActivity : AppCompatActivity() {
 
     private val accountController = AccountController()
@@ -28,7 +28,7 @@ class AccountEditActivity : AppCompatActivity() {
     private lateinit var editTextEmail: EditText
     private lateinit var editTextAddress: EditText
     private lateinit var editTextPhone: EditText
-    private lateinit var editTextGender: EditText
+    private lateinit var dropdownGender: AutoCompleteTextView
     private lateinit var editTextDob: EditText
 
     override fun onStart() {
@@ -44,14 +44,27 @@ class AccountEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
+//        val spinnerPosition: Int = adapter.getPosition(StudentList.stuList[index].classroom)
+//        inputClass.adapter = adapter
+//        inputClass.setSelection(spinnerPosition)
+
         avatarImageView = findViewById(R.id.editProfile_image_avatar)
         usernameTextView = findViewById(R.id.editProfile_text_username)
         editTextName = findViewById(R.id.editProfile_textInputET_name)
         editTextEmail = findViewById(R.id.editProfile_textInputET_email)
         editTextAddress = findViewById(R.id.editProfile_textInputET_address)
         editTextPhone = findViewById(R.id.editProfile_textInputET_phone)
-        editTextGender = findViewById(R.id.editProfile_textInputET_gender)
+        dropdownGender = findViewById(R.id.editProfile_gender_dropdown)
         editTextDob = findViewById(R.id.editProfile_textInputET_dob)
+
+
+        val type = arrayOf("Male", "Female", "Other")
+        val adapter = ArrayAdapter(
+            this,
+            R.layout.dropdown_menu_popup_item,
+            type
+        )
+        dropdownGender.setAdapter(adapter)
 
         getUserInfo()
     }
@@ -67,8 +80,11 @@ class AccountEditActivity : AppCompatActivity() {
             editTextEmail.setText(account.email)
             editTextAddress.setText(account.address)
             editTextPhone.setText(account.phone)
-            editTextGender.setText(account.gender)
             editTextDob.setText(account.dob)
+
+            val type = arrayOf("Male", "Female", "Other")
+            val index = type.indexOf(account.gender)
+            dropdownGender.setText(type.get(index))
         }
     }
 }
