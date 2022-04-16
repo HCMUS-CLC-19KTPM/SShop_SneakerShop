@@ -1,6 +1,7 @@
 package com.example.sshop_sneakershop.Cart.views
 
 
+import android.icu.text.NumberFormat
 import android.text.TextUtils
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
@@ -49,6 +50,7 @@ class ImageViewHolder(
                 ImageCellBinding.quantity.error = "Quantity cannot be empty"
                 ImageCellBinding.quantity.setText("1")
             }
+            clickListener.onChangeQuantity(position,Integer.valueOf(ImageCellBinding.quantity.text.toString()))
         }
 
         ImageCellBinding.productImage.setOnClickListener {

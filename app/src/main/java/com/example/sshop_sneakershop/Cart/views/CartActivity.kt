@@ -1,6 +1,7 @@
 package com.example.sshop_sneakershop.Cart
 
 import android.content.Intent
+import android.icu.text.NumberFormat
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -74,10 +75,13 @@ class CartActivity : AppCompatActivity(), CartClickListener {
     }
 
     override fun onChangeQuantity(position: Int, quantity: Int) {
+        val format: NumberFormat = NumberFormat.getInstance()
+        format.maximumFractionDigits = 2
+
         cart.productList?.get(position)!!.quantity = quantity
         cart.calculateTotalCost()
 
-        totalPriceTextView.text = cart.totalCost.toString()
+        totalPriceTextView.text = format.format(cart.totalCost).toString()
     }
 
     private fun getCart() {
@@ -88,6 +92,13 @@ class CartActivity : AppCompatActivity(), CartClickListener {
                 productsInCart.addAll(cart.productList!!)
                 productRecyclerView.adapter?.notifyDataSetChanged()
                 totalPriceTextView.text = cart.totalCost.toString()
+            }
+
+            if (productsInCart.isEmpty()) {
+                totalPriceTextView.text = "0"
+            }
+            else{
+                onChangeQuantity(0,productsInCart[0].quantity)
             }
         }
     }
