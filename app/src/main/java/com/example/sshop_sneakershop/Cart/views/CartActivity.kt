@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop.Cart
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.icu.text.NumberFormat
 import android.os.Bundle
@@ -34,16 +35,6 @@ class CartActivity : AppCompatActivity(), CartClickListener {
     private lateinit var totalPriceTextView: TextView
     private lateinit var checkoutButton: Button
 
-    override fun onStart() {
-        super.onStart()
-
-        val auth = Firebase.auth
-        if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
-            startActivity(Intent(this, AuthActivity::class.java))
-            finish()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
@@ -68,12 +59,45 @@ class CartActivity : AppCompatActivity(), CartClickListener {
         }
     }
 
+
+    override fun onStart() {
+        super.onStart()
+
+        val auth = Firebase.auth
+        if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
+            startActivity(Intent(this, AuthActivity::class.java))
+            finish()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        updateProductList()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        updateProductList()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        updateProductList()
+    }
+
+    /**
+     * Click on product in cart
+     */
     override fun onClick(cart: Product) {
         val intent = Intent(applicationContext, ProductDetail::class.java)
         intent.putExtra("item-id", cart.id)
         startActivity(intent)
     }
 
+    /**
+     * On change quantity of product in cart
+     */
+    @SuppressLint("SetTextI18n")
     override fun onChangeQuantity(position: Int, quantity: Int) {
         val format: NumberFormat = NumberFormat.getInstance()
         format.maximumFractionDigits = 2
@@ -84,6 +108,7 @@ class CartActivity : AppCompatActivity(), CartClickListener {
         totalPriceTextView.text = "${format.format(cart.totalCost)}$"
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun getCart() {
         GlobalScope.launch(Dispatchers.Main) {
             cart = cartController.getCartByUser()!!
@@ -96,10 +121,15 @@ class CartActivity : AppCompatActivity(), CartClickListener {
 
             if (productsInCart.isEmpty()) {
                 totalPriceTextView.text = "0"
+            } else {
+                onChangeQuantity(0, productsInCart[0].quantity)
             }
-            else{
-                onChangeQuantity(0,productsInCart[0].quantity)
-            }
+        }
+    }
+
+    private fun updateProductList() {
+        GlobalScope.launch(Dispatchers.Main) {
+            cartController.updateProductList(cart)
         }
     }
 }

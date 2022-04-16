@@ -28,8 +28,6 @@ class OrderListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_list)
 
-        getAllOrder()
-
         // Lookup the recyclerview in activity layout
         orderRecyclerView = findViewById(R.id.order_list_recycler_view)
 
@@ -43,6 +41,8 @@ class OrderListActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        getAllOrder()
     }
 
     @SuppressLint("NotifyDataSetChanged")

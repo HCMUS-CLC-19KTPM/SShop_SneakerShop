@@ -15,13 +15,23 @@ class CartModel {
         try {
             db.collection("cart").whereEqualTo("userId", userId).get().await().forEach {
                 cart = it.toObject(Cart::class.java)
-                cart!!.id = it.id
-//                cart!!
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
         return cart
+    }
+
+    /**
+     * Update cart
+     */
+    suspend fun updateProductList(cart: Cart) {
+        try {
+            val cartId = cart.id
+            db.collection("cart").document(cartId).update("productList", cart.productList).await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
