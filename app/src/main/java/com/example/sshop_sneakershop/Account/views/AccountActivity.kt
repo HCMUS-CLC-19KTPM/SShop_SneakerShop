@@ -29,6 +29,8 @@ class AccountActivity : AppCompatActivity() {
     private val auth = Firebase.auth
 
     private lateinit var editInfoBtn: Button
+    private lateinit var editPaymentBtn: Button
+
 
     private lateinit var avatarImageView: CircularImageView
     private lateinit var usernameTextView: TextView
@@ -132,7 +134,7 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun createPaymentMethods() {
-        val editPaymentBtn = findViewById<Button>(R.id.profile_button_editPayment)
+        editPaymentBtn = findViewById(R.id.profile_button_editPayment)
         editPaymentBtn.visibility = View.GONE
 
         val paymentRcView = findViewById<RecyclerView>(R.id.recyclerView)

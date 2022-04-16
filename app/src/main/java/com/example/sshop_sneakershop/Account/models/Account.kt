@@ -10,7 +10,7 @@ data class Account(
     val dob: String?,
     val avatar: String?,
     val status: Boolean,
-    val payments: ArrayList<Payment>?,
+    var payments: ArrayList<Payment>?,
     val numOfReview: Int = 0
 ) {
     constructor() : this("", null, "", null, null, null, null, null, true, null)

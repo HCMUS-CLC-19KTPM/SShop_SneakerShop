@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+        android:id="@+id/paymentDetail_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
@@ -24,7 +24,7 @@
             <!-- Media -->
 
             <ImageView
-                android:id="@+id/Payment_image"
+                android:id="@+id/PaymentDetail_image"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:contentDescription="atmcard"
@@ -38,12 +38,12 @@
                 app:srcCompat="@color/material_dynamic_secondary60" />
 
             <ImageView
-                android:id="@+id/Payment_CardType_IV"
+                android:id="@+id/PaymentDetail_CardType_IV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                app:layout_constraintBottom_toTopOf="@+id/Payment_Username_TV"
+                app:layout_constraintBottom_toTopOf="@+id/PaymentDetail_Username_TV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
                 app:srcCompat="@drawable/ic_visa" />
 
             <TextView
-                android:id="@+id/Payment_Username_TV"
+                android:id="@+id/PaymentDetail_Username_TV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -60,14 +60,14 @@
                 android:text="NGUYEN VAN A"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/Payment_CardNumber_TV"
+                app:layout_constraintBottom_toTopOf="@+id/PaymentDetail_CardNumber_TV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Payment_CardType_IV"
+                app:layout_constraintTop_toBottomOf="@+id/PaymentDetail_CardType_IV"
                 tools:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/Payment_CardNumber_TV"
+                android:id="@+id/PaymentDetail_CardNumber_TV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -76,38 +76,38 @@
                 android:text="4000 1234 5678 9012"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/Payment_DateCreate_TV"
+                app:layout_constraintBottom_toTopOf="@+id/PaymentDetail_DateCreate_TV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Payment_Username_TV"
+                app:layout_constraintTop_toBottomOf="@+id/PaymentDetail_Username_TV"
                 tools:textStyle="bold|italic" />
 
             <ImageView
-                android:id="@+id/Payment_Chip_IV"
+                android:id="@+id/PaymentDetail_Chip_IV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Payment_CardType_IV"
-                app:layout_constraintEnd_toStartOf="@+id/Payment_CardType_IV"
+                app:layout_constraintBottom_toBottomOf="@+id/PaymentDetail_CardType_IV"
+                app:layout_constraintEnd_toStartOf="@+id/PaymentDetail_CardType_IV"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/Payment_CardType_IV"
+                app:layout_constraintTop_toTopOf="@+id/PaymentDetail_CardType_IV"
                 app:srcCompat="@drawable/ic_chip_card" />
 
             <ImageView
-                android:id="@+id/Payment_Contactless_IV"
+                android:id="@+id/PaymentDetail_Contactless_IV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/Payment_Chip_IV"
-                app:layout_constraintEnd_toStartOf="@+id/Payment_CardType_IV"
+                app:layout_constraintBottom_toBottomOf="@+id/PaymentDetail_Chip_IV"
+                app:layout_constraintEnd_toStartOf="@+id/PaymentDetail_CardType_IV"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/Payment_Chip_IV"
-                app:layout_constraintTop_toTopOf="@+id/Payment_Chip_IV"
+                app:layout_constraintStart_toEndOf="@+id/PaymentDetail_Chip_IV"
+                app:layout_constraintTop_toTopOf="@+id/PaymentDetail_Chip_IV"
                 app:srcCompat="@drawable/ic_contactless_payment" />
 
             <TextView
-                android:id="@+id/Payment_DateCreate_TV"
+                android:id="@+id/PaymentDetail_DateCreate_TV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -116,13 +116,29 @@
                 android:layout_marginBottom="16dp"
                 android:text="04/2022"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/Payment_image"
+                app:layout_constraintBottom_toBottomOf="@+id/PaymentDetail_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Payment_CardNumber_TV"
+                app:layout_constraintTop_toBottomOf="@+id/PaymentDetail_CardNumber_TV"
                 tools:textStyle="italic" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/PaymentDetail_button_editInfo"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:textAlignment="textEnd"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/paymentDetail_card"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/paymentDetail_card"
+        app:layout_constraintTop_toBottomOf="@+id/paymentDetail_card"
+        tools:textStyle="bold|italic" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

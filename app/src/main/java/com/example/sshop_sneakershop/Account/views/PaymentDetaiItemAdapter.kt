@@ -10,18 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.models.Payment
 import com.example.sshop_sneakershop.R
 
-class PaymentItemAdapter(private val payments:ArrayList<Payment>?): RecyclerView.Adapter<PaymentItemAdapter.ViewHolder>() {
+class PaymentDetailItemAdapter(private val payments:ArrayList<Payment>?): RecyclerView.Adapter<PaymentDetailItemAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
-        val nameTextView = listItemView.findViewById(R.id.Payment_Username_TV) as TextView
-        val cardNumberTextView = listItemView.findViewById(R.id.Payment_CardNumber_TV) as TextView
-        val dateCreateTextView = listItemView.findViewById(R.id.Payment_DateCreate_TV) as TextView
-        val cardTypeImageView = listItemView.findViewById(R.id.Payment_CardType_IV) as ImageView
+        val nameTextView = listItemView.findViewById(R.id.PaymentDetail_Username_TV) as TextView
+        val cardNumberTextView = listItemView.findViewById(R.id.PaymentDetail_CardNumber_TV) as TextView
+        val dateCreateTextView = listItemView.findViewById(R.id.PaymentDetail_DateCreate_TV) as TextView
+        val cardTypeImageView = listItemView.findViewById(R.id.PaymentDetail_CardType_IV) as ImageView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
-        val paymentView = inflater.inflate(R.layout.payment_list_item, parent, false)
+        val paymentView = inflater.inflate(R.layout.payment_detail_list_item, parent, false)
         return ViewHolder(paymentView)
     }
 
@@ -29,7 +29,7 @@ class PaymentItemAdapter(private val payments:ArrayList<Payment>?): RecyclerView
         val payment = payments!![position]
         holder.nameTextView.text = payment.name
         holder.cardNumberTextView.text = payment.number
-        val pattern = "dd-MM-yyyy"
+        val pattern = "MM-dd-yyyy"
         val simpleDateFormat = SimpleDateFormat(pattern)
         val date: String = simpleDateFormat.format(payment.since)
         holder.dateCreateTextView.text = date
