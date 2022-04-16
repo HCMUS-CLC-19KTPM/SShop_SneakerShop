@@ -81,7 +81,7 @@ class CartActivity : AppCompatActivity(), CartClickListener {
         cart.productList?.get(position)!!.quantity = quantity
         cart.calculateTotalCost()
 
-        totalPriceTextView.text = format.format(cart.totalCost).toString()
+        totalPriceTextView.text = "${format.format(cart.totalCost)}$"
     }
 
     private fun getCart() {

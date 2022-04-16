@@ -7,11 +7,11 @@ class AccountController : IAccountController {
 
     private val accountModel = AccountModel()
 
-    override suspend fun getUser(email: String): Account {
+    override suspend fun getUser(email: String): Account? {
         return accountModel.getUser(email)
     }
 
-    override suspend fun updateUser(account: Account): Account {
+    override suspend fun updateUser(account: Account): Account? {
         return accountModel.updateUser(account)
     }
 }

@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Account.views.EditPaymentActivity"
+            android:name=".Account.views.PaymentEditActivity"
             android:exported="false" />
         <activity
             android:name=".Order.views.OrderDetailActivity"

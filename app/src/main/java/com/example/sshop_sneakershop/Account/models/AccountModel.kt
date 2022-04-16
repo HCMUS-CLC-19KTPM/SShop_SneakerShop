@@ -7,7 +7,7 @@ import kotlinx.coroutines.tasks.await
 class AccountModel {
     private var db = Firebase.firestore
 
-    suspend fun getUser(email: String): Account {
+    suspend fun getUser(email: String): Account? {
         var account: Account? = null
 
         try {
@@ -19,7 +19,7 @@ class AccountModel {
             e.printStackTrace()
         }
 
-        return account ?: Account()
+        return account
     }
 
     suspend fun insertUser(account: Account) {
@@ -30,20 +30,19 @@ class AccountModel {
         }
     }
 
-    suspend fun updateUser(account: Account): Account {
+    suspend fun updateUser(account: Account): Account? {
         var modifiedAccount: Account? = null
 
         try {
-            db.collection("account").document(account.id).set(account).await()
-
-            db.collection("account").document(account.id).get().await()
-                .toObject(Account::class.java)?.let {
-                    modifiedAccount = it
+            db.collection("account").whereEqualTo("id", account.id).get().await()
+                .documents.forEach {
+                    it.reference.update(account.toMap()).await()
+                    modifiedAccount = account
                 }
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        return modifiedAccount ?: Account()
+        return modifiedAccount
     }
 }
