@@ -47,6 +47,14 @@ class ForgotPasswordActivity : AppCompatActivity(), IAuthView {
         TODO("Not yet implemented")
     }
 
+    override fun onChangePasswordSuccess(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onChangePasswordFailed(message: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onForgotPasswordSuccess(message: String) {
         Log.d("ForgotPasswordActivity", message)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

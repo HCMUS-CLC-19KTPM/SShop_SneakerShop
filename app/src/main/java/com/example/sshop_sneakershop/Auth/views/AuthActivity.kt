@@ -136,4 +136,12 @@ class AuthActivity : AppCompatActivity(), IAuthView {
     override fun onForgotPasswordFailed(message: String) {
         TODO("Not yet implemented")
     }
+
+    override fun onChangePasswordSuccess(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onChangePasswordFailed(message: String) {
+        TODO("Not yet implemented")
+    }
 }

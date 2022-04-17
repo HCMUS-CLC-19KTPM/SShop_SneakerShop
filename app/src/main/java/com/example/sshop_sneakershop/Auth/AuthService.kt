@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.AccountModel
 import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -81,6 +82,37 @@ class AuthService {
             return true
         } catch (e: Exception) {
             Log.w("AuthService", "sendPasswordResetEmail:failure", e)
+        }
+
+        return false
+    }
+
+    suspend fun reauthenticate(email: String, password: String): Boolean {
+        try {
+            val credential = EmailAuthProvider.getCredential(email, password)
+            auth.currentUser!!.reauthenticate(credential).await()
+
+            Log.d("AuthService", "reauthenticate:success")
+
+            return true
+        } catch (e: Exception) {
+            Log.w("AuthService", "reauthenticate:failure", e)
+        }
+
+        return false
+    }
+
+    suspend fun updatePassword(oldPassword: String, newPassword: String): Boolean {
+        try {
+            if(reauthenticate(auth.currentUser!!.email!!, oldPassword)) {
+                auth.currentUser!!.updatePassword(newPassword).await()
+
+                Log.d("AuthService", "updatePassword:success")
+
+                return true
+            }
+        } catch (e: Exception) {
+            Log.w("AuthService", "updatePassword:failure", e)
         }
 
         return false

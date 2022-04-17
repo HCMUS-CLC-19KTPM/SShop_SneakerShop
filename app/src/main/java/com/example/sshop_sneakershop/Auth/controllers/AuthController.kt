@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop.Auth.controllers
 
+import android.util.Log
 import com.example.sshop_sneakershop.Auth.AuthService
 import com.example.sshop_sneakershop.Auth.views.IAuthView
 import com.google.firebase.auth.AuthCredential
@@ -64,6 +65,26 @@ class AuthController(private var view: IAuthView) : IAuthController {
                 view.onForgotPasswordSuccess("Please check your email to reset your password")
             } else {
                 view.onForgotPasswordFailed("Email not found")
+            }
+        }
+    }
+
+    /**
+     * Change password
+     */
+    override fun onChangePassword(oldPassword: String, newPassword: String, confirmPassword: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            if (newPassword != confirmPassword) {
+                Log.d("AuthService", "signUp:failure")
+                view.onChangePasswordFailed("New password and confirm new password do not match")
+            } else {
+                val isSuccess = authService.updatePassword(oldPassword, newPassword)
+
+                if (isSuccess) {
+                    view.onChangePasswordSuccess("Password changed")
+                } else {
+                    view.onChangePasswordFailed("Password not changed")
+                }
             }
         }
     }
