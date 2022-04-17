@@ -144,11 +144,13 @@ class AccountActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.Main) {
             val account = accountController.getUser(auth.currentUser!!.email!!)
-            val paymentList = account.payments
-            if(paymentList!==null) {
-                val paymentAdapter = PaymentItemAdapter(paymentList)
-                paymentRcView.adapter = paymentAdapter
-                paymentRcView.layoutManager = LinearLayoutManager(this@AccountActivity)
+            if (account != null) {
+                val paymentList = account.payments
+                if (paymentList !== null) {
+                    val paymentAdapter = PaymentItemAdapter(paymentList)
+                    paymentRcView.adapter = paymentAdapter
+                    paymentRcView.layoutManager = LinearLayoutManager(this@AccountActivity)
+                }
             }
         }
 

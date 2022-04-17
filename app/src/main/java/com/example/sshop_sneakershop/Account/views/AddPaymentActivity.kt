@@ -4,11 +4,10 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop.Account.controllers.AccountController
+import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.Payment
 import com.example.sshop_sneakershop.R
 import com.google.firebase.auth.ktx.auth
@@ -17,12 +16,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AddPaymentActivity : AppCompatActivity() {
-    private val accountController: AccountController = AccountController()
     private val auth = Firebase.auth
+    private val accountController = AccountController()
+    private var account: Account? = null
 
     private lateinit var editTextName: EditText
     private lateinit var editTextNumber: EditText
@@ -109,21 +108,22 @@ class AddPaymentActivity : AppCompatActivity() {
                 Toast.makeText(this, notification, Toast.LENGTH_SHORT).show()
             else {
                 GlobalScope.launch(Dispatchers.Main) {
-                    val account = accountController.getUser(auth.currentUser!!.email!!)
-                    if(account.payments!==null) {
-                        account.payments!!.add(payment)
-                        accountController.updateUser(account)
-                    }
-                    else {
-                        val paymentList = ArrayList<Payment>()
-                        paymentList.add(payment)
-                        account.payments = paymentList
-                        accountController.updateUser(account)
+                    account = accountController.getUser(auth.currentUser!!.email!!)
+                    if (account != null) {
+                        if (account!!.payments !== null) {
+                            account!!.payments!!.add(payment)
+                            account = accountController.updateUser(account!!)
+                        } else {
+                            val paymentList = ArrayList<Payment>()
+                            paymentList.add(payment)
+                            account!!.payments = paymentList
+                            account = accountController.updateUser(account!!)
+                        }
                     }
                 }
 
-                val intent = Intent(this, EditPaymentActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(this, PaymentEditActivity::class.java)
+//                startActivity(intent)
             }
 
         }

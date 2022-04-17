@@ -29,12 +29,6 @@ class AccountEditActivity : AppCompatActivity() {
 
     private lateinit var avatarImageView: CircularImageView
     private lateinit var usernameTextView: TextView
-    private lateinit var editTextName: EditText
-    private lateinit var editTextEmail: EditText
-    private lateinit var editTextAddress: EditText
-    private lateinit var editTextPhone: EditText
-    private lateinit var dropdownGender: AutoCompleteTextView
-    private lateinit var editTextDob: EditText
     private lateinit var nameEditText: EditText
     private lateinit var emailEditText: EditText
     private lateinit var addressEditText: EditText
@@ -60,12 +54,6 @@ class AccountEditActivity : AppCompatActivity() {
 
         avatarImageView = findViewById(R.id.editProfile_image_avatar)
         usernameTextView = findViewById(R.id.editProfile_text_username)
-        editTextName = findViewById(R.id.editProfile_textInputET_name)
-        editTextEmail = findViewById(R.id.editProfile_textInputET_email)
-        editTextAddress = findViewById(R.id.editProfile_textInputET_address)
-        editTextPhone = findViewById(R.id.editProfile_textInputET_phone)
-        dropdownGender = findViewById(R.id.editProfile_gender_dropdown)
-        editTextDob = findViewById(R.id.editProfile_textInputET_dob)
         nameEditText = findViewById(R.id.editProfile_textInputET_name)
         emailEditText = findViewById(R.id.editProfile_textInputET_email)
         addressEditText = findViewById(R.id.editProfile_textInputET_address)
@@ -126,18 +114,6 @@ class AccountEditActivity : AppCompatActivity() {
 
                 account = accountController.updateUser(account!!)
             }
-            if (!TextUtils.isEmpty(account.avatar)) Picasso.get()
-                .load(account.avatar).into(avatarImageView)
-            usernameTextView.text = account.email
-            editTextName.setText(account.fullName)
-            editTextEmail.setText(account.email)
-            editTextAddress.setText(account.address)
-            editTextPhone.setText(account.phone)
-            editTextDob.setText(account.dob)
-
-            val type = arrayOf("Male", "Female", "Other")
-            val index = type.indexOf(account.gender)
-            dropdownGender.setText(type.get(index))
         }
     }
 }

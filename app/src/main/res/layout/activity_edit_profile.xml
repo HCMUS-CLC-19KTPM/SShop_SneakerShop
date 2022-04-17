@@ -42,7 +42,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <ScrollView
-            android:id="@+id/checkout_scroll_view"
+            android:id="@+id/editProfile_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -218,42 +218,43 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                    android:id="@+id/edit_profile_button_change_password"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="Change password"
-                    android:textAllCaps="false"
-                    android:textColor="@color/primary"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/edit_profile_button_submit"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_dob"
-                    app:strokeColor="@color/primary" />
+                android:id="@+id/edit_profile_button_change_password"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:text="Change password"
+                android:textAllCaps="false"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/edit_profile_button_submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_dob"
+                app:strokeColor="@color/primary" />
 
             <Button
-                    android:id="@+id/edit_profile_button_submit"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/primary"
-                    android:text="Submmit Changes"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:icon="@drawable/ic_baseline_file_upload_24"
-                    app:iconGravity="textStart"
-                    app:iconPadding="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edit_profile_button_change_password" />
+                android:id="@+id/edit_profile_button_submit"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/primary"
+                android:text="Submmit Changes"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_file_upload_24"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_profile_button_change_password" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -24,14 +24,14 @@
             android:name=".Account.views.AddPaymentActivity"
             android:exported="true" />
         <activity
-            android:name=".Account.views.EditPaymentActivity"
+            android:name=".Account.views.PaymentEditActivity"
             android:exported="true" />
         <activity
             android:name=".Order.views.OrderDetailActivity"
             android:exported="true" />
         <activity
             android:name=".Cart.CartActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Homepage.Search"
             android:exported="false" />

@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class EditPaymentActivity : AppCompatActivity() {
+class PaymentEditActivity : AppCompatActivity() {
 
     private val accountController: AccountController = AccountController()
     private val auth = Firebase.auth
@@ -33,11 +33,13 @@ class EditPaymentActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.Main) {
             val account = accountController.getUser(auth.currentUser!!.email!!)
-            val paymentList = account.payments
-            if(paymentList!==null) {
-                val paymentAdapter = PaymentDetailItemAdapter(paymentList)
-                listPaymentRcView.adapter = paymentAdapter
-                listPaymentRcView.layoutManager = LinearLayoutManager(this@EditPaymentActivity)
+            if (account != null) {
+                val paymentList = account.payments
+                if (paymentList !== null) {
+                    val paymentAdapter = PaymentDetailItemAdapter(paymentList)
+                    listPaymentRcView.adapter = paymentAdapter
+                    listPaymentRcView.layoutManager = LinearLayoutManager(this@PaymentEditActivity)
+                }
             }
         }
 
