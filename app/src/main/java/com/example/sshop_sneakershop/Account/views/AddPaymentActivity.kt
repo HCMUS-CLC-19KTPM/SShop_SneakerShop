@@ -1,7 +1,6 @@
 package com.example.sshop_sneakershop.Account.views
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.*
@@ -46,7 +45,7 @@ class AddPaymentActivity : AppCompatActivity() {
 
 
         radioGroup = findViewById(R.id.AddPayment_ChooseTypeCar_RG)
-        radioGroup.setOnCheckedChangeListener { radioGroup, optionId ->
+        radioGroup.setOnCheckedChangeListener { _, optionId ->
             run {
                 when (optionId) {
                     R.id.AddPayment_Visa_RB -> {
@@ -67,22 +66,28 @@ class AddPaymentActivity : AppCompatActivity() {
         }
 
         editTextSince.setOnClickListener {
-            picker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                val year: Int = year
-                val month: Int = month + 1
-                val day: Int = dayOfMonth
-                val calendar = Calendar.getInstance()
-                calendar.set(year, month, day)
-                payment.since = calendar.time
-                editTextSince.setText("$day/$month/$year")
+            picker = DatePickerDialog(
+                this,
+                { _, year, month, dayOfMonth ->
+                    val year: Int = year
+                    val month: Int = month + 1
+                    val day: Int = dayOfMonth
+                    val calendar = Calendar.getInstance()
+                    calendar.set(year, month, day)
+                    payment.since = calendar.time
+                    editTextSince.setText("$day/$month/$year")
 
-            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
+                },
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+            )
             picker.show()
-            picker.getDatePicker().setMaxDate(System.currentTimeMillis())
+            picker.datePicker.maxDate = System.currentTimeMillis()
         }
 
         submitBtn.setOnClickListener {
-            if(payment.type.isNullOrEmpty()) {
+            if (payment.type.isNullOrEmpty()) {
                 payment.type = "visa"
             }
 
@@ -112,24 +117,17 @@ class AddPaymentActivity : AppCompatActivity() {
                     if (account != null) {
                         if (account!!.payments !== null) {
                             account!!.payments!!.add(payment)
-                            account = accountController.updateUser(account!!)
+                            account = accountController.updateUserPayment(account!!)
                         } else {
                             val paymentList = ArrayList<Payment>()
                             paymentList.add(payment)
                             account!!.payments = paymentList
-                            account = accountController.updateUser(account!!)
+                            account = accountController.updateUserPayment(account!!)
                         }
                     }
                 }
-
-//                val intent = Intent(this, PaymentEditActivity::class.java)
-//                startActivity(intent)
             }
 
         }
-
-
-
-
     }
 }
