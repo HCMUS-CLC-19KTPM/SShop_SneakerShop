@@ -22,6 +22,21 @@ class AccountModel {
         return account
     }
 
+    suspend fun getPayments(id: String): ArrayList<Payment>? {
+        var payments: ArrayList<Payment>? = null
+
+        try {
+            db.collection("account").whereEqualTo("id", id).get().await()
+                .documents.forEach {
+                    payments = it.data!!["payments"] as ArrayList<Payment>?
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return payments
+    }
+
     suspend fun insertUser(account: Account) {
         try {
             db.collection("account").document().set(account).await()
@@ -30,13 +45,37 @@ class AccountModel {
         }
     }
 
-    suspend fun updateUser(account: Account): Account? {
+    // Update
+
+    /**
+     * Update user's information
+     */
+    suspend fun updateUserInfo(account: Account): Account? {
         var modifiedAccount: Account? = null
 
         try {
             db.collection("account").whereEqualTo("id", account.id).get().await()
                 .documents.forEach {
                     it.reference.update(account.toMap()).await()
+                    modifiedAccount = account
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return modifiedAccount
+    }
+
+    /**
+     * Update user's payments
+     */
+    suspend fun updateUserPayment(account: Account): Account? {
+        var modifiedAccount: Account? = null
+
+        try {
+            db.collection("account").whereEqualTo("id", account.id).get().await()
+                .documents.forEach {
+                    it.reference.update("payments", account.payments).await()
                     modifiedAccount = account
                 }
         } catch (e: Exception) {

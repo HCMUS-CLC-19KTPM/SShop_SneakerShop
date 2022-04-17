@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.models.Account
@@ -20,10 +21,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AccountEditActivity : AppCompatActivity() {
+class AccountEditActivity : AppCompatActivity(), IAccountView {
     private val auth = Firebase.auth
 
-    private val accountController = AccountController()
+    private val accountController = AccountController(this)
 
     private var account: Account? = null
 
@@ -72,7 +73,7 @@ class AccountEditActivity : AppCompatActivity() {
             updateUserInfo()
         }
 
-        getUserInfo()
+        accountController.onGetUser(auth.currentUser!!.email!!)
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -96,24 +97,64 @@ class AccountEditActivity : AppCompatActivity() {
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun updateUserInfo() {
-        GlobalScope.launch(Dispatchers.Main) {
-            val fullName = nameEditText.text.toString()
-            val email = usernameTextView.text.toString()
-            val address = addressEditText.text.toString()
-            val phone = phoneEditText.text.toString()
-            val gender = genderEditText.text.toString()
-            val dob = dobEditText.text.toString()
+        val fullName = nameEditText.text.toString()
+        val email = usernameTextView.text.toString()
+        val address = addressEditText.text.toString()
+        val phone = phoneEditText.text.toString()
+        val gender = genderEditText.text.toString()
+        val dob = dobEditText.text.toString()
 
-            if (account != null) {
-                account!!.fullName = fullName
-                account!!.email = email
-                account!!.address = address
-                account!!.phone = phone
-                account!!.gender = gender
-                account!!.dob = dob
+        if (account != null) {
+            account!!.fullName = fullName
+            account!!.email = email
+            account!!.address = address
+            account!!.phone = phone
+            account!!.gender = gender
+            account!!.dob = dob
 
-                account = accountController.updateUser(account!!)
-            }
+            accountController.onUpdateUserInfo(account!!)
         }
+    }
+
+    override fun onGetUserSuccess(account: Account) {
+        this.account = account
+
+        if (!TextUtils.isEmpty(account.avatar)) Picasso.get()
+            .load(account.avatar).into(avatarImageView)
+        usernameTextView.text = account.email
+        nameEditText.setText(account.fullName)
+        emailEditText.setText(account.email)
+        addressEditText.setText(account.address)
+        phoneEditText.setText(account.phone)
+        genderEditText.setText(account.gender)
+        dobEditText.setText(account.dob)
+    }
+
+    override fun onGetUserFail(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateUserInfoSuccess(account: Account) {
+        if (!TextUtils.isEmpty(account.avatar)) Picasso.get()
+            .load(account.avatar).into(avatarImageView)
+        usernameTextView.text = account.email
+        nameEditText.setText(account.fullName)
+        emailEditText.setText(account.email)
+        addressEditText.setText(account.address)
+        phoneEditText.setText(account.phone)
+        genderEditText.setText(account.gender)
+        dobEditText.setText(account.dob)
+    }
+
+    override fun onUpdateUserInfoFail(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateUserPaymentSuccess(account: Account) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateUserPaymentFail(message: String) {
+        TODO("Not yet implemented")
     }
 }
