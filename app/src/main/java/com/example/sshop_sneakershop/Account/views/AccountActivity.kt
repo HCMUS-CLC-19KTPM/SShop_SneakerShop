@@ -121,15 +121,17 @@ class AccountActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Main) {
             val account = accountController.getUser(auth.currentUser!!.email!!)
 
-            if (!TextUtils.isEmpty(account.avatar)) Picasso.get().load(account.avatar)
-                .into(avatarImageView)
-            usernameTextView.text = account.email
-            nameTextView.text = account.fullName
-            emailTextView.text = account.email
-            addressTextView.text = account.address
-            phoneTextView.text = account.phone
-            genderTextView.text = account.gender
-            birthdayTextView.text = account.dob
+            if (account != null) {
+                if (!TextUtils.isEmpty(account.avatar)) Picasso.get().load(account.avatar)
+                    .into(avatarImageView)
+                usernameTextView.text = account.fullName
+                nameTextView.text = account.fullName
+                emailTextView.text = account.email
+                addressTextView.text = account.address
+                phoneTextView.text = account.phone
+                genderTextView.text = account.gender
+                birthdayTextView.text = account.dob
+            }
         }
     }
 
@@ -162,7 +164,7 @@ class AccountActivity : AppCompatActivity() {
         }
 
         editPaymentBtn.setOnClickListener {
-            val intent = Intent(this, EditPaymentActivity::class.java)
+            val intent = Intent(this, PaymentEditActivity::class.java)
             startActivity(intent)
         }
     }
