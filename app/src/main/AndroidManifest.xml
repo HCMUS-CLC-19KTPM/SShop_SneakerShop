@@ -21,6 +21,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Account.views.AccountChangePassActivity"
+            android:exported="true" />
+        <activity
             android:name=".Account.views.AddPaymentActivity"
             android:exported="true" />
         <activity
