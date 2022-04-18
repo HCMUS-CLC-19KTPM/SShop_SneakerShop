@@ -90,7 +90,7 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity {
     @SuppressLint("NotifyDataSetChanged")
     private fun getCart() {
         GlobalScope.launch(Dispatchers.Main) {
-            val cart = cartController.getCartByUser()
+            val cart = cartController.getCart()
 
             if (cart != null) {
                 productsInCart.addAll(cart.productList)

@@ -117,7 +117,7 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
     @SuppressLint("NotifyDataSetChanged")
     private fun getCart() {
         GlobalScope.launch(Dispatchers.Main) {
-            cart = cartController.getCartByUser()!!
+            cart = cartController.getCart()!!
 
             productsInCart.addAll(cart.productList)
             productRecyclerView.adapter?.notifyDataSetChanged()
