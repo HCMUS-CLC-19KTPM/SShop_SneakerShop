@@ -54,6 +54,8 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
         }
 
         checkoutButton.setOnClickListener {
+            updateProductList()
+
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
@@ -105,7 +107,7 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
         val format: NumberFormat = NumberFormat.getInstance()
         format.maximumFractionDigits = 2
 
-        cart.productList?.get(position)!!.quantity = quantity
+        cart.productList[position].quantity = quantity
         cart.calculateTotalCost()
 
         totalPriceTextView.text = "${format.format(cart.totalCost)}$"
@@ -117,11 +119,9 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
         GlobalScope.launch(Dispatchers.Main) {
             cart = cartController.getCartByUser()!!
 
-            if (cart.productList != null) {
-                productsInCart.addAll(cart.productList!!)
-                productRecyclerView.adapter?.notifyDataSetChanged()
-                totalPriceTextView.text = cart.totalCost.toString()
-            }
+            productsInCart.addAll(cart.productList)
+            productRecyclerView.adapter?.notifyDataSetChanged()
+            totalPriceTextView.text = cart.totalCost.toString()
 
             if (productsInCart.isEmpty()) {
                 totalPriceTextView.text = "0"
@@ -142,11 +142,10 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
     override fun onGetCartSuccess(cart: Cart) {
         this.cart = cart
 
-        if (this.cart.productList != null) {
-            productsInCart.addAll(this.cart.productList!!)
-            productRecyclerView.adapter?.notifyDataSetChanged()
-            totalPriceTextView.text = this.cart.totalCost.toString()
-        }
+        productsInCart.clear()
+        productsInCart.addAll(this.cart.productList)
+        productRecyclerView.adapter?.notifyDataSetChanged()
+        totalPriceTextView.text = this.cart.totalCost.toString()
 
         if (productsInCart.isEmpty()) {
             totalPriceTextView.text = "0"

@@ -135,7 +135,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
 
 
         val formatter = SimpleDateFormat("dd-MM-yyyy")
-        val releaseDate = formatter.format(product.releaseDate!!)
+        val releaseDate = formatter.format(product.releaseDate)
         binding.infoContent.text =
             "Origin: ${product.origin}\nStyle: ${product.category}\nReleased date: $releaseDate"
 

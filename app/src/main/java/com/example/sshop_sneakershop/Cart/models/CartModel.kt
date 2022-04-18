@@ -15,15 +15,16 @@ class CartModel {
 
         try {
             db.collection("cart").whereEqualTo("userId", userId).get().await().forEach {
-                if (it.exists()) {
-                    cart = it.toObject(Cart::class.java)
-                } else {
-                    cart = Cart(userId = userId!!)
+                cart = it.toObject(Cart::class.java)
+            }
 
-                    db.collection("cart").document().set(cart!!).await().run {
-                        db.collection("cart").document(it.id).update("id", it.id).await()
-                        cart!!.id = it.id
-                    }
+            if (cart == null) {
+                cart = Cart(userId = userId!!)
+
+                db.collection("cart").document().set(cart!!).await()
+                db.collection("cart").whereEqualTo("userId", userId).get().await().forEach {
+                    db.collection("cart").document(it.id).update("id", it.id).await()
+                    cart!!.id = it.id
                 }
             }
         } catch (e: Exception) {
