@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
@@ -32,6 +33,8 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var editInfoBtn: Button
     private lateinit var editPaymentBtn: Button
 
+    private lateinit var linearInfoLayout: LinearLayout
+    private lateinit var linearPaymentLayout: LinearLayout
 
     private lateinit var avatarImageView: CircularImageView
     private lateinit var usernameTextView: TextView
@@ -66,14 +69,6 @@ class AccountActivity : AppCompatActivity() {
         // Create payment methods info
         createPaymentMethods()
 
-        binding.profileButtonShowCart.setOnClickListener {
-            startActivity(Intent(this, CartActivity::class.java))
-        }
-
-        binding.profileButtonShowOrder.setOnClickListener {
-            startActivity(Intent(this, OrderListActivity::class.java))
-        }
-
         //Back to home
         binding.profileToolbar.setNavigationOnClickListener { finish() }
 
@@ -98,10 +93,19 @@ class AccountActivity : AppCompatActivity() {
         birthdayTextView = findViewById(R.id.profile_text_valueDob)
 
         editInfoBtn = findViewById(R.id.profile_button_editInfo)
-        editInfoBtn.visibility = View.GONE
 
         val infoView = findViewById<GridLayout>(R.id.gridLayout)
-        infoView.visibility = View.GONE
+
+        linearInfoLayout = findViewById(R.id.profile_linearLayout_accDetail)
+        linearInfoLayout.setOnClickListener {
+            if (infoView.visibility == View.GONE) {
+                infoView.visibility = View.VISIBLE
+                editInfoBtn.visibility = View.VISIBLE
+            } else {
+                infoView.visibility = View.GONE
+                editInfoBtn.visibility = View.GONE
+            }
+        }
 
         val showInfoBtn = findViewById<Button>(R.id.profile_button_showAccDetail)
         showInfoBtn.setOnClickListener {
@@ -152,6 +156,17 @@ class AccountActivity : AppCompatActivity() {
                     paymentRcView.adapter = paymentAdapter
                     paymentRcView.layoutManager = LinearLayoutManager(this@AccountActivity)
                 }
+            }
+        }
+
+        linearPaymentLayout = findViewById(R.id.profile_linearLayout_payment)
+        linearPaymentLayout.setOnClickListener {
+            if(paymentRcView.visibility == View.GONE) {
+                paymentRcView.visibility = View.VISIBLE
+                editPaymentBtn.visibility = View.VISIBLE
+            } else {
+                paymentRcView.visibility = View.GONE
+                editPaymentBtn.visibility = View.GONE
             }
         }
 

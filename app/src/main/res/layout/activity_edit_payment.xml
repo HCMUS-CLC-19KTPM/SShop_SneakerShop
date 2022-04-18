@@ -58,7 +58,6 @@
                 android:id="@+id/editPayment_atmList_RC"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 app:layout_constraintBottom_toTopOf="@+id/editPayment_addCard_CV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
 
-                android:layout_marginTop="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
