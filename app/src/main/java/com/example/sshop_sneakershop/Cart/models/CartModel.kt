@@ -29,7 +29,12 @@ class CartModel {
     suspend fun updateProductList(cart: Cart) {
         try {
             val cartId = cart.id
+
+            // Update product list in cart
             db.collection("cart").document(cartId).update("productList", cart.productList).await()
+            // Update totalCost in cart
+            db.collection("cart").document(cartId).update("totalCost", cart.totalCost).await()
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
