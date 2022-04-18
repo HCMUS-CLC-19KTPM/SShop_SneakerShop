@@ -1,11 +1,28 @@
 package com.example.sshop_sneakershop.Account.models
 
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 class AccountModel {
     private var db = Firebase.firestore
+
+    suspend fun getUser(): Account? {
+        var account: Account? = null
+        val email: String? = Firebase.auth.currentUser?.email
+
+        try {
+            db.collection("account").whereEqualTo("email", email).get().await()
+                .documents.forEach {
+                    account = it.toObject(Account::class.java)!!
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return account
+    }
 
     suspend fun getUser(email: String): Account? {
         var account: Account? = null

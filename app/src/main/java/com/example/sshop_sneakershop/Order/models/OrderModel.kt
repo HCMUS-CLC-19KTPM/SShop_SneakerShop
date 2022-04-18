@@ -9,6 +9,7 @@ class OrderModel {
     private val db = Firebase.firestore
     private val userId = Firebase.auth.currentUser?.uid
 
+    @Throws(Exception::class)
     suspend fun getAllOrders(): ArrayList<Order> {
         val orders = ArrayList<Order>()
         try {
@@ -23,6 +24,7 @@ class OrderModel {
         return orders
     }
 
+    @Throws(Exception::class)
     suspend fun getOrderById(id: String): Order {
         val order: Order?
         try {
@@ -32,5 +34,21 @@ class OrderModel {
         }
 
         return order ?: Order()
+    }
+
+    @Throws(Exception::class)
+    suspend fun createOrder(order: Order): Order {
+        try {
+            db.collection("order").document().set(order).await()
+            db.collection("order").whereEqualTo("userId", userId).get().await().forEach {
+                it.reference.set(order).await()
+                order.id = it.id
+            }
+
+        } catch (e: Exception) {
+            throw e
+        }
+
+        return order
     }
 }
