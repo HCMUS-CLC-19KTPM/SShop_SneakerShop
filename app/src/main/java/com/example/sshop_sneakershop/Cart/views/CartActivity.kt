@@ -6,6 +6,7 @@ import android.icu.text.NumberFormat
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,16 +16,18 @@ import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Cart.views.CartAdapter
 import com.example.sshop_sneakershop.Cart.views.CartClickListener
 import com.example.sshop_sneakershop.Cart.views.CheckoutActivity
+import com.example.sshop_sneakershop.Cart.views.ICartView
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class CartActivity : AppCompatActivity(), CartClickListener {
+class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
 
     private lateinit var cartController: CartController
 
@@ -38,9 +41,6 @@ class CartActivity : AppCompatActivity(), CartClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
-
-        cartController = CartController()
-        getCart()
 
         productRecyclerView = findViewById(R.id.cart_recycler_view)
         totalPriceTextView = findViewById(R.id.cart_tv_total_price)
@@ -57,6 +57,9 @@ class CartActivity : AppCompatActivity(), CartClickListener {
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
+
+        cartController = CartController(this)
+        cartController.onGetCart()
     }
 
 
@@ -108,6 +111,7 @@ class CartActivity : AppCompatActivity(), CartClickListener {
         totalPriceTextView.text = "${format.format(cart.totalCost)}$"
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("NotifyDataSetChanged")
     private fun getCart() {
         GlobalScope.launch(Dispatchers.Main) {
@@ -127,9 +131,31 @@ class CartActivity : AppCompatActivity(), CartClickListener {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun updateProductList() {
         GlobalScope.launch(Dispatchers.Main) {
             cartController.updateProductList(cart)
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetCartSuccess(cart: Cart) {
+        this.cart = cart
+
+        if (this.cart.productList != null) {
+            productsInCart.addAll(this.cart.productList!!)
+            productRecyclerView.adapter?.notifyDataSetChanged()
+            totalPriceTextView.text = this.cart.totalCost.toString()
+        }
+
+        if (productsInCart.isEmpty()) {
+            totalPriceTextView.text = "0"
+        } else {
+            onChangeQuantity(0, productsInCart[0].quantity)
+        }
+    }
+
+    override fun onGetCartFailed(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

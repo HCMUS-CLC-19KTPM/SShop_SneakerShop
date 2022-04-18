@@ -36,11 +36,13 @@ class OrderListActivity : AppCompatActivity() {
         orderRecyclerView.layoutManager = LinearLayoutManager(this) //GridLayoutManager(this, 2)
 
         val toolbar = findViewById<Toolbar>(R.id.checkout_toolbar)
-        toolbar.setNavigationOnClickListener {
-            val intent = Intent(this, AccountActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+
+        // TODO: Not found
+//        toolbar.setNavigationOnClickListener {
+//            val intent = Intent(this, AccountActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
 
         getAllOrder()
     }

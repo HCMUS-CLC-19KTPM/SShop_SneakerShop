@@ -18,6 +18,10 @@ class AccountController(private val view: IAccountView? = null) : IAccountContro
      * @param email
      * @return Account
      */
+    suspend fun getUser(): Account? {
+        return accountModel.getUser()
+    }
+
     suspend fun getUser(email: String): Account? {
         return accountModel.getUser(email)
     }
@@ -29,7 +33,7 @@ class AccountController(private val view: IAccountView? = null) : IAccountContro
     override fun onGetUser(email: String) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val account = getUser(email)
+                val account = getUser()
                 if (account != null) {
                     view!!.onGetUserSuccess(account)
                 } else {

@@ -69,7 +69,7 @@ class OrderDetailActivity : AppCompatActivity() {
             val formatter = SimpleDateFormat("dd/MM/yyyy")
 
             val order = orderController.getOrderById("yy3U8c8oYyejCrhcXHJR")
-            products.addAll(order.productInCart)
+            products.addAll(order.cart)
 
             withContext(Dispatchers.Main) {
                 estimateDateTextView.text = formatter.format(order.endDate)

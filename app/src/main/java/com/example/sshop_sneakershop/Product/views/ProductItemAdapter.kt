@@ -32,9 +32,9 @@ class ProductItemAdapter(private val products: ArrayList<Product>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
         holder.nameTextView.text = product.name
-        holder.priceTextView.text = (product.price*product.quantity).toString()
+        holder.priceTextView.text = (product.price * product.quantity).toString()
         holder.quantityTextView.text = product.quantity.toString()
-        holder.descriptionTextView.text = "product.description"
+        holder.descriptionTextView.text = product.description
 
         if (TextUtils.isEmpty(product.image)) {
             holder.imageView.setImageResource(R.drawable.shoe)
