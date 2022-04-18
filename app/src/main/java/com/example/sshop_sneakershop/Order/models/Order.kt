@@ -9,14 +9,14 @@ data class Order(
     var name: String,
     var phone: String,
     var address: String,
-    var productInCart: ArrayList<Product>,
+    var cart: ArrayList<Product>,
     var deliveryStatus: String,
     var orderedDate: Date,
     var startDate: Date,
     var endDate: Date,
     var shippingFee: Double,
     var totalCost: Double,
-    var user: String
+    var userId: String
 ) {
     constructor() : this("", "", "", "", 0.0, Date(), Date())
 

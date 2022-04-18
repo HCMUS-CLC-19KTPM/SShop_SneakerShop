@@ -8,16 +8,26 @@ import kotlinx.coroutines.tasks.await
 class CartModel {
     private val db = Firebase.firestore
 
+    @Throws(Exception::class)
     suspend fun getCartByUser(): Cart? {
         var cart: Cart? = null
         val userId = Firebase.auth.currentUser?.uid
 
         try {
             db.collection("cart").whereEqualTo("userId", userId).get().await().forEach {
-                cart = it.toObject(Cart::class.java)
+                if (it.exists()) {
+                    cart = it.toObject(Cart::class.java)
+                } else {
+                    cart = Cart(userId = userId!!)
+
+                    db.collection("cart").document().set(cart!!).await().run {
+                        db.collection("cart").document(it.id).update("id", it.id).await()
+                        cart!!.id = it.id
+                    }
+                }
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            throw e
         }
 
         return cart
@@ -26,6 +36,7 @@ class CartModel {
     /**
      * Update cart
      */
+    @Throws(Exception::class)
     suspend fun updateProductList(cart: Cart) {
         try {
             val cartId = cart.id
@@ -36,7 +47,7 @@ class CartModel {
             db.collection("cart").document(cartId).update("totalCost", cart.totalCost).await()
 
         } catch (e: Exception) {
-            e.printStackTrace()
+            throw e
         }
     }
 }
