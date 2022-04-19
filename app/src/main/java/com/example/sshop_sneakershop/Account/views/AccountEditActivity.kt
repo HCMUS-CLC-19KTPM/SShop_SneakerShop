@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.models.Account
+import com.example.sshop_sneakershop.Auth.views.AccountChangePassActivity
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.ChangePasswordFragment
 import com.example.sshop_sneakershop.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -66,7 +68,8 @@ class AccountEditActivity : AppCompatActivity(), IAccountView {
         submitButton = findViewById(R.id.edit_profile_button_submit)
 
         changePasswordButton.setOnClickListener {
-            TODO("Change password")
+            val intent = Intent(this, AccountChangePassActivity::class.java)
+            startActivity(intent)
         }
 
         submitButton.setOnClickListener {

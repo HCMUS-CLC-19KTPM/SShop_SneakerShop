@@ -76,7 +76,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/changePass_input_oldPass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

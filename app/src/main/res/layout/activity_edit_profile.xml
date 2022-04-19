@@ -73,17 +73,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_dob" />
 
             <TextView
-                    android:id="@+id/editProfile_text_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="25sp"
-                    app:layout_constraintBottom_toTopOf="@+id/editProfile_textInputLayout_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editProfile_image_avatar"
-                    tools:textStyle="bold" />
+                android:id="@+id/editProfile_text_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/editProfile_textInputLayout_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editProfile_image_avatar"
+                tools:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editProfile_textInputLayout_name"
@@ -100,10 +99,9 @@
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_text_username">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editProfile_textInputET_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Nguyen Van A" />
+                    android:id="@+id/editProfile_textInputET_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -122,10 +120,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_name">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editProfile_textInputET_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="username@gmail.com" />
+                    android:id="@+id/editProfile_textInputET_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -144,10 +142,9 @@
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editProfile_textInputET_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="227 Nguyen Van Cu" />
+                    android:id="@+id/editProfile_textInputET_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -166,10 +163,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_address">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editProfile_textInputET_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="0123456789" />
+                    android:id="@+id/editProfile_textInputET_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -188,10 +185,9 @@
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editProfile_textInputET_gender"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="male" />
+                    android:id="@+id/editProfile_textInputET_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -210,11 +206,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_gender">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editProfile_textInputET_dob"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="01/01/2001"
-                        android:inputType="date" />
+                    android:id="@+id/editProfile_textInputET_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

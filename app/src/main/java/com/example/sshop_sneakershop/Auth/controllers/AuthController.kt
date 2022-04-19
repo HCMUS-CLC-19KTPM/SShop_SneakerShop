@@ -83,7 +83,7 @@ class AuthController(private var view: IAuthView) : IAuthController {
                 if (isSuccess) {
                     view.onChangePasswordSuccess("Password changed")
                 } else {
-                    view.onChangePasswordFailed("Password not changed")
+                    view.onChangePasswordFailed("The password is incorrect. Please try again")
                 }
             }
         }

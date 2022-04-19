@@ -28,9 +28,9 @@ class AccountChangePassActivity : AppCompatActivity(), IAuthView {
         authController = AuthController(this)
 
         changePasswordButton = findViewById(R.id.changePass_button_change)
-        oldPassEditText = findViewById(R.id.changePass_edittext_input_oldPass)
-        newPassEditText = findViewById(R.id.changePass_edittext_input_newPass)
-        confirmNewPassEditText = findViewById(R.id.changePass_edittext_confirm_newPass)
+        oldPassEditText = findViewById(R.id.changePass_input_oldPass)
+        newPassEditText = findViewById(R.id.changePass_input_newPass)
+        confirmNewPassEditText = findViewById(R.id.changePass_input_confirm_newPass)
 
 
         changePasswordButton.setOnClickListener {
