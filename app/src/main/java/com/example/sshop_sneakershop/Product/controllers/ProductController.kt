@@ -52,7 +52,7 @@ class ProductController(private val view: IProductView? = null) : IProductContro
 
     override fun onGetProductsByCategory(category: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            val products = if (category == "all") model.getAllProducts() else model.getProductsByCategory(category)
+            val products = if (category == "All") model.getAllProducts() else model.getProductsByCategory(category)
             withContext(Dispatchers.Main) {
                 view?.onShowProductsByCategory(products)
             }

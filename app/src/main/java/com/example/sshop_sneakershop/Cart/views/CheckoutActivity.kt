@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
 import com.example.sshop_sneakershop.R
+import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -84,6 +86,10 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity {
 
         orderController = OrderController(this)
         accountController = AccountController()
+
+        findViewById<MaterialToolbar>(R.id.checkout_toolbar).setNavigationOnClickListener {
+            finish()
+        }
     }
 
     @OptIn(DelicateCoroutinesApi::class)

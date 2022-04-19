@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.sshop_sneakershop.Account.views.AccountActivity
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
 import com.example.sshop_sneakershop.Cart.CartActivity
+import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.IProductView
@@ -84,7 +85,7 @@ class Home : AppCompatActivity(), ItemClickListener,
         val intent = Intent(this, GroupItem::class.java)
 
         binding.viewAll.setOnClickListener {
-            intent.putExtra("category-id", "all")
+            intent.putExtra("category-id", "All")
             startActivity(intent)
         }
         binding.icon1.setOnClickListener {
@@ -169,6 +170,10 @@ class Home : AppCompatActivity(), ItemClickListener,
             }
             R.id.nav_profile -> {
                 val intent = Intent(this, AccountActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_order -> {
+                val intent = Intent(this, OrderListActivity::class.java)
                 startActivity(intent)
             }
         }

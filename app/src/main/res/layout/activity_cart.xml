@@ -5,6 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cart.CartActivity">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/checkout_coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- Note: A RecyclerView can also be used -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/checkout_nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <!-- Scrollable content -->
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/cart_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:background="@color/primary"
+                app:menu="@menu/top_app_bar"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:title="Cart"
+                app:titleTextColor="@color/white" />
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <TextView
         android:id="@+id/productName2"
@@ -30,18 +64,6 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/productName2"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="My Cart"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_recycler_view"
         android:layout_width="0dp"
@@ -50,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/checkout_coordinator_layout" />
 
     <Button
         android:id="@+id/cart_button_confirm"

@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat
 
 class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
     private lateinit var binding: ActivityItemDetailBinding
-    private lateinit var productList: List<Product>
+    private lateinit var productList: ArrayList<Product>
     private val reviewList: ArrayList<Review> = ArrayList()
 
     private lateinit var productController: ProductController
@@ -35,10 +35,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         binding = ActivityItemDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Related products
-        //Item list initialization
-        val myItem = Product("", 83.03, "Grand Court", R.drawable.shoe)
-        productList = listOf(myItem, myItem, myItem, myItem)
+        productList = ArrayList()
 
         val mainActivity = this
         binding.recyclerViewRelated.apply {
@@ -78,6 +75,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
                 cartController.addToCart(id, size)
             }
         }
+
     }
 
     override fun onClick(product: Product) {
@@ -161,9 +159,13 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
             "Origin: ${product.origin}\nStyle: ${product.category}\nReleased date: $releaseDate"
 
         binding.recyclerViewReview.adapter?.notifyDataSetChanged()
+
+        productController.onGetProductsByCategory(product.category)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onShowProductsByCategory(products: ArrayList<Product>) {
-        TODO("Not yet implemented")
+        productList.addAll(products)
+        binding.recyclerViewRelated.adapter?.notifyDataSetChanged()
     }
 }

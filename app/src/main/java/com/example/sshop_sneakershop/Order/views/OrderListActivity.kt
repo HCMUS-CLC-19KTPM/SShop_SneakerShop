@@ -11,6 +11,7 @@ import com.example.sshop_sneakershop.Account.views.AccountActivity
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.R
+import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -35,17 +36,10 @@ class OrderListActivity : AppCompatActivity(), IOrderListActivity {
         orderRecyclerView.adapter = adapter
         orderRecyclerView.layoutManager = LinearLayoutManager(this) //GridLayoutManager(this, 2)
 
-        val toolbar = findViewById<Toolbar>(R.id.checkout_toolbar)
-
-        // TODO: Not found
-//        toolbar.setNavigationOnClickListener {
-//            val intent = Intent(this, AccountActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
-
+        findViewById<MaterialToolbar>(R.id.order_list_toolbar).setNavigationOnClickListener {
+            finish()
+        }
         orderController = OrderController()
-//        orderController.onGetAllOrders()
         getAllOrder()
     }
 
