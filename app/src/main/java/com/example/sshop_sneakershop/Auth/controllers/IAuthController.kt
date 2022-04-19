@@ -7,6 +7,6 @@ interface IAuthController {
     fun onSignInWithGoogle(credential: AuthCredential)
     fun onSignUp(email: String, password: String, confirmPassword: String)
     fun onForgotPassword(email: String)
-    fun onChangePassword(oldPassword: String, newPassword: String, confirmPassword: String)
+    fun onChangePassword(password: String)
     fun onSignOut()
 }

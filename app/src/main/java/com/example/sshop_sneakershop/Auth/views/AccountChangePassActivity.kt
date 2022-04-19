@@ -4,17 +4,28 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.sshop_sneakershop.Account.controllers.AccountController
+import com.example.sshop_sneakershop.Account.views.AccountEditActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
 import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AccountChangePassActivity : AppCompatActivity(), IAuthView {
     private lateinit var authController: AuthController
+    private val auth = Firebase.auth
 
     private lateinit var changePasswordButton: Button
     private lateinit var oldPassEditText: EditText
@@ -41,7 +52,21 @@ class AccountChangePassActivity : AppCompatActivity(), IAuthView {
             if (oldPass.isEmpty() || newPass.isEmpty() || confirmNewPass.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             } else{
-                authController.onChangePassword(oldPass, newPass, confirmNewPass)
+                if (newPass != confirmNewPass) {
+                    Toast.makeText(this, "New password and confirm new password are not match", Toast.LENGTH_SHORT).show()
+                } else {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        val account = auth.currentUser!!
+                        val credential = EmailAuthProvider.getCredential(account.email!!, oldPass)
+                        account.reauthenticate(credential).addOnCompleteListener{ task ->
+                            if (task.isSuccessful) {
+                                authController.onChangePassword(newPass)
+                            } else {
+                                Toast.makeText(this@AccountChangePassActivity, "Old password is not correct", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -73,8 +98,23 @@ class AccountChangePassActivity : AppCompatActivity(), IAuthView {
     }
 
     override fun onChangePasswordSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
+        Log.d("AccountChangePassActivity", message)
+        val alertDialog: AlertDialog? = this.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
+                    finish()
+                })
+                // Set other dialog properties
+                setIcon(R.drawable.ic_baseline_done_outline_24)
+                setTitle(message)
+            }
+            // Create the AlertDialog
+            builder.create()
+        }
+        if (alertDialog != null) {
+            alertDialog.show()
+        }    }
 
     override fun onChangePasswordFailed(message: String) {
         Log.d("AccountChangePassActivity", message)
@@ -82,7 +122,6 @@ class AccountChangePassActivity : AppCompatActivity(), IAuthView {
             val builder = AlertDialog.Builder(it)
             builder.apply {
                 setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
-//                    Log.d("nlhdung", "OK!")
                 })
                 // Set other dialog properties
                 setIcon(android.R.drawable.ic_dialog_alert)

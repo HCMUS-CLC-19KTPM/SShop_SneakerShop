@@ -72,19 +72,14 @@ class AuthController(private var view: IAuthView) : IAuthController {
     /**
      * Change password
      */
-    override fun onChangePassword(oldPassword: String, newPassword: String, confirmPassword: String) {
+    override fun onChangePassword(password: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            if (newPassword != confirmPassword) {
-                Log.d("AuthService", "signUp:failure")
-                view.onChangePasswordFailed("New password and confirm new password do not match")
-            } else {
-                val isSuccess = authService.updatePassword(oldPassword, newPassword)
+            val isSuccess = authService.updatePassword(password)
 
-                if (isSuccess) {
-                    view.onChangePasswordSuccess("Password changed")
-                } else {
-                    view.onChangePasswordFailed("The password is incorrect. Please try again")
-                }
+            if (isSuccess) {
+                view.onChangePasswordSuccess("Password changed")
+            } else {
+                view.onChangePasswordFailed("The password change was unsuccessful. Please try again")
             }
         }
     }
