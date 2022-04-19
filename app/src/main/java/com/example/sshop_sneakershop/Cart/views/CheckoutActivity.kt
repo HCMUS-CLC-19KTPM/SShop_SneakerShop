@@ -14,7 +14,7 @@ import com.example.sshop_sneakershop.Cart.controllers.CartController
 import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
-import com.example.sshop_sneakershop.Order.views.IOrderView
+import com.example.sshop_sneakershop.Order.views.IOrderListActivity
 import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
@@ -23,10 +23,9 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.Date
-import kotlin.collections.ArrayList
+import java.util.*
 
-class CheckoutActivity : AppCompatActivity(), ICartView, IOrderView {
+class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity {
     private lateinit var cartController: CartController
     private lateinit var orderController: OrderController
     private lateinit var accountController: AccountController
@@ -37,6 +36,7 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderView {
 
     private lateinit var productRecyclerView: RecyclerView
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
@@ -59,26 +59,24 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderView {
         val checkoutButton = findViewById<Button>(R.id.cart_button_confirm)
         checkoutButton.setOnClickListener {
             // Create order
-            orderController.onCreateOrder(
-                Order(
-                    "",
-                    account.fullName!!,
-                    account.phone!!,
-                    account.address!!,
-                    productsInCart,
-                    "Chờ xác nhận",
-                    Date(),
-                    Date(),
-                    Date(),
-                    0.0,
-                    cart.totalCost,
-                    account.id
+            GlobalScope.launch(Dispatchers.Main) {
+                orderController.onCreateOrder(
+                    Order(
+                        "",
+                        account.fullName!!,
+                        account.phone!!,
+                        account.address!!,
+                        productsInCart,
+                        "Chờ xác nhận",
+                        Date(),
+                        Date(),
+                        Date(),
+                        0.0,
+                        cart.totalCost,
+                        account.id
+                    )
                 )
-            )
-
-            val intent = Intent(this, OrderListActivity::class.java)
-            startActivity(intent)
-            finish()
+            }
         }
 
         cartController = CartController(this)
@@ -92,13 +90,11 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderView {
     @SuppressLint("NotifyDataSetChanged")
     private fun getCart() {
         GlobalScope.launch(Dispatchers.Main) {
-            val cart = cartController.getCartByUser()
+            val cart = cartController.getCart()
 
             if (cart != null) {
-                if (cart.productList != null) {
-                    productsInCart.addAll(cart.productList!!)
-                    productRecyclerView.adapter?.notifyDataSetChanged()
-                }
+                productsInCart.addAll(cart.productList)
+                productRecyclerView.adapter?.notifyDataSetChanged()
             }
         }
     }
@@ -106,23 +102,29 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderView {
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetCartSuccess(cart: Cart) {
         this.cart = cart
-        if (cart.productList != null) {
-            productsInCart.addAll(cart.productList!!)
-            productRecyclerView.adapter?.notifyDataSetChanged()
-        }
+        productsInCart.addAll(cart.productList)
+        productRecyclerView.adapter?.notifyDataSetChanged()
     }
 
     override fun onGetCartFailed(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetAllOrdersSuccess(orders: ArrayList<Order>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onGetAllOrdersFailed(message: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onCreateOrderSuccess(order: Order) {
-        productsInCart.addAll(order.cart)
-        productRecyclerView.adapter?.notifyDataSetChanged()
+        val intent = Intent(this, OrderListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onCreateOrderFailed(message: String) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

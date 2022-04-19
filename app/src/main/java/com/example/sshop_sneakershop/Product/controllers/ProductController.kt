@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ProductController(private val view: IProductView) : IProductController {
+class ProductController(private val view: IProductView? = null) : IProductController {
 
     private val model = ProductModel()
 
@@ -26,7 +26,7 @@ class ProductController(private val view: IProductView) : IProductController {
         CoroutineScope(Dispatchers.Main).launch {
             val products = model.getAllProducts()
             withContext(Dispatchers.Main) {
-                view.onShowAllProducts(products)
+                view?.onShowAllProducts(products)
             }
         }
     }
@@ -45,7 +45,7 @@ class ProductController(private val view: IProductView) : IProductController {
         CoroutineScope(Dispatchers.Main).launch {
             val product = model.getProductById(id)
             withContext(Dispatchers.Main) {
-                view.onShowProductDetail(product)
+                view?.onShowProductDetail(product)
             }
         }
     }
@@ -54,7 +54,7 @@ class ProductController(private val view: IProductView) : IProductController {
         CoroutineScope(Dispatchers.Main).launch {
             val products = if (category == "all") model.getAllProducts() else model.getProductsByCategory(category)
             withContext(Dispatchers.Main) {
-                view.onShowProductsByCategory(products)
+                view?.onShowProductsByCategory(products)
             }
         }
     }

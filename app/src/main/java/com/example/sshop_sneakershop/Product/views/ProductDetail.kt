@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sshop_sneakershop.Cart.controllers.CartController
 import com.example.sshop_sneakershop.Homepage.ItemClickListener
-import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.controllers.ProductController
+import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Review.models.Review
 import com.example.sshop_sneakershop.Review.views.ReviewAdapter
@@ -24,6 +25,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
     private val reviewList: ArrayList<Review> = ArrayList()
 
     private lateinit var productController: ProductController
+    private lateinit var cartController: CartController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +56,28 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
             finish()
         }
 
+        cartController = CartController()
+
         //Get item-data base on ID here
         val id = intent.getStringExtra("item-id").toString()
         productController.onGetProductById(id)
+
+        // Get size from radio group
+        val radioGroup = binding.radioGroup
+        radioGroup.check(radioGroup.getChildAt(0).id)
+        var size = "US7"
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = radioGroup.findViewById<RadioButton>(checkedId)
+            if (radioButton != null) {
+                size = radioButton.text.toString()
+            }
+        }
+
+        binding.itemDetailButtonAddToCart.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Main) {
+                cartController.addToCart(id, size)
+            }
+        }
     }
 
     override fun onClick(product: Product) {
@@ -96,7 +117,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
 
 
                 val formatter = SimpleDateFormat("dd-MM-yyyy")
-                val releaseDate = formatter.format(product.releaseDate!!)
+                val releaseDate = formatter.format(product.releaseDate)
                 binding.infoContent.text =
                     "Origin: ${product.origin}\nStyle: ${product.category}\nReleased date: $releaseDate"
 
@@ -135,7 +156,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
 
 
         val formatter = SimpleDateFormat("dd-MM-yyyy")
-        val releaseDate = formatter.format(product.releaseDate!!)
+        val releaseDate = formatter.format(product.releaseDate)
         binding.infoContent.text =
             "Origin: ${product.origin}\nStyle: ${product.category}\nReleased date: $releaseDate"
 

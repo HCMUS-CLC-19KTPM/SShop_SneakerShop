@@ -3,6 +3,7 @@ package com.example.sshop_sneakershop.Cart.controllers
 import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Cart.models.CartModel
 import com.example.sshop_sneakershop.Cart.views.ICartView
+import com.example.sshop_sneakershop.Product.models.Product
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -11,8 +12,8 @@ import kotlinx.coroutines.withContext
 class CartController(private val activity: ICartView? = null) : ICartController {
     private val cartModel = CartModel()
 
-    suspend fun getCartByUser(): Cart? {
-        return cartModel.getCartByUser()
+    suspend fun getCart(): Cart? {
+        return cartModel.getCart()
     }
 
     /**
@@ -21,7 +22,7 @@ class CartController(private val activity: ICartView? = null) : ICartController 
     override fun onGetCart() {
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val cart = cartModel.getCartByUser()
+                val cart = cartModel.getCart()
 
                 withContext(Dispatchers.Main) {
                     if (cart != null) {
@@ -34,6 +35,13 @@ class CartController(private val activity: ICartView? = null) : ICartController 
                 activity?.onGetCartFailed("Error: ${e.message}")
             }
         }
+    }
+
+    /**
+     * Add product to product list
+     */
+    suspend fun addToCart(productId: String, size: String) {
+        cartModel.addToCart(productId, size)
     }
 
     /**

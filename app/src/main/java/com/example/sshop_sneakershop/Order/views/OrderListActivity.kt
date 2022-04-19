@@ -16,12 +16,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class OrderListActivity : AppCompatActivity() {
+class OrderListActivity : AppCompatActivity(), IOrderListActivity {
+    private lateinit var orderController: OrderController
+
+    private var orders: ArrayList<Order> = ArrayList()
 
     private lateinit var orderRecyclerView: RecyclerView
-
-    private val orderController = OrderController()
-    private var orders: ArrayList<Order> = ArrayList()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +44,8 @@ class OrderListActivity : AppCompatActivity() {
 //            finish()
 //        }
 
+        orderController = OrderController()
+//        orderController.onGetAllOrders()
         getAllOrder()
     }
 
@@ -56,5 +58,24 @@ class OrderListActivity : AppCompatActivity() {
                 orderRecyclerView.adapter?.notifyDataSetChanged()
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetAllOrdersSuccess(orders: ArrayList<Order>) {
+        orders.clear()
+        orders.addAll(orders)
+        orderRecyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onGetAllOrdersFailed(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCreateOrderSuccess(order: Order) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCreateOrderFailed(message: String) {
+        TODO("Not yet implemented")
     }
 }

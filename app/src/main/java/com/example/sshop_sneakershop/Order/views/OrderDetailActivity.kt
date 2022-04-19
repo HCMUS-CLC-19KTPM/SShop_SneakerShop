@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop.Order.views
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -38,7 +39,6 @@ class OrderDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_order_detail)
 
         orderController = OrderController()
-        getOrder()
 
         productRecyclerView = findViewById(R.id.order_detail_recycler_view)
 
@@ -62,25 +62,32 @@ class OrderDetailActivity : AppCompatActivity() {
             val reviewDialog = ReviewBottomSheetDialog()
             reviewDialog.show(supportFragmentManager, "Review")
         }
+
+        getOrder()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun getOrder() {
         GlobalScope.launch(Dispatchers.Main) {
             val formatter = SimpleDateFormat("dd/MM/yyyy")
 
             val order = orderController.getOrderById("yy3U8c8oYyejCrhcXHJR")
-            products.addAll(order.cart)
+            if (order != null) {
+                products.addAll(order.cart)
+            }
 
             withContext(Dispatchers.Main) {
-                estimateDateTextView.text = formatter.format(order.endDate)
-                deliveryDescriptionTextView.text = order.deliveryStatus
-                startDateTextView.text = formatter.format(order.startDate)
-                endDateTextView.text = formatter.format(order.endDate)
-                customerName.text = order.name
-                customerAddress.text = order.address
-                customerPhone.text = order.phone
-                totalCost.text = order.totalCost.toString()
-                productRecyclerView.adapter?.notifyDataSetChanged()
+                if (order != null) {
+                    estimateDateTextView.text = formatter.format(order.endDate)
+                    deliveryDescriptionTextView.text = order.deliveryStatus
+                    startDateTextView.text = formatter.format(order.startDate)
+                    endDateTextView.text = formatter.format(order.endDate)
+                    customerName.text = order.name
+                    customerAddress.text = order.address
+                    customerPhone.text = order.phone
+                    totalCost.text = order.totalCost.toString()
+                    productRecyclerView.adapter?.notifyDataSetChanged()
+                }
             }
         }
     }
