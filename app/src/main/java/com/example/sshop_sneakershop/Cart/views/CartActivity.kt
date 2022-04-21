@@ -109,14 +109,23 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
     /**
      * On change quantity of product in cart
      */
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onChangeQuantity(position: Int, quantity: Int) {
-        val format: NumberFormat = NumberFormat.getInstance()
-        format.maximumFractionDigits = 2
-
-        cart.productList[position].quantity = quantity
+        // Update quantity and total price
+        if (quantity > 0) {
+            cart.productList[position].quantity = quantity
+            productsInCart[position].quantity = quantity
+        } else {
+            cart.productList.removeAt(position)
+            productsInCart.removeAt(position)
+            productRecyclerView.adapter?.notifyDataSetChanged()
+        }
         cart.calculateTotalCost()
 
+        // Format price
+        val format: NumberFormat = NumberFormat.getInstance()
+        format.maximumFractionDigits = 2
+        // Update UI
         totalPriceTextView.text = "${format.format(cart.totalCost)}$"
     }
 

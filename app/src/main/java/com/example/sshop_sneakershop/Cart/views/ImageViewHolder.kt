@@ -49,6 +49,7 @@ class ImageViewHolder(
                 ImageCellBinding.quantity.error = "Quantity cannot be empty"
                 ImageCellBinding.quantity.setText("1")
             }
+
             clickListener.onChangeQuantity(
                 position,
                 Integer.valueOf(ImageCellBinding.quantity.text.toString())
@@ -62,29 +63,31 @@ class ImageViewHolder(
         ImageCellBinding.minus.setOnClickListener {
             val quantity: Int = Integer.valueOf(ImageCellBinding.quantity.text.toString()) - 1
             if (quantity == 0) {
-                val alertDialog = MaterialAlertDialogBuilder(this.itemView.context)
+                MaterialAlertDialogBuilder(this.itemView.context)
                     .setTitle("Delete")
                     .setMessage("Are you sure you want to delete this item?")
                     .setPositiveButton("Yes") { dialog, which ->
-                        //DELETE ITEM
-                        TODO("Not yet implemented")
-
+                        // Delete item
+                        clickListener.onChangeQuantity(position, quantity)
                     }
                     .setNegativeButton("No") { dialog, which ->
+                        // Reset quantity to 1
                         ImageCellBinding.quantity.setText("1")
+                        clickListener.onChangeQuantity(position, 1)
                     }
                     .show()
             } else {
                 ImageCellBinding.quantity.setText(quantity.toString())
+                clickListener.onChangeQuantity(position, quantity)
             }
-
-            clickListener.onChangeQuantity(position, quantity)
         }
 
         ImageCellBinding.plus.setOnClickListener {
+            // Value of quantity
             val quantity = Integer.valueOf(ImageCellBinding.quantity.text.toString()) + 1
-            ImageCellBinding.quantity.setText(quantity.toString())
 
+            // View
+            ImageCellBinding.quantity.setText(quantity.toString())
             clickListener.onChangeQuantity(position, quantity)
         }
     }
