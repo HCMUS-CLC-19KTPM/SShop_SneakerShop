@@ -19,12 +19,13 @@ class AuthController(private var view: IAuthView) : IAuthController {
      */
     override fun onSignIn(email: String, password: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            val result = authService.signIn(email, password)
-
-            if (result) {
+            try {
+                authService.signIn(email, password)
                 view.onLoginSuccess("Login success")
-            } else {
-                view.onLoginFailed("Login failed. Invalid email or password or account not activated please check your email")
+
+            } catch (e: Exception) {
+                Log.d("AuthController", e.message.toString())
+                view.onLoginFailed("${e.message}")
             }
         }
     }
@@ -35,8 +36,12 @@ class AuthController(private var view: IAuthView) : IAuthController {
      */
     override fun onSignInWithGoogle(credential: AuthCredential) {
         CoroutineScope(Dispatchers.Main).launch {
-            val result = authService.signInWithGoogle(credential)
-            view.onLoginSuccess(result)
+            try {
+                val result = authService.signInWithGoogle(credential)
+                view.onLoginSuccess(result)
+            } catch (e: Exception) {
+                view.onLoginFailed("${e.message}")
+            }
         }
     }
 
@@ -47,10 +52,14 @@ class AuthController(private var view: IAuthView) : IAuthController {
      */
     override fun onSignUp(email: String, password: String, confirmPassword: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            authService.signUp(email, password, confirmPassword)
-            authService.signIn(email, password)
+            try {
+                authService.signUp(email, password, confirmPassword)
+                authService.signIn(email, password)
 
-            view.onSignUpSuccess()
+                view.onSignUpSuccess()
+            } catch (e: Exception) {
+                view.onSignUpFailed("${e.message}")
+            }
         }
     }
 
@@ -59,12 +68,12 @@ class AuthController(private var view: IAuthView) : IAuthController {
      */
     override fun onForgotPassword(email: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            val isSuccess = authService.sendResetPasswordEmail(email)
+            try {
+                authService.sendResetPasswordEmail(email)
 
-            if (isSuccess) {
                 view.onForgotPasswordSuccess("Please check your email to reset your password")
-            } else {
-                view.onForgotPasswordFailed("Email not found")
+            } catch (e: Exception) {
+                view.onForgotPasswordFailed("${e.message}")
             }
         }
     }
@@ -74,12 +83,11 @@ class AuthController(private var view: IAuthView) : IAuthController {
      */
     override fun onChangePassword(password: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            val isSuccess = authService.updatePassword(password)
-
-            if (isSuccess) {
+            try {
+                authService.updatePassword(password)
                 view.onChangePasswordSuccess("Password changed")
-            } else {
-                view.onChangePasswordFailed("The password change was unsuccessful. Please try again")
+            } catch (e: Exception) {
+                view.onChangePasswordFailed("${e.message}")
             }
         }
     }
@@ -88,6 +96,10 @@ class AuthController(private var view: IAuthView) : IAuthController {
      * Sign out
      */
     override fun onSignOut() {
-        authService.signOut()
+        try {
+            authService.signOut()
+        } catch (e: Exception) {
+            Log.d("AuthController", e.message.toString())
+        }
     }
 }
