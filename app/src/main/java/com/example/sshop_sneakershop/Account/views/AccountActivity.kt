@@ -23,7 +23,7 @@ import com.google.firebase.ktx.Firebase
 import com.mikhaellopez.circularimageview.CircularImageView
 import com.squareup.picasso.Picasso
 
-class AccountActivity : AppCompatActivity(), IAccountView {
+class AccountActivity : AppCompatActivity(), IAccountActivity {
     private lateinit var linearInfoLayout: LinearLayout
     private lateinit var linearPaymentLayout: LinearLayout
     private lateinit var paymentRcView: RecyclerView
@@ -192,14 +192,6 @@ class AccountActivity : AppCompatActivity(), IAccountView {
 
     override fun onGetUserFail(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onUpdateUserInfoSuccess(account: Account) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onUpdateUserInfoFail(message: String) {
-        TODO("Not yet implemented")
     }
 
     override fun onUpdateUserPaymentSuccess(account: Account) {

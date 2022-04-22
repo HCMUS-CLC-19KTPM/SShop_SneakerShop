@@ -23,10 +23,10 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 
-class AccountEditActivity : AppCompatActivity(), IAccountView {
+class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditActivity {
     private val auth = Firebase.auth
 
-    private val accountController = AccountController(this)
+    private val accountController = AccountController(this, this)
 
     private var account: Account? = null
 
@@ -187,7 +187,7 @@ class AccountEditActivity : AppCompatActivity(), IAccountView {
     }
 
     override fun onGetUserFail(message: String) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onUpdateUserInfoSuccess(account: Account) {
@@ -202,8 +202,8 @@ class AccountEditActivity : AppCompatActivity(), IAccountView {
         dobEditText.setText(account.dob)
     }
 
-    override fun onUpdateUserInfoFail(message: String) {
-        TODO("Not yet implemented")
+    override fun onUpdateUserInfoFailed(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onUpdateUserPaymentSuccess(account: Account) {

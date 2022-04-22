@@ -4,21 +4,22 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Order.controllers.OrderController
+import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Review.views.ReviewBottomSheetDialog
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.sshop_sneakershop.databinding.ActivityOrderDetailBinding
+import com.example.sshop_sneakershop.databinding.ActivityUserBinding
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 
-class OrderDetailActivity : AppCompatActivity() {
+class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity {
 
     private lateinit var orderController: OrderController
     private val products: ArrayList<Product> = ArrayList()
@@ -34,29 +35,30 @@ class OrderDetailActivity : AppCompatActivity() {
     private lateinit var confirmBtn: Button
     private lateinit var productRecyclerView: RecyclerView
 
+    private lateinit var binding: ActivityOrderDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_detail)
+        binding = ActivityOrderDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        orderController = OrderController()
+        orderController = OrderController(orderDetailActivity = this)
 
-        productRecyclerView = findViewById(R.id.order_detail_recycler_view)
+        estimateDateTextView = binding.orderDetailTextviewEstimateDate1
+        deliveryDescriptionTextView = binding.orderDetailTextviewDeliveryDescription
+        startDateTextView = binding.orderDetailTextviewStartDate
+        endDateTextView = binding.orderDetailTextviewEstimatedDate2
+        customerName = binding.orderDetailTextviewCustomerName
+        customerAddress = binding.orderDetailTextviewCustomerAddress
+        customerPhone = binding.orderDetailTextviewCustomerPhone
+        totalCost = binding.orderDetailTextviewTotalCost
+        confirmBtn = binding.orderDetailButtonConfirm
 
-        estimateDateTextView = findViewById(R.id.order_detail_textview_estimate_date_1)
-        deliveryDescriptionTextView = findViewById(R.id.order_detail_textview_delivery_description)
-        startDateTextView = findViewById(R.id.order_detail_textview_start_date)
-        endDateTextView = findViewById(R.id.order_detail_textview_estimated_date_2)
-        customerName = findViewById(R.id.order_detail_textview_customer_name)
-        customerAddress = findViewById(R.id.order_detail_textview_customer_address)
-        customerPhone = findViewById(R.id.order_detail_textview_customer_phone)
-        totalCost = findViewById(R.id.order_detail_textview_total_cost)
-        confirmBtn = findViewById(R.id.order_detail_button_confirm)
-
-        val adapter = ProductItemAdapter(products)
-
-        productRecyclerView.adapter = adapter
-
-        productRecyclerView.layoutManager = LinearLayoutManager(this) //GridLayoutManager(this, 2)
+        productRecyclerView = binding.orderDetailRecyclerView
+        productRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@OrderDetailActivity) //GridLayoutManager(this, 2)
+            adapter = ProductItemAdapter(products)
+        }
 
         confirmBtn.setOnClickListener {
             val reviewDialog = ReviewBottomSheetDialog()
@@ -66,11 +68,11 @@ class OrderDetailActivity : AppCompatActivity() {
         getOrder()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @OptIn(DelicateCoroutinesApi::class)
+    @SuppressLint("NotifyDataSetChanged", "SimpleDateFormat")
     private fun getOrder() {
         GlobalScope.launch(Dispatchers.Main) {
             val formatter = SimpleDateFormat("dd/MM/yyyy")
-
             val order = orderController.getOrderById("yy3U8c8oYyejCrhcXHJR")
             if (order != null) {
                 products.addAll(order.cart)
@@ -90,5 +92,25 @@ class OrderDetailActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    @SuppressLint("SimpleDateFormat", "NotifyDataSetChanged")
+    override fun onGetOrderByIdSuccess(order: Order) {
+        products.addAll(order.cart)
+
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        estimateDateTextView.text = formatter.format(order.endDate)
+        deliveryDescriptionTextView.text = order.deliveryStatus
+        startDateTextView.text = formatter.format(order.startDate)
+        endDateTextView.text = formatter.format(order.endDate)
+        customerName.text = order.name
+        customerAddress.text = order.address
+        customerPhone.text = order.phone
+        totalCost.text = order.totalCost.toString()
+        productRecyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onGetOrderByIdFailed(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

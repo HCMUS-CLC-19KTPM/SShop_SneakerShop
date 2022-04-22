@@ -2,13 +2,17 @@ package com.example.sshop_sneakershop.Account.controllers
 
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.AccountModel
-import com.example.sshop_sneakershop.Account.views.IAccountView
+import com.example.sshop_sneakershop.Account.views.IAccountActivity
+import com.example.sshop_sneakershop.Account.views.IAccountEditActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AccountController(private val view: IAccountView? = null) : IAccountController {
+class AccountController(
+    private val accountActivity: IAccountActivity? = null,
+    private val editActivity: IAccountEditActivity? = null
+) : IAccountController {
 
     private val accountModel = AccountModel()
 
@@ -35,12 +39,12 @@ class AccountController(private val view: IAccountView? = null) : IAccountContro
             try {
                 val account = accountModel.getUser()
                 if (account != null) {
-                    view?.onGetUserSuccess(account)
+                    accountActivity?.onGetUserSuccess(account)
                 } else {
-                    view?.onGetUserFail("User not found")
+                    accountActivity?.onGetUserFail("User not found")
                 }
             } catch (e: Exception) {
-                view?.onGetUserFail("Error: ${e.message}")
+                accountActivity?.onGetUserFail("Error: ${e.message}")
             }
         }
     }
@@ -66,12 +70,12 @@ class AccountController(private val view: IAccountView? = null) : IAccountContro
                 val updatedAccount = updateUserInfo(account)
 
                 if (updatedAccount != null) {
-                    view?.onUpdateUserInfoSuccess(updatedAccount)
+                    editActivity?.onUpdateUserInfoSuccess(updatedAccount)
                 } else {
-                    view?.onUpdateUserInfoFail("Update user info fail, please check your internet connection")
+                    editActivity?.onUpdateUserInfoFailed("Update user info fail, please check your internet connection")
                 }
             } catch (e: Exception) {
-                view?.onGetUserFail("Error: ${e.message}")
+                editActivity?.onUpdateUserInfoFailed("Error: ${e.message}")
             }
         }
     }
@@ -94,12 +98,12 @@ class AccountController(private val view: IAccountView? = null) : IAccountContro
             try {
                 val updatedAccount = updateUserPayment(account)
                 if (updatedAccount != null) {
-                    view?.onUpdateUserPaymentSuccess(updatedAccount)
+                    accountActivity?.onUpdateUserPaymentSuccess(updatedAccount)
                 } else {
-                    view?.onUpdateUserPaymentFail("Update user payment fail, please check your internet connection")
+                    accountActivity?.onUpdateUserPaymentFail("Update user payment fail, please check your internet connection")
                 }
             } catch (e: Exception) {
-                view?.onGetUserFail("Error: ${e.message}")
+                accountActivity?.onGetUserFail("Error: ${e.message}")
             }
         }
     }

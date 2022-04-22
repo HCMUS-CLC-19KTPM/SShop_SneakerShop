@@ -60,24 +60,22 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity {
         val checkoutButton = findViewById<Button>(R.id.cart_button_confirm)
         checkoutButton.setOnClickListener {
             // Create order
-            GlobalScope.launch(Dispatchers.Main) {
-                orderController.onCreateOrder(
-                    Order(
-                        "",
-                        account.fullName!!,
-                        account.phone!!,
-                        account.address!!,
-                        productsInCart,
-                        "Chờ xác nhận",
-                        Date(),
-                        Date(),
-                        Date(),
-                        0.0,
-                        cart.totalCost,
-                        account.id
-                    )
+            orderController.onCreateOrder(
+                Order(
+                    "",
+                    account.fullName!!,
+                    account.phone!!,
+                    account.address!!,
+                    productsInCart,
+                    "On Delivery",
+                    Date(),
+                    Date(),
+                    Date(),
+                    0.0,
+                    cart.totalCost,
+                    account.id
                 )
-            }
+            )
         }
 
         cartController = CartController(this)

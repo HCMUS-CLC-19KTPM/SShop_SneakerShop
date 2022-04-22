@@ -2,10 +2,14 @@ package com.example.sshop_sneakershop.Order.controllers
 
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.Order.models.OrderModel
+import com.example.sshop_sneakershop.Order.views.IOrderDetailActivity
 import com.example.sshop_sneakershop.Order.views.IOrderListActivity
 import kotlinx.coroutines.*
 
-class OrderController(private val activity: IOrderListActivity? = null): IOrderController {
+class OrderController(
+    private val orderListActivity: IOrderListActivity? = null,
+    private val orderDetailActivity: IOrderDetailActivity? = null
+) : IOrderController {
     private val orderModel = OrderModel()
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -15,13 +19,33 @@ class OrderController(private val activity: IOrderListActivity? = null): IOrderC
                 val orders = orderModel.getAllOrders()
 
                 withContext(Dispatchers.Main) {
-                    activity?.onGetAllOrdersSuccess(orders)
+                    orderListActivity?.onGetAllOrdersSuccess(orders)
                 }
             } catch (e: Exception) {
-                activity?.onGetAllOrdersFailed("Error: ${e.message}")
+                withContext(Dispatchers.Main) {
+                    orderListActivity?.onGetAllOrdersFailed("Error: ${e.message}")
+                }
             }
         }
     }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    override fun onGetOrderById(id: String) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val order = orderModel.getOrderById(id)
+
+                withContext(Dispatchers.Main) {
+                    order?.let { orderDetailActivity?.onGetOrderByIdSuccess(it) }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    orderDetailActivity?.onGetOrderByIdFailed("Error: ${e.message}")
+                }
+            }
+        }
+    }
+
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreateOrder(order: Order) {
@@ -30,10 +54,12 @@ class OrderController(private val activity: IOrderListActivity? = null): IOrderC
                 val newOrder = orderModel.createOrder(order)
 
                 withContext(Dispatchers.Main) {
-                    activity?.onCreateOrderSuccess(newOrder)
+                    orderListActivity?.onCreateOrderSuccess(newOrder)
                 }
             } catch (e: Exception) {
-                activity?.onCreateOrderFailed("Error: ${e.message}")
+                withContext(Dispatchers.Main) {
+                    orderListActivity?.onCreateOrderFailed("Error: ${e.message}")
+                }
             }
         }
     }
