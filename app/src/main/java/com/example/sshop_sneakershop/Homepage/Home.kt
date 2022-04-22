@@ -69,8 +69,8 @@ class Home : AppCompatActivity(), ItemClickListener,
         navView.setNavigationItemSelectedListener(this)
         val toolbar: androidx.appcompat.widget.Toolbar = bindings.appBarNavigation.toolbar
         val drawerLayout: DrawerLayout = bindings.drawerLayout
-        val openState: Int = 1
-        val closeState: Int = 0
+        val openState = 1
+        val closeState = 0
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, openState, closeState)
         //drawerLayout.setDrawerListener(toggle)
         //Get binding inside content

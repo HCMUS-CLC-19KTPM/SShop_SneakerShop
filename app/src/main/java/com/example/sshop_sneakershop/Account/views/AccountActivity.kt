@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop.Account.views
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -7,34 +8,25 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.gridlayout.widget.GridLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.models.Account
+import com.example.sshop_sneakershop.Account.models.Payment
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
-import com.example.sshop_sneakershop.Cart.CartActivity
-import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityUserBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mikhaellopez.circularimageview.CircularImageView
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
-class AccountActivity : AppCompatActivity() {
-    private val accountController: AccountController = AccountController()
-    private val auth = Firebase.auth
-
-    private lateinit var editInfoBtn: Button
-    private lateinit var editPaymentBtn: Button
-
+class AccountActivity : AppCompatActivity(), IAccountView {
     private lateinit var linearInfoLayout: LinearLayout
     private lateinit var linearPaymentLayout: LinearLayout
+    private lateinit var paymentRcView: RecyclerView
 
     private lateinit var avatarImageView: CircularImageView
     private lateinit var usernameTextView: TextView
@@ -44,30 +36,37 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var phoneTextView: TextView
     private lateinit var genderTextView: TextView
     private lateinit var birthdayTextView: TextView
-
+    private lateinit var editInfoBtn: Button
+    private lateinit var editPaymentBtn: Button
     private lateinit var logoutBtn: Button
+
     private lateinit var binding: ActivityUserBinding
+
+    private lateinit var accountController: AccountController
+    private val auth = Firebase.auth
+
+    private val paymentList = ArrayList<Payment>()
 
     override fun onStart() {
         super.onStart()
 
+        // Check if user is signed in (non-null) if not, go to login page
         if (auth.currentUser == null) {
             startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
+
+        // TODO: Get latest account info
+        accountController.onGetUser()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        accountController = AccountController(this)
+
         binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Create account's profile info
-        createAccountsProfile()
-
-        // Create payment methods info
-        createPaymentMethods()
 
         //Back to home
         binding.profileToolbar.setNavigationOnClickListener { finish() }
@@ -79,24 +78,28 @@ class AccountActivity : AppCompatActivity() {
             finish()
         }
 
+        // Create account's profile info
+        createAccountProfile()
+        // Create payment methods info
+        createPaymentMethods()
     }
 
-    private fun createAccountsProfile() {
+    /**
+     * Create account's profile info
+      */
+    private fun createAccountProfile() {
+        avatarImageView = binding.profileImageAvatar
+        usernameTextView = binding.profileTextUsername
+        nameTextView = binding.profileTextValueName
+        emailTextView = binding.profileTextValueEmail
+        addressTextView = binding.profileTextValueAddress
+        phoneTextView = binding.profileTextValuePhone
+        genderTextView = binding.profileTextValueGender
+        birthdayTextView = binding.profileTextValueDob
+        editInfoBtn = binding.profileButtonEditInfo
 
-        avatarImageView = findViewById(R.id.profile_image_avatar)
-        usernameTextView = findViewById(R.id.profile_text_username)
-        nameTextView = findViewById(R.id.profile_text_valueName)
-        emailTextView = findViewById(R.id.profile_text_valueEmail)
-        addressTextView = findViewById(R.id.profile_text_valueAddress)
-        phoneTextView = findViewById(R.id.profile_text_valuePhone)
-        genderTextView = findViewById(R.id.profile_text_valueGender)
-        birthdayTextView = findViewById(R.id.profile_text_valueDob)
-
-        editInfoBtn = findViewById(R.id.profile_button_editInfo)
-
-        val infoView = findViewById<GridLayout>(R.id.gridLayout)
-
-        linearInfoLayout = findViewById(R.id.profile_linearLayout_accDetail)
+        val infoView = binding.gridLayout
+        linearInfoLayout = binding.profileLinearLayoutAccDetail
         linearInfoLayout.setOnClickListener {
             if (infoView.visibility == View.GONE) {
                 infoView.visibility = View.VISIBLE
@@ -107,7 +110,7 @@ class AccountActivity : AppCompatActivity() {
             }
         }
 
-        val showInfoBtn = findViewById<Button>(R.id.profile_button_showAccDetail)
+        val showInfoBtn = binding.profileButtonShowAccDetail
         showInfoBtn.setOnClickListener {
             if (infoView.visibility == View.GONE) {
                 infoView.visibility = View.VISIBLE
@@ -123,45 +126,27 @@ class AccountActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        GlobalScope.launch(Dispatchers.Main) {
-            val account = accountController.getUser(auth.currentUser!!.email!!)
-
-            if (account != null) {
-                if (!TextUtils.isEmpty(account.avatar)) Picasso.get().load(account.avatar)
-                    .into(avatarImageView)
-                usernameTextView.text = account.fullName
-                nameTextView.text = account.fullName
-                emailTextView.text = account.email
-                addressTextView.text = account.address
-                phoneTextView.text = account.phone
-                genderTextView.text = account.gender
-                birthdayTextView.text = account.dob
-            }
-        }
+        // Get account's info from database
+        accountController.onGetUser()
     }
 
+    /**
+     * Create payment methods info
+     */
     private fun createPaymentMethods() {
-        editPaymentBtn = findViewById(R.id.profile_button_editPayment)
+        editPaymentBtn = binding.profileButtonEditPayment
         editPaymentBtn.visibility = View.GONE
 
-        val paymentRcView = findViewById<RecyclerView>(R.id.recyclerView)
+        paymentRcView = binding.recyclerView
+        paymentRcView.apply {
+            layoutManager = LinearLayoutManager(this@AccountActivity)
+            adapter = PaymentItemAdapter(paymentList)
+        }
         paymentRcView.visibility = View.GONE
 
-        GlobalScope.launch(Dispatchers.Main) {
-            val account = accountController.getUser(auth.currentUser!!.email!!)
-            if (account != null) {
-                val paymentList = account.payments
-                if (paymentList !== null) {
-                    val paymentAdapter = PaymentItemAdapter(paymentList)
-                    paymentRcView.adapter = paymentAdapter
-                    paymentRcView.layoutManager = LinearLayoutManager(this@AccountActivity)
-                }
-            }
-        }
-
-        linearPaymentLayout = findViewById(R.id.profile_linearLayout_payment)
+        linearPaymentLayout = binding.profileLinearLayoutPayment
         linearPaymentLayout.setOnClickListener {
-            if(paymentRcView.visibility == View.GONE) {
+            if (paymentRcView.visibility == View.GONE) {
                 paymentRcView.visibility = View.VISIBLE
                 editPaymentBtn.visibility = View.VISIBLE
             } else {
@@ -170,9 +155,9 @@ class AccountActivity : AppCompatActivity() {
             }
         }
 
-        val showPaymentBtn = findViewById<Button>(R.id.profile_button_showPayment)
+        val showPaymentBtn = binding.profileButtonShowPayment
         showPaymentBtn.setOnClickListener {
-            if(paymentRcView.visibility == View.GONE) {
+            if (paymentRcView.visibility == View.GONE) {
                 paymentRcView.visibility = View.VISIBLE
                 editPaymentBtn.visibility = View.VISIBLE
             } else {
@@ -185,5 +170,43 @@ class AccountActivity : AppCompatActivity() {
             val intent = Intent(this, PaymentEditActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetUserSuccess(account: Account) {
+        // User's info
+        if (!TextUtils.isEmpty(account.avatar)) Picasso.get().load(account.avatar)
+            .into(avatarImageView)
+        usernameTextView.text = account.fullName
+        nameTextView.text = account.fullName
+        emailTextView.text = account.email
+        addressTextView.text = account.address
+        phoneTextView.text = account.phone
+        genderTextView.text = account.gender
+        birthdayTextView.text = account.dob
+
+        // Payment list
+        account.payments?.let { paymentList.addAll(it) }
+        paymentRcView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onGetUserFail(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onUpdateUserInfoSuccess(account: Account) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateUserInfoFail(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateUserPaymentSuccess(account: Account) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateUserPaymentFail(message: String) {
+        TODO("Not yet implemented")
     }
 }

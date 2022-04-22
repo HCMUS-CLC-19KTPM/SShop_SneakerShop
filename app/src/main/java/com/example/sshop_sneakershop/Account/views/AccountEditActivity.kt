@@ -129,7 +129,7 @@ class AccountEditActivity : AppCompatActivity(), IAccountView {
             updateUserInfo()
         }
 
-        accountController.onGetUser(auth.currentUser!!.email!!)
+        accountController.onGetUser()
     }
 
     @OptIn(DelicateCoroutinesApi::class)

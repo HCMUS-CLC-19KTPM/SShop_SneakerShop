@@ -9,6 +9,9 @@ import kotlinx.coroutines.tasks.await
 class CartModel {
     private val db = Firebase.firestore
 
+    /**
+     * Get cart by user id
+     */
     @Throws(Exception::class)
     suspend fun getCart(): Cart? {
         var cart: Cart? = null
@@ -36,7 +39,7 @@ class CartModel {
     }
 
     /**
-     * Add to cart
+     * Add to cart by user id
      */
     @Throws(Exception::class)
     suspend fun addToCart(productId: String, size: String) {
@@ -44,8 +47,8 @@ class CartModel {
             val cart = getCart()
             val productList = cart!!.productList
             val product = db.collection("product").document(productId).get().await().toObject(
-                    Product::class.java
-                )
+                Product::class.java
+            )
 
             if (productList.stream().noneMatch { it.id == productId }) {
                 product!!.quantity = 1
@@ -72,7 +75,7 @@ class CartModel {
     }
 
     /**
-     * Update cart
+     * Update product list and total cost
      */
     @Throws(Exception::class)
     suspend fun updateProductList(cart: Cart) {
