@@ -36,28 +36,6 @@ class CartController(private val activity: ICartView? = null) : ICartController 
     }
 
     /**
-     * Get cart in real time
-     */
-    @OptIn(DelicateCoroutinesApi::class)
-    override fun onGetCartRealtime() {
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                val cart = cartModel.getCartRealtime()
-
-                withContext(Dispatchers.Main) {
-                    if (cart != null) {
-                        activity?.onGetCartSuccess(cart)
-                    } else {
-                        activity?.onGetCartFailed("Something went wrong")
-                    }
-                }
-            } catch (e: Exception) {
-                activity?.onGetCartFailed("Error: ${e.message}")
-            }
-        }
-    }
-
-    /**
      * Add product to product list
      */
     suspend fun addToCart(productId: String, size: String) {
