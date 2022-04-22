@@ -35,6 +35,28 @@ class CartModel {
         return cart
     }
 
+    @Throws(Exception::class)
+    fun getCartRealtime(): Cart? {
+        var cart: Cart? = null
+        val userId = Firebase.auth.currentUser?.uid
+
+        try {
+            db.collection("cart").whereEqualTo("userId", userId).addSnapshotListener { snapshot, exception ->
+                if (exception != null) {
+                    throw exception
+                }
+
+                snapshot?.forEach {
+                    cart = it.toObject(Cart::class.java)
+                }
+            }
+        } catch (e: Exception) {
+            throw e
+        }
+
+        return cart
+    }
+
     /**
      * Add to cart
      */

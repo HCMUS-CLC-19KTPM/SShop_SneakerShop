@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
@@ -22,7 +21,6 @@ import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.navigation.NavigationBarMenu
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -75,11 +73,15 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
     override fun onStart() {
         super.onStart()
 
+        // Check if user is signed in (non-null) if not go to login page
         val auth = Firebase.auth
         if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
             startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
+
+        // Get latest data from Firebase
+        cartController.onGetCart()
     }
 
     override fun onPause() {

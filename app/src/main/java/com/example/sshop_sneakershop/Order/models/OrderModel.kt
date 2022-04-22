@@ -46,9 +46,9 @@ class OrderModel {
             order.id = id
 
             // TODO: Empty product list in cart when order is created
-//            db.collection("cart").whereEqualTo("userId", userId).get().await().forEach {
-//                it.reference.update("productList", ArrayList<Product>()).await()
-//            }
+            db.collection("cart").whereEqualTo("userId", userId).get().await().forEach {
+                it.reference.update("productList", ArrayList<Product>()).await()
+            }
 
         } catch (e: Exception) {
             throw e
