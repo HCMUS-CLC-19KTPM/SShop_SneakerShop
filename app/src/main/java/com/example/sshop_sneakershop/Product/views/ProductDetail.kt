@@ -27,6 +27,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
     private lateinit var productController: ProductController
     private lateinit var cartController: CartController
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
