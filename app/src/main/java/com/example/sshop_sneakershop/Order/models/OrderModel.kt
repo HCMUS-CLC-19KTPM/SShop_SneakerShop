@@ -83,7 +83,9 @@ class OrderModel {
                                 throw Exception("Out of stock")
                             }
                         }
-                        else -> {}
+                        else -> {
+                            throw Exception("Size not found")
+                        }
                     }
                 }
                 db.collection("product").document(product.id).update("stock", stock)
