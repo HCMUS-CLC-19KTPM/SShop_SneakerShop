@@ -23,6 +23,7 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductView {
     private lateinit var category: String
     private lateinit var binding: ActivityGroupItemBinding
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGroupItemBinding.inflate(layoutInflater)
@@ -45,6 +46,43 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductView {
         }
 
         productController.onGetProductsByCategory(category)
+
+        var stateLike = false
+        var statePrice = false
+        var stateTime = false
+
+        binding.likeSortButton.setOnClickListener {
+            stateLike = if (!stateLike) {
+                productList.sortBy { it.rating }
+                true
+            } else {
+                productList.sortByDescending { it.rating }
+                false
+            }
+            binding.productRecyclerView.adapter?.notifyDataSetChanged()
+        }
+
+        binding.priceSortButton.setOnClickListener {
+            statePrice = if (!statePrice) {
+                productList.sortBy { it.price }
+                true
+            } else {
+                productList.sortByDescending { it.price }
+                false
+            }
+            binding.productRecyclerView.adapter?.notifyDataSetChanged()
+        }
+
+        binding.dateSortButton.setOnClickListener {
+            stateTime = if (!stateTime) {
+                productList.sortBy { it.releaseDate }
+                true
+            } else {
+                productList.sortByDescending { it.releaseDate }
+                false
+            }
+            binding.productRecyclerView.adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onClick(product: Product) {
