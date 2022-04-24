@@ -156,7 +156,6 @@
                 android:textColorLink="@color/white"
                 android:textColorHint="@color/white"
                 app:boxStrokeColor="@color/white"
-                app:outlineBoxStrokeColor="@color/white"
                 app:hintTextColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/AddPayment_textInputLayout_number"
                 app:layout_constraintEnd_toEndOf="parent"
