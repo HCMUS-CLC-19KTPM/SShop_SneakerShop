@@ -28,7 +28,7 @@ class PaymentItemAdapter(private val payments:ArrayList<Payment>?): RecyclerView
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val payment = payments!![position]
         holder.nameTextView.text = payment.name
-        holder.cardNumberTextView.text = payment.number
+        ("**** **** **** " + payment.number.substring(15,19)).also { holder.cardNumberTextView.text = it }
         val pattern = "dd-MM-yyyy"
         val simpleDateFormat = SimpleDateFormat(pattern)
         val date: String = simpleDateFormat.format(payment.since)

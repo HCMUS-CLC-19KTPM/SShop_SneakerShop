@@ -2,7 +2,9 @@ package com.example.sshop_sneakershop.Account.views
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Account.controllers.AccountController
@@ -65,6 +67,23 @@ class AddPaymentActivity : AppCompatActivity() {
             }
         }
 
+        editTextNumber.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence, arg1: Int, arg2: Int,
+                arg3: Int
+            ) {
+            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                val initial = s.toString()
+                var processed = initial.replace("\\D".toRegex(), "")
+                processed = processed.replace("(\\d{4})(?=\\d)".toRegex(), "$1 ")
+                if (initial != processed) {
+                    s.replace(0, initial.length, processed)
+                }
+            }
+        })
+
         editTextSince.setOnClickListener {
             picker = DatePickerDialog(
                 this,
@@ -102,7 +121,11 @@ class AddPaymentActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(editTextNumber.text.toString().trim())) {
                 notification = "The card number must not be empty."
             } else {
-                payment.number = editTextNumber.text.toString()
+                if (editTextNumber.text.toString().length < 19) {
+                    notification = "The card number must be 16 digits."
+                } else {
+                    payment.number = editTextNumber.text.toString()
+                }
             }
 
             if (TextUtils.isEmpty(editTextSince.text.toString().trim())) {
@@ -124,6 +147,7 @@ class AddPaymentActivity : AppCompatActivity() {
                             account!!.payments = paymentList
                             account = accountController.updateUserPayment(account!!)
                         }
+                        finish()
                     }
                 }
             }

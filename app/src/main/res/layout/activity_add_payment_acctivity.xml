@@ -152,6 +152,10 @@
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/white"
                 android:hint="Name"
+                android:textColor="@color/white"
+                android:textColorLink="@color/white"
+                android:textColorHint="@color/white"
+                android:theme="@style/TextInputLayoutStyle"
                 app:boxStrokeColor="@color/white"
                 app:hintTextColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/AddPayment_textInputLayout_number"
@@ -162,7 +166,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/AddPayment_textInputET_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -171,7 +177,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/white"
                 android:hint="Card Number"
+                android:textColor="@color/white"
+                android:textColorLink="@color/white"
+                android:textColorHint="@color/white"
+                android:theme="@style/TextInputLayoutStyle"
                 app:boxStrokeColor="@color/white"
                 app:hintTextColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +193,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/AddPayment_textInputET_number"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="19"
+                    android:textColor="@color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -191,7 +205,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/white"
                 android:hint="Since Date"
+                android:textColor="@color/white"
+                android:textColorLink="@color/white"
+                android:textColorHint="@color/white"
+                android:theme="@style/TextInputLayoutStyle"
                 app:boxStrokeColor="@color/white"
                 app:hintTextColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/AddPayment_image"
@@ -203,7 +222,8 @@
                     android:id="@+id/AddPayment_textInputET_since"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:textColor="@color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

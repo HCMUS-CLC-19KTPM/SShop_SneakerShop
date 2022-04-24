@@ -186,7 +186,9 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
         birthdayTextView.text = account.dob
 
         // Payment list
-        account.payments?.let { paymentList.addAll(it) }
+        account.payments?.let {
+            paymentList.clear()
+            paymentList.addAll(it) }
         paymentRcView.adapter?.notifyDataSetChanged()
     }
 
