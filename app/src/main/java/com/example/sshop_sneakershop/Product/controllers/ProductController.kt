@@ -22,9 +22,13 @@ class ProductController(private val view: IProductView? = null) : IProductContro
     /**
      * Get all products 2
      */
-    override fun onGetAllProducts() {
+    override fun onGetAllProducts(limit: Long?) {
         CoroutineScope(Dispatchers.Main).launch {
-            val products = model.getAllProducts()
+            val products = if (limit != null) {
+                model.getAllProducts(limit)
+            } else {
+                model.getAllProducts()
+            }
             withContext(Dispatchers.Main) {
                 view?.onShowAllProducts(products)
             }

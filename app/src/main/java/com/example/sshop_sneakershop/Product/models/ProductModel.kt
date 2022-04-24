@@ -2,6 +2,7 @@ package com.example.sshop_sneakershop.Product.models
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -12,11 +13,13 @@ class ProductModel {
     /**
      * Get all products
      */
-    suspend fun getAllProducts(): ArrayList<Product> {
+    suspend fun getAllProducts(limit: Long = 10_000): ArrayList<Product> {
         val products = ArrayList<Product>()
 
         try {
             db.collection("product")
+                .limit(limit)
+                .orderBy("releaseDate", Query.Direction.DESCENDING)
                 .get()
                 .await()
                 .documents

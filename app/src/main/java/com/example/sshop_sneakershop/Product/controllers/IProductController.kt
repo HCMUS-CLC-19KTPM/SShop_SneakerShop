@@ -6,7 +6,7 @@ interface IProductController {
     suspend fun getAllProducts(): ArrayList<Product>
     suspend fun getProductById(id: String): Product
     suspend fun getProductsByCategory(category: String): ArrayList<Product>
-    fun onGetAllProducts()
+    fun onGetAllProducts(limit: Long? = null)
     fun onGetProductById(id: String)
     fun onGetProductsByCategory(category: String)
 }

@@ -129,7 +129,7 @@ class Home : AppCompatActivity(), ItemClickListener,
         }
 
         //Item list initialization
-        productController.onGetAllProducts()
+        productController.onGetAllProducts(7)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
