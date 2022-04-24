@@ -64,6 +64,7 @@ class ProductModel {
         try {
             db.collection("product")
                 .whereEqualTo("category", category)
+                .orderBy("releaseDate", Query.Direction.DESCENDING)
                 .get()
                 .await()
                 .documents
