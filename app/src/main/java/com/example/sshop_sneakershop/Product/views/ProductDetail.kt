@@ -17,6 +17,8 @@ import com.example.sshop_sneakershop.Review.views.ReviewAdapter
 import com.example.sshop_sneakershop.databinding.ActivityItemDetailBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
 class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
@@ -42,7 +44,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         binding.recyclerViewRelated.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ProductAdapter(productList, mainActivity)
+            adapter = ProductAdapter(productList, mainActivity, productList)
         }
 
         binding.recyclerViewReview.apply {
@@ -81,7 +83,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
 
     override fun onClick(product: Product) {
         val intent = Intent(applicationContext, ProductDetail::class.java)
-        intent.putExtra("itemID", product.id)
+        intent.putExtra("item-id", product.id)
         startActivity(intent)
         finish()
     }
@@ -145,8 +147,11 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         binding.pictureTitle.text = product.brand
         binding.categoryTag.text = product.category
         binding.productName.text = product.name
-        val priceValue = product.price - 1.0
-        binding.productPrice.text = "$$priceValue"
+        val priceValue = product.price - (product.price * product.discount / 100)
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.DOWN
+//        val priceValue = product.price - 1.0
+        binding.productPrice.text = "$${df.format(priceValue)}"
         val priceOldValue = product.price
         binding.productOldPrice.text = "$$priceOldValue"
         val ratingValue = product.rating

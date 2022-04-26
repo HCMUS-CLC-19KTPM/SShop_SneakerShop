@@ -12,31 +12,30 @@ import com.squareup.picasso.Picasso
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-
-class CardViewHolder(
-    private val cardCellBinding: RelatedProductListItemBinding,
+class CustomCardViewHolder(
+    private val cardCellBinding: ProductListItemBinding,
     private val clickListener: ItemClickListener
 ) : RecyclerView.ViewHolder(cardCellBinding.root) {
     @SuppressLint("SetTextI18n")
     fun bindItem(product: Product) {
 
-        if (TextUtils.isEmpty(product.image)) cardCellBinding.image.setImageResource(R.drawable.shoe) else Picasso.get()
-            .load(product.image).into(cardCellBinding.image)
+        if (TextUtils.isEmpty(product.image)) cardCellBinding.productImage1.setImageResource(R.drawable.shoe) else Picasso.get()
+            .load(product.image).into(cardCellBinding.productImage1)
 
-        cardCellBinding.name.text =
+        cardCellBinding.productTextviewName.text =
             if (product.name.length >= 8) "${product.name.substring(0, 8)}..." else product.name
 
-//            val price = "$" + product.price.toString()
-//            cardCellBinding.price.text = price
-        val price =
-            product.price - (product.price * product.discount / 100)
-        val df = DecimalFormat("#.##")
-        df.roundingMode = RoundingMode.DOWN
-        cardCellBinding.price.text = "$${df.format(price)}"
-
-        cardCellBinding.cardView.setOnClickListener {
+        cardCellBinding.productTextviewPrice.text = "$" + product.price * product.quantity
+        cardCellBinding.productTextviewQuantity.text = product.quantity.toString()
+        cardCellBinding.productTextviewDescription.text =
+            if (product.description!!.length >= 20) "${
+                product.description!!.substring(
+                    0,
+                    80
+                )
+            }..." else product.description
+        cardCellBinding.card.setOnClickListener {
             clickListener.onClick(product)
         }
-
     }
 }

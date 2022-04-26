@@ -12,7 +12,7 @@ import com.example.sshop_sneakershop.databinding.ActivitySearchBinding
 
 class Search : AppCompatActivity(), ItemClickListener {
     private lateinit var binding: ActivitySearchBinding
-    private lateinit var productList: List<Product>
+    private lateinit var productList: ArrayList<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +22,13 @@ class Search : AppCompatActivity(), ItemClickListener {
         binding.title.text = "Result for 'Very chonk'"
 
         val myItem = Product("", 83.03,"Grand Court",R.drawable.shoe)
-        productList = listOf(myItem,myItem,myItem,myItem,myItem,myItem,myItem,myItem
+        productList = arrayListOf(myItem,myItem,myItem,myItem,myItem,myItem,myItem,myItem
             ,myItem,myItem,myItem,myItem)
 
         val mainActivity = this
         binding.searchRecyclerView.apply {
             layoutManager = GridLayoutManager(applicationContext, 2)
-            adapter = ProductAdapter(productList,mainActivity)
+            adapter = ProductAdapter(productList,mainActivity, productList)
         }
 
     }

@@ -125,7 +125,7 @@ class Home : AppCompatActivity(), ItemClickListener,
         binding.homeRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ProductAdapter(productList, mainActivity)
+            adapter = ProductAdapter(productList, mainActivity, productList)
         }
 
         //Item list initialization

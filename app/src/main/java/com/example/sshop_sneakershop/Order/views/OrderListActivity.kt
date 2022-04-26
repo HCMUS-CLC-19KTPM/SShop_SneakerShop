@@ -83,6 +83,7 @@ class OrderListActivity : AppCompatActivity(), IOrderListActivity, OrderClickLis
     }
 
     override fun onGetAllOrdersFailed(message: String) {
+        Log.i("error", message)
         MaterialAlertDialogBuilder(this)
             .setTitle("Error")
             .setMessage(message)

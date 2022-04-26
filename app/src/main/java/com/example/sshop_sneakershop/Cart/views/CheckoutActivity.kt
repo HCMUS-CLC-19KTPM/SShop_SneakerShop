@@ -12,12 +12,15 @@ import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Cart.controllers.CartController
 import com.example.sshop_sneakershop.Cart.models.Cart
+import com.example.sshop_sneakershop.Homepage.ItemClickListener
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.Order.views.IOrderListActivity
 import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.Product.models.Product
-import com.example.sshop_sneakershop.Product.views.ProductItemAdapter
+import com.example.sshop_sneakershop.Product.views.CustomProductAdapter
+import com.example.sshop_sneakershop.Product.views.ProductAdapter
+import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -26,7 +29,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
-class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity {
+class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity, ItemClickListener {
     private lateinit var cartController: CartController
     private lateinit var orderController: OrderController
     private lateinit var accountController: AccountController
@@ -45,9 +48,10 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity {
         // Lookup the recyclerview in activity layout
         productRecyclerView = findViewById(R.id.checkout_recycler_view)
 
+        val checkoutActivity = this
         productRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@CheckoutActivity)
-            adapter = ProductItemAdapter(productsInCart)
+            layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+            adapter = CustomProductAdapter(productsInCart, checkoutActivity)
         }
 
         val getCurrentInfoButton = findViewById<Button>(R.id.checkout_button_current_info)
@@ -129,5 +133,11 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity {
 
     override fun onCreateOrderFailed(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onClick(product: Product) {
+        val intent = Intent(applicationContext, ProductDetail::class.java)
+        intent.putExtra("item-id", product.id)
+        startActivity(intent)
     }
 }

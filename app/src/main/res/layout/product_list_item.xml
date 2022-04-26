@@ -25,9 +25,10 @@
             <ImageView
                 android:id="@+id/product_image_1"
                 android:layout_width="141dp"
-                android:layout_height="140dp"
+                android:layout_height="0dp"
                 android:contentDescription="shoe"
                 android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/shoe" />

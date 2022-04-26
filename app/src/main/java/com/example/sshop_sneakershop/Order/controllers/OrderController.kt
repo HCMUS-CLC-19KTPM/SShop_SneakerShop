@@ -36,8 +36,10 @@ class OrderController(
                 val order = orderModel.getOrderById(id)
 
                 withContext(Dispatchers.Main) {
-                    order?.let { orderDetailActivity?.onGetOrderByIdSuccess(it) }
+                    orderDetailActivity?.onGetOrderByIdSuccess(order)
                 }
+//                    order?.let { orderDetailActivity?.onGetOrderByIdSuccess(it) }
+//                }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     orderDetailActivity?.onGetOrderByIdFailed("Error: ${e.message}")
