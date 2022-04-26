@@ -20,6 +20,7 @@
 
     <ImageButton
         android:id="@+id/likeSortButton"
+        android:tooltipText="Likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -33,6 +34,7 @@
 
     <ImageButton
         android:id="@+id/priceSortButton"
+        android:tooltipText="Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -46,6 +48,7 @@
 
     <ImageButton
         android:id="@+id/dateSortButton"
+        android:tooltipText="Newest products"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
