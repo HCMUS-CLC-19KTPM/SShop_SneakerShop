@@ -30,6 +30,8 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
     private lateinit var productController: ProductController
     private lateinit var cartController: CartController
 
+    private var size = "US7"
+
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,17 +65,6 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         val id = intent.getStringExtra("item-id").toString()
         productController.onGetProductById(id)
 
-        // Get size from radio group
-        val radioGroup = binding.radioGroup
-        radioGroup.check(radioGroup.getChildAt(0).id)
-        var size = "US7"
-        radioGroup.setOnCheckedChangeListener { _, checkedId ->
-            val radioButton = radioGroup.findViewById<RadioButton>(checkedId)
-            if (radioButton != null) {
-                size = radioButton.text.toString()
-            }
-        }
-
         binding.itemDetailButtonAddToCart.setOnClickListener {
             GlobalScope.launch(Dispatchers.Main) {
                 cartController.addToCart(id, size)
@@ -84,7 +75,6 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
                 ).show()
             }
         }
-
     }
 
     override fun onClick(product: Product) {
@@ -171,6 +161,22 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
             "Origin: ${product.origin}\nStyle: ${product.category}\nReleased date: $releaseDate"
 
         binding.recyclerViewReview.adapter?.notifyDataSetChanged()
+
+        // Get size from radio group
+        val radioGroup = binding.radioGroup
+        var isChecked = false
+        for (i in 0 until product.stock.size) {
+            if (product.stock[i] == 0) {
+                radioGroup.getChildAt(i).isEnabled = false
+            } else if (product.stock[i] > 0 && !isChecked) {
+                radioGroup.check(radioGroup.getChildAt(i).id)
+                isChecked = true
+            }
+        }
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = radioGroup.findViewById<RadioButton>(checkedId)
+            size = radioButton.text.toString()
+        }
 
         productController.onGetProductsByCategory(product.category)
     }
