@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop.Cart.controllers.CartController
@@ -76,6 +77,11 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
         binding.itemDetailButtonAddToCart.setOnClickListener {
             GlobalScope.launch(Dispatchers.Main) {
                 cartController.addToCart(id, size)
+                Toast.makeText(
+                    applicationContext,
+                    "Added to cart",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 

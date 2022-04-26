@@ -19,7 +19,6 @@ import com.example.sshop_sneakershop.Order.views.IOrderListActivity
 import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.CustomProductAdapter
-import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -50,7 +49,8 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity, Ite
 
         val checkoutActivity = this
         productRecyclerView.apply {
-            layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
             adapter = CustomProductAdapter(productsInCart, checkoutActivity)
         }
 
@@ -65,20 +65,12 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity, Ite
         checkoutButton.setOnClickListener {
             // Create order
             orderController.onCreateOrder(
-                Order(
-                    "",
-                    account.fullName!!,
-                    account.phone!!,
-                    account.address!!,
-                    productsInCart,
-                    "On Delivery",
-                    Date(),
-                    Date(),
-                    Date(),
-                    0.0,
-                    cart.totalCost,
-                    account.id
-                )
+                account.fullName!!,
+                account.phone!!,
+                account.address!!,
+                productsInCart,
+                cart.totalCost,
+                account.id
             )
         }
 

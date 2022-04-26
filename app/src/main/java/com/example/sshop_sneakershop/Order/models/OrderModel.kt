@@ -2,8 +2,8 @@ package com.example.sshop_sneakershop.Order.models
 
 import android.util.Log
 import com.example.sshop_sneakershop.Product.models.Product
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -18,7 +18,8 @@ class OrderModel {
     suspend fun getAllOrders(): ArrayList<Order> {
         val orders = ArrayList<Order>()
         try {
-            db.collection("order").whereEqualTo("userId", userId).orderBy("startDate", Query.Direction.DESCENDING).get().await().forEach {
+            db.collection("order").whereEqualTo("userId", userId)
+                .orderBy("startDate", Query.Direction.DESCENDING).get().await().forEach {
                 val order = it.toObject(Order::class.java)
                 orders.add(order)
             }
@@ -42,7 +43,7 @@ class OrderModel {
 //    }
     suspend fun getOrderById(id: String): Order {
         var order = Order()
-        var products = ArrayList<Product>()
+        val products = ArrayList<Product>()
         var product = Product()
         try {
             db.collection("order").document(id).get().await()
@@ -121,10 +122,29 @@ class OrderModel {
                         }
                     }
                 }
+
+                // Decrease product's stock
                 db.collection("product").document(product.id).update("stock", stock)
 
                 // Create sold product
-                db.collection("sold_product").add(product)
+                db.collection("sold_product").whereEqualTo("productId", product.id).get().await().let {
+                    if (it.isEmpty) {
+                        db.collection("sold_product").add(mapOf(
+                            "createdAt" to Timestamp.now(),
+                            "productId" to product.id,
+                            "quantity" to product.quantity,
+                            "total" to product.price,
+                            "brand" to product.brand,
+                        ))
+                    } else {
+                        db.collection("sold_product").document(it.documents[0].id).update(
+                            "quantity",
+                            FieldValue.increment(product.quantity.toLong()),
+                            "total",
+                            FieldValue.increment(product.price.toLong() * product.quantity.toLong())
+                        )
+                    }
+                }
             }
 
             // Empty product list in cart when order is created

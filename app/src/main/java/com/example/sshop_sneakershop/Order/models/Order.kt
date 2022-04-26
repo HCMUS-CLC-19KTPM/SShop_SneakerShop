@@ -20,7 +20,6 @@ data class Order(
 ) {
     constructor() : this("", "", "", "", 0.0, Date(), Date())
 
-
     constructor(
         id: String,
         name: String,
