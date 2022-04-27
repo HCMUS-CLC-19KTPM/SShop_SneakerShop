@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="autoCategory">Thể loại</string>
+    <string name="autoProfile">Trang cá nhân</string>
+    <string name="autoEditProfile">Trang cá nhân</string>
+    <string name="result">Kết quả</string>
+    <string name="action_settings">Cài đặt</string>
+    <string name="menu_home">Trang chủ</string>
+    <string name="cart">Giỏ hàng</string>
+    <string name="profile">Trang cá nhân</string>
+    <string name="order">Đơn hàng</string>
+    <string name="language_n">Ngôn ngữ</string>
+    <string name="app_notifications_n">Thông báo</string>
+    <string name="show_the_notification_contents">Nhận thông báo từ ứng dụng</string>
+    <string name="support_for_vietnamese_and_english">Hỗ trợ Tiếng Việt và Tiếng Anh</string>
+    <string name="total">Tổng:</string>
+    <string name="checkout">Thanh toán</string>
+    <string name="customer_information">Khách hàng nhận</string>
+    <string name="use_current_information">Dùng thông tin cũ</string>
+    <string name="add_new_information">Thêm thông tin mới</string>
+    <string name="payment_information">Thanh toán</string>
+    <string name="use_current_payment_method">Dùng thẻ đã lưu</string>
+    <string name="add_new_payment_method">Thêm thẻ mới</string>
+    <string name="add_new_credit_card">Thêm thẻ ngân hàng</string>
+    <string name="app_settings">Cài đặt</string>
+</resources>

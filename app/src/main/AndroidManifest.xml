@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
+            android:name=".Homepage.AppSettings"
+            android:exported="false" />
+        <activity
             android:name=".Homepage.Home"
             android:exported="true"
             android:label="@string/title_activity_navigation"

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Homepage.AppSettings">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/app_settings_coordinator_layout"
@@ -35,7 +36,7 @@
                 android:background="@color/primary"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                app:title="App Settings"
+                app:title="@string/app_settings"
                 app:titleTextColor="@color/white" />
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -48,7 +49,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
         android:checked="true"
-        android:text="App Notifications \n"
+        android:text="@string/app_notifications_n"
         android:textStyle="bold"
         android:textSize="16sp"
         app:thumbTint="@color/primary"
@@ -62,7 +63,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show the notification contents"
+        android:text="@string/show_the_notification_contents"
         app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/app_settings_switch_show_notifications"
         app:layout_constraintStart_toStartOf="@+id/app_settings_switch_show_notifications"
@@ -82,14 +83,14 @@
         app:layout_constraintTop_toBottomOf="@+id/app_settings_switch_show_notifications" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/app_settings_switch_show_notifications_2"
+        android:id="@+id/app_settings_switch_change_language"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:checked="false"
-        android:text="App Notifications \n"
+        android:text="@string/language_n"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,11 +103,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show the notification contents"
+        android:text="@string/support_for_vietnamese_and_english"
         app:layout_anchorGravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/app_settings_switch_show_notifications_2"
-        app:layout_constraintStart_toStartOf="@+id/app_settings_switch_show_notifications_2"
-        app:layout_constraintTop_toTopOf="@+id/app_settings_switch_show_notifications_2"
+        app:layout_constraintBottom_toBottomOf="@+id/app_settings_switch_change_language"
+        app:layout_constraintStart_toStartOf="@+id/app_settings_switch_change_language"
+        app:layout_constraintTop_toTopOf="@+id/app_settings_switch_change_language"
         app:layout_constraintVertical_bias="1.0" />
 
     <View
@@ -119,6 +120,6 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_settings_switch_show_notifications_2" />
+        app:layout_constraintTop_toBottomOf="@+id/app_settings_switch_change_language" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

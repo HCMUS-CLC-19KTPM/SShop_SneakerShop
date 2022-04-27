@@ -132,6 +132,8 @@ class Home : AppCompatActivity(), ItemClickListener,
         productController.onGetAllProducts(7)
     }
 
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.navigation, menu)
@@ -154,8 +156,12 @@ class Home : AppCompatActivity(), ItemClickListener,
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        return if (id == R.id.action_settings) true
-        else super.onOptionsItemSelected(item)
+        if (id == R.id.action_settings) {
+            val intent = Intent(this, AppSettings::class.java)
+            startActivity(intent)
+           return true
+        }
+        else return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

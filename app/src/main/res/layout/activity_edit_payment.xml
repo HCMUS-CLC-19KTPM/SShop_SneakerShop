@@ -113,7 +113,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="Add new credit card"
+                        android:text="@string/add_new_credit_card"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/editPayment_image"
                         app:layout_constraintEnd_toEndOf="@+id/editPayment_image"
