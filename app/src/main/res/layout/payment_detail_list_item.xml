@@ -130,7 +130,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove"
+        android:text="@string/remove"
         android:textAlignment="textEnd"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

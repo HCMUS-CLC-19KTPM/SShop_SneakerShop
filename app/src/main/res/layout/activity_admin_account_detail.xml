@@ -227,7 +227,7 @@
                     android:id="@+id/labelName"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
-                    android:text="Name:"
+                    android:text="@string/name1"
                     android:textColor="@color/primary"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -238,7 +238,7 @@
                     android:id="@+id/labelEmail"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
-                    android:text="Email:"
+                    android:text="@string/email2"
                     android:textColor="@color/primary"
 
                     android:textSize="18sp"
@@ -250,7 +250,7 @@
                     android:id="@+id/labelAddress"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
-                    android:text="Address:"
+                    android:text="@string/address1"
                     android:textColor="@color/primary"
 
                     android:textSize="18sp"
@@ -262,7 +262,7 @@
                     android:id="@+id/labelMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:text="Spent Money:"
+                    android:text="@string/spent_money1"
                     android:textColor="@color/primary"
 
                     android:textSize="18sp"
@@ -275,7 +275,7 @@
                     android:id="@+id/labelStatus"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
-                    android:text="Status:"
+                    android:text="@string/status1"
                     android:textColor="@color/primary"
 
                     android:textSize="18sp"
@@ -287,7 +287,7 @@
                     android:id="@+id/admin_account_detail_textview_edit_profile"
                     android:layout_width="245dp"
                     android:layout_height="35dp"
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile1"
                     android:textAlignment="textEnd"
                     android:textColor="@color/primary"
                     android:textSize="20sp"

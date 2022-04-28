@@ -46,4 +46,71 @@
     <string name="add_new_payment_method">Add New Payment Method</string>
     <string name="add_new_credit_card">Add new credit card</string>
     <string name="app_settings">App Settings</string>
+    <string name="click_on_product_to_review">Click on product to review</string>
+    <string name="change_now">Change Now</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="name">Name</string>
+    <string name="card_number">Card Number</string>
+    <string name="since_date">Since Date</string>
+    <string name="submit">Submit</string>
+    <string name="name1">Name:</string>
+    <string name="email2" translatable="false">Email:</string>
+    <string name="address1">Address:</string>
+    <string name="spent_money1">Spent Money:</string>
+    <string name="status1">Status:</string>
+    <string name="edit_profile1">Edit Profile</string>
+    <string name="products">Products</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="gender">Gender</string>
+    <string name="birthday">Birthday</string>
+    <string name="change_password">Change password</string>
+    <string name="submit_changes">Submit Changes</string>
+    <string name="input_your_email_address_nwe_will_send_you_a_link_to_reset_nyour_password">Input your email address. \nWe will send you a link to reset \nyour password.</string>
+    <string name="send">Send</string>
+    <string name="back_to_sign_in">Back to Sign In</string>
+    <string name="sort_by">Sort by</string>
+    <string name="newest_product">Newest Product</string>
+    <string name="view_all">View All</string>
+    <string name="related_products">Related products</string>
+    <string name="reviews" translatable="false">Reviews</string>
+    <string name="size" translatable="false">Size</string>
+    <string name="description">Description</string>
+    <string name="new_arrival">New arrival</string>
+    <string name="category">Category</string>
+    <string name="product_name">Product name</string>
+    <string name="more_info">More info</string>
+    <string name="exchange_values">Exchange values</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="your_order_will_be_delivered_to_nyou_before">Your order will be delivered to \nyou before:</string>
+    <string name="delivery_information">Delivery Information</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="or">or</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="account_detail">Account detail</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="payment_methods">Payment methods</string>
+    <string name="manage_payment_methods">Manage payment methods</string>
+    <string name="log_out">Log out</string>
+    <string name="review_your_order">Review Your Order</string>
+    <string name="enter_your_opinion_here">Enter your opinion here.</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="standard_express_vn2221342314234231k" translatable="false">Standard Express - VN2221342314234231K</string>
+    <string name="start_date">Start Date:</string>
+    <string name="estimated_delivery_date">Estimated Delivery Date:</string>
+    <string name="customer_name">Customer Name:</string>
+    <string name="phone_number1">Phone Number:</string>
+    <string name="total_cost">Total Cost:</string>
+    <string name="status">Status:</string>
+    <string name="remove">Remove</string>
+    <string name="quantity1">Quantity:</string>
+    <string name="total_price1">Total Price:</string>
 </resources>

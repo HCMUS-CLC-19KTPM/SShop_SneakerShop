@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -29,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Delivery Information"
+                android:text="@string/delivery_information"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -42,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Standard Express - VN2221342314234231K"
+                android:text="@string/standard_express_vn2221342314234231k"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textStyle="bold"
@@ -71,7 +70,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Start Date:"
+                        android:text="@string/start_date"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 
@@ -94,7 +93,7 @@
                         android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Estimated Delivery Date:"
+                        android:text="@string/estimated_delivery_date"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 
@@ -117,7 +116,7 @@
                         android:id="@+id/textView12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Customer Name:"
+                        android:text="@string/customer_name"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 
@@ -140,7 +139,7 @@
                         android:id="@+id/textView13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address:"
+                        android:text="@string/address1"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 
@@ -163,7 +162,7 @@
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Phone Number:"
+                        android:text="@string/phone_number1"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 
@@ -186,7 +185,7 @@
                         android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Cost:"
+                        android:text="@string/total_cost"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 
@@ -208,7 +207,7 @@
                         android:id="@+id/textView16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Status:"
+                        android:text="@string/status"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 

@@ -1,6 +1,7 @@
 package com.example.sshop_sneakershop.Homepage
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
@@ -21,9 +22,13 @@ class AppSettings: AppCompatActivity() {
         binding = ActivityAppSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.appSettingToolbar.setNavigationOnClickListener { finish() }
+        binding.appSettingToolbar.setNavigationOnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            finish()
+        }
 
-        binding.appSettingsSwitchChangeLanguage.isChecked = Locale.getDefault().language != "en"
+        binding.appSettingsSwitchChangeLanguage.isChecked = LocaleUtils.getLocale(this).language != "en"
 
         binding.appSettingsSwitchChangeLanguage.setOnCheckedChangeListener { compoundButton, isChecked ->
             if (compoundButton.isPressed) {
@@ -33,6 +38,7 @@ class AppSettings: AppCompatActivity() {
                 } else {
                     LocaleUtils.setLocale(this, "en")
                     recreate()
+
                 }
 
             }
@@ -56,7 +62,8 @@ class AppSettings: AppCompatActivity() {
         }
 
         fun getLocale(context: Context): Locale {
-            return Locale(context.getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Lang", "en"))
+            return context.getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Lang", "en")
+                ?.let { Locale(it) }!!
         }
     }
 }

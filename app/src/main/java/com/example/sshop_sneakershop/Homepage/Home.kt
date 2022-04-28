@@ -3,6 +3,7 @@ package com.example.sshop_sneakershop.Homepage
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -31,6 +32,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Home : AppCompatActivity(), ItemClickListener,
     NavigationView.OnNavigationItemSelectedListener, IProductView {
@@ -156,12 +159,12 @@ class Home : AppCompatActivity(), ItemClickListener,
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.action_settings) {
+        return if (id == R.id.action_settings) {
             val intent = Intent(this, AppSettings::class.java)
             startActivity(intent)
-           return true
-        }
-        else return super.onOptionsItemSelected(item)
+            finish()
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -188,6 +191,7 @@ class Home : AppCompatActivity(), ItemClickListener,
         return true
 
     }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun getAllProducts() {
         //Load data
