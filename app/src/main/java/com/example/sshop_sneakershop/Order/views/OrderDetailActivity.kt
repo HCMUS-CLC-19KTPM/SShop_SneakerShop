@@ -18,6 +18,7 @@ import com.example.sshop_sneakershop.Product.views.CustomProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.Review.views.ReviewBottomSheetDialog
+import com.example.sshop_sneakershop.Review.views.ReviewListProduct
 import com.example.sshop_sneakershop.databinding.ActivityOrderDetailBinding
 import com.example.sshop_sneakershop.databinding.ActivityUserBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -61,6 +62,13 @@ class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClick
         }
         binding.orderDetailToolbar.setNavigationOnClickListener {
             finish()
+        }
+
+        binding.orderDetailButtonConfirm.setOnClickListener {
+            //IMPLEMENTS Update order status
+            //Move to review
+            val intent = Intent(this, ReviewListProduct::class.java)
+            startActivity(intent)
         }
     }
 
