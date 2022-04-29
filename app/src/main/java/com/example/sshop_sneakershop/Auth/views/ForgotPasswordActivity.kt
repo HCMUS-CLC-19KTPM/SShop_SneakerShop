@@ -8,11 +8,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
+import com.example.sshop_sneakershop.Auth.controllers.IAuthController
 import com.example.sshop_sneakershop.R
 
 class ForgotPasswordActivity : AppCompatActivity(), IForgotPasswordActivity {
-
-    private lateinit var authController: AuthController
+    private lateinit var authController: IAuthController
 
     private lateinit var emailTextEditText: EditText
     private lateinit var sendButton: Button

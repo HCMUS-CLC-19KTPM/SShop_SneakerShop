@@ -7,17 +7,17 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
+import com.example.sshop_sneakershop.Auth.controllers.IAuthController
 import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
 
 class SignUpActivity : AppCompatActivity(), ISignUpActivity {
+    private lateinit var controller: IAuthController
 
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText
     private lateinit var signUpButton: Button
-
-    private lateinit var controller: AuthController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

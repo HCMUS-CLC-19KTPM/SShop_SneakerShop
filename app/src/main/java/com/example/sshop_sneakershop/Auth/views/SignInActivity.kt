@@ -19,14 +19,14 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 
 class SignInActivity : AppCompatActivity(), ISignInActivity {
+    private lateinit var controller: IAuthController
+
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var forgotPasswordTextView: TextView
     private lateinit var signInButton: Button
     private lateinit var signUpButton: Button
     private lateinit var signInWithGoogleBtn: Button
-
-    private lateinit var controller: IAuthController
 
     /**
      * Initialize the activity
