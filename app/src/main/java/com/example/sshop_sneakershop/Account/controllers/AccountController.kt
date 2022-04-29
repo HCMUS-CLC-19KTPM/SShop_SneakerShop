@@ -26,7 +26,7 @@ class AccountController(
         return accountModel.getUser()
     }
 
-    suspend fun getUser(email: String): Account? {
+    override suspend fun getUser(email: String): Account? {
         return accountModel.getUser(email)
     }
 

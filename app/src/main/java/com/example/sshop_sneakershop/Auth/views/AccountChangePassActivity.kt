@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.views.AccountEditActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
+import com.example.sshop_sneakershop.Auth.controllers.IAuthController
 import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
 import com.google.firebase.auth.EmailAuthProvider
@@ -24,7 +25,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class AccountChangePassActivity : AppCompatActivity(), IAuthView {
-    private lateinit var authController: AuthController
+    private lateinit var authController: IAuthController
     private val auth = Firebase.auth
 
     private lateinit var changePasswordButton: Button
@@ -134,6 +135,4 @@ class AccountChangePassActivity : AppCompatActivity(), IAuthView {
             alertDialog.show()
         }
     }
-
-
 }

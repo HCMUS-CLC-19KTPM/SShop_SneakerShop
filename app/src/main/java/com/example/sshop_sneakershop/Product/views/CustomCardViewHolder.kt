@@ -27,13 +27,17 @@ class CustomCardViewHolder(
 
         cardCellBinding.productTextviewPrice.text = "$" + product.price * product.quantity
         cardCellBinding.productTextviewQuantity.text = product.quantity.toString()
-        cardCellBinding.productTextviewDescription.text =
-            if (product.description!!.length >= 20) "${
-                product.description!!.substring(
-                    0,
-                    80
-                )
-            }..." else product.description
+        if (product.description != null) {
+            cardCellBinding.productTextviewDescription.text =
+                if (product.description!!.length >= 20) "${
+                    product.description!!.substring(
+                        0,
+                        80
+                    )
+                }..." else product.description
+        } else {
+            cardCellBinding.productTextviewDescription.text = "No description"
+        }
         cardCellBinding.card.setOnClickListener {
             clickListener.onClick(product)
         }

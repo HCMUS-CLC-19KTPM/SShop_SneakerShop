@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
+import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.Payment
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
@@ -42,7 +43,7 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
 
     private lateinit var binding: ActivityUserBinding
 
-    private lateinit var accountController: AccountController
+    private lateinit var accountController: IAccountController
     private val auth = Firebase.auth
 
     private val paymentList = ArrayList<Payment>()

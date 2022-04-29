@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Account.controllers.AccountController
+import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.Payment
 import com.example.sshop_sneakershop.R
@@ -21,7 +22,7 @@ import java.util.*
 
 class AddPaymentActivity : AppCompatActivity() {
     private val auth = Firebase.auth
-    private val accountController = AccountController()
+    private lateinit var accountController: IAccountController
     private var account: Account? = null
 
     private lateinit var editTextName: EditText
@@ -34,6 +35,8 @@ class AddPaymentActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        accountController = AccountController()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_payment_acctivity)
 
@@ -140,12 +143,12 @@ class AddPaymentActivity : AppCompatActivity() {
                     if (account != null) {
                         if (account!!.payments !== null) {
                             account!!.payments!!.add(payment)
-                            account = accountController.updateUserPayment(account!!)
+                            account = (accountController as AccountController).updateUserPayment(account!!)
                         } else {
                             val paymentList = ArrayList<Payment>()
                             paymentList.add(payment)
                             account!!.payments = paymentList
-                            account = accountController.updateUserPayment(account!!)
+                            account = (accountController as AccountController).updateUserPayment(account!!)
                         }
                         finish()
                     }

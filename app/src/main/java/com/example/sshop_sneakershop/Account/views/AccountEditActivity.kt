@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Account.controllers.AccountController
+import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Auth.views.AccountChangePassActivity
 import com.example.sshop_sneakershop.Auth.views.AuthActivity
@@ -26,7 +27,7 @@ import java.util.*
 class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditActivity {
     private val auth = Firebase.auth
 
-    private val accountController = AccountController(this, this)
+    private lateinit var accountController: IAccountController
 
     private var account: Account? = null
 
@@ -54,6 +55,8 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        accountController = AccountController(this, this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
