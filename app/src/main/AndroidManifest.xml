@@ -63,10 +63,10 @@
             android:name=".Cart.views.CheckoutActivity"
             android:exported="true" />
         <activity
-            android:name=".Auth.views.AuthActivity"
+            android:name=".Auth.views.SignInActivity"
             android:exported="true" />
         <activity
-            android:name=".Auth.views.SignUpViewActivity"
+            android:name=".Auth.views.SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".Auth.views.ForgotPasswordActivity"

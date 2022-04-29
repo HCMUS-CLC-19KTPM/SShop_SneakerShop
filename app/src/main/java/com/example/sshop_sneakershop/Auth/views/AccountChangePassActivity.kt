@@ -1,30 +1,24 @@
 package com.example.sshop_sneakershop.Auth.views
 
 import android.content.DialogInterface
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.sshop_sneakershop.Account.controllers.AccountController
-import com.example.sshop_sneakershop.Account.views.AccountEditActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
 import com.example.sshop_sneakershop.Auth.controllers.IAuthController
-import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AccountChangePassActivity : AppCompatActivity(), IAuthView {
+class AccountChangePassActivity : AppCompatActivity(), IChangePasswordActivity {
     private lateinit var authController: IAuthController
     private val auth = Firebase.auth
 
@@ -73,34 +67,9 @@ class AccountChangePassActivity : AppCompatActivity(), IAuthView {
 
     }
 
-    override fun onLoginSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-
-    override fun onLoginFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSignUpSuccess() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSignUpFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onForgotPasswordSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onForgotPasswordFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
     override fun onChangePasswordSuccess(message: String) {
         Log.d("AccountChangePassActivity", message)
-        val alertDialog: AlertDialog? = this.let {
+        val alertDialog: AlertDialog = this.let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
                 setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->

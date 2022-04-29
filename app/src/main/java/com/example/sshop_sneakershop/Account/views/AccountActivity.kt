@@ -16,7 +16,7 @@ import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.Payment
-import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.Auth.views.SignInActivity
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityUserBinding
 import com.google.firebase.auth.ktx.auth
@@ -53,7 +53,7 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
 
         // Check if user is signed in (non-null) if not, go to login page
         if (auth.currentUser == null) {
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
 
@@ -75,7 +75,7 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
         logoutBtn = findViewById(R.id.profile_button_logout)
         logoutBtn.setOnClickListener {
             auth.signOut()
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
 

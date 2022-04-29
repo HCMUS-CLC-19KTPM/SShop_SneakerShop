@@ -3,28 +3,20 @@ package com.example.sshop_sneakershop.Order.views
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.Auth.views.SignInActivity
 import com.example.sshop_sneakershop.Homepage.ItemClickListener
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.CustomProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
-import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.Review.views.ReviewBottomSheetDialog
 import com.example.sshop_sneakershop.Review.views.ReviewListProduct
 import com.example.sshop_sneakershop.databinding.ActivityOrderDetailBinding
-import com.example.sshop_sneakershop.databinding.ActivityUserBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -41,7 +33,7 @@ class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClick
 
         val auth = Firebase.auth
         if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
     }

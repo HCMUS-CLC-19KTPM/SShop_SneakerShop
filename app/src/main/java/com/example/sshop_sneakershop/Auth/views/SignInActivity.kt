@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
+import com.example.sshop_sneakershop.Auth.controllers.IAuthController
 import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -17,7 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 
-class AuthActivity : AppCompatActivity(), IAuthView {
+class SignInActivity : AppCompatActivity(), ISignInActivity {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var forgotPasswordTextView: TextView
@@ -25,7 +26,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
     private lateinit var signUpButton: Button
     private lateinit var signInWithGoogleBtn: Button
 
-    private lateinit var controller: AuthController
+    private lateinit var controller: IAuthController
 
     /**
      * Initialize the activity
@@ -53,7 +54,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         }
 
         signUpButton.setOnClickListener {
-            startActivity(Intent(this, SignUpViewActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
 
         googleSignIn()
@@ -81,6 +82,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
      * @param resultCode Int
      * @param data Intent
      */
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -118,29 +120,5 @@ class AuthActivity : AppCompatActivity(), IAuthView {
     override fun onLoginFailed(message: String) {
         Log.d("AuthActivity", message)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onSignUpSuccess() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSignUpFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onForgotPasswordSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onForgotPasswordFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onChangePasswordSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onChangePasswordFailed(message: String) {
-        TODO("Not yet implemented")
     }
 }

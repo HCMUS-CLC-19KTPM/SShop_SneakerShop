@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
 import com.example.sshop_sneakershop.R
 
-class ForgotPasswordActivity : AppCompatActivity(), IAuthView {
+class ForgotPasswordActivity : AppCompatActivity(), IForgotPasswordActivity {
 
     private lateinit var authController: AuthController
 
@@ -31,35 +31,11 @@ class ForgotPasswordActivity : AppCompatActivity(), IAuthView {
         }
     }
 
-    override fun onLoginSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onLoginFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSignUpSuccess() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSignUpFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onChangePasswordSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onChangePasswordFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
     override fun onForgotPasswordSuccess(message: String) {
         Log.d("ForgotPasswordActivity", message)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-        startActivity(Intent(this, AuthActivity::class.java))
+        startActivity(Intent(this, SignInActivity::class.java))
         finish()
     }
 

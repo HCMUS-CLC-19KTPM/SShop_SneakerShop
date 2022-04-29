@@ -11,7 +11,7 @@ import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Auth.views.AccountChangePassActivity
-import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.Auth.views.SignInActivity
 import com.example.sshop_sneakershop.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -49,7 +49,7 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
         super.onStart()
 
         if (auth.currentUser == null) {
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
     }
@@ -203,6 +203,8 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
         phoneEditText.setText(account.phone)
         genderEditText.setText(account.gender)
         dobEditText.setText(account.dob)
+
+        finish()
     }
 
     override fun onUpdateUserInfoFailed(message: String) {

@@ -10,7 +10,7 @@ import com.example.sshop_sneakershop.Auth.controllers.AuthController
 import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.R
 
-class SignUpViewActivity : AppCompatActivity(), IAuthView {
+class SignUpActivity : AppCompatActivity(), ISignUpActivity {
 
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
@@ -46,29 +46,5 @@ class SignUpViewActivity : AppCompatActivity(), IAuthView {
 
     override fun onSignUpFailed(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onForgotPasswordSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onForgotPasswordFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onLoginSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onLoginFailed(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onChangePasswordSuccess(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onChangePasswordFailed(message: String) {
-        TODO("Not yet implemented")
     }
 }

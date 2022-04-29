@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.Auth.views.SignInActivity
 import com.example.sshop_sneakershop.Cart.controllers.CartController
 import com.example.sshop_sneakershop.Cart.models.Cart
 import com.example.sshop_sneakershop.Cart.views.CartAdapter
@@ -76,7 +76,7 @@ class CartActivity : AppCompatActivity(), CartClickListener, ICartView {
         // Check if user is signed in (non-null) if not go to login page
         val auth = Firebase.auth
         if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
 

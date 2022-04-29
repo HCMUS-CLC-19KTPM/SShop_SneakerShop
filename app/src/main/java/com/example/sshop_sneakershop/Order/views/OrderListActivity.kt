@@ -7,16 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.inputmethod.EditorInfo
-import android.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.Account.views.AccountActivity
-import com.example.sshop_sneakershop.Auth.views.AuthActivity
+import com.example.sshop_sneakershop.Auth.views.SignInActivity
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityOrderListBinding
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -37,7 +33,7 @@ class OrderListActivity : AppCompatActivity(), IOrderListActivity, OrderClickLis
 
         val auth = Firebase.auth
         if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
     }

@@ -2,15 +2,38 @@ package com.example.sshop_sneakershop.Auth.controllers
 
 import android.util.Log
 import com.example.sshop_sneakershop.Auth.AuthService
-import com.example.sshop_sneakershop.Auth.views.IAuthView
+import com.example.sshop_sneakershop.Auth.views.ISignInActivity
+import com.example.sshop_sneakershop.Auth.views.IChangePasswordActivity
+import com.example.sshop_sneakershop.Auth.views.IForgotPasswordActivity
+import com.example.sshop_sneakershop.Auth.views.ISignUpActivity
 import com.google.firebase.auth.AuthCredential
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AuthController(private var view: IAuthView) : IAuthController {
+class AuthController : IAuthController {
+    private var signInActivity: ISignInActivity? = null
+    private var changePasswordActivity: IChangePasswordActivity? = null
+    private var forgotPasswordActivity: IForgotPasswordActivity? = null
+    private var signUpActivity: ISignUpActivity? = null
 
     private var authService: AuthService = AuthService()
+
+    constructor(signInActivity: ISignInActivity? = null) {
+        this.signInActivity = signInActivity
+    }
+
+    constructor(changePasswordActivity: IChangePasswordActivity? = null) {
+        this.changePasswordActivity = changePasswordActivity
+    }
+
+    constructor(forgotPasswordActivity: IForgotPasswordActivity? = null) {
+        this.forgotPasswordActivity = forgotPasswordActivity
+    }
+
+    constructor(signUpActivity: ISignUpActivity? = null) {
+        this.signUpActivity = signUpActivity
+    }
 
     /**
      * Sign in with email and password
@@ -21,11 +44,11 @@ class AuthController(private var view: IAuthView) : IAuthController {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 authService.signIn(email, password)
-                view.onLoginSuccess("Login success")
+                signInActivity?.onLoginSuccess("Login success")
 
             } catch (e: Exception) {
                 Log.d("AuthController", e.message.toString())
-                view.onLoginFailed("${e.message}")
+                signInActivity?.onLoginFailed("${e.message}")
             }
         }
     }
@@ -38,9 +61,9 @@ class AuthController(private var view: IAuthView) : IAuthController {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val result = authService.signInWithGoogle(credential)
-                view.onLoginSuccess(result)
+                signInActivity?.onLoginSuccess(result)
             } catch (e: Exception) {
-                view.onLoginFailed("${e.message}")
+                signInActivity?.onLoginFailed("${e.message}")
             }
         }
     }
@@ -56,9 +79,9 @@ class AuthController(private var view: IAuthView) : IAuthController {
                 authService.signUp(email, password, confirmPassword)
                 authService.signIn(email, password)
 
-                view.onSignUpSuccess()
+                signUpActivity?.onSignUpSuccess()
             } catch (e: Exception) {
-                view.onSignUpFailed("${e.message}")
+                signUpActivity?.onSignUpFailed("${e.message}")
             }
         }
     }
@@ -71,9 +94,9 @@ class AuthController(private var view: IAuthView) : IAuthController {
             try {
                 authService.sendResetPasswordEmail(email)
 
-                view.onForgotPasswordSuccess("Please check your email to reset your password")
+                forgotPasswordActivity?.onForgotPasswordSuccess("Please check your email to reset your password")
             } catch (e: Exception) {
-                view.onForgotPasswordFailed("${e.message}")
+                forgotPasswordActivity?.onForgotPasswordFailed("${e.message}")
             }
         }
     }
@@ -85,9 +108,9 @@ class AuthController(private var view: IAuthView) : IAuthController {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 authService.updatePassword(password)
-                view.onChangePasswordSuccess("Password changed")
+                changePasswordActivity?.onChangePasswordSuccess("Password changed")
             } catch (e: Exception) {
-                view.onChangePasswordFailed("${e.message}")
+                changePasswordActivity?.onChangePasswordFailed("${e.message}")
             }
         }
     }
