@@ -1,7 +1,9 @@
 package com.example.sshop_sneakershop.Order.controllers
 
+import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.Product.models.Product
 import java.util.*
+import kotlin.collections.ArrayList
 
 interface IOrderController {
     fun onGetAllOrders()
@@ -14,4 +16,6 @@ interface IOrderController {
         totalCost: Double,
         userId: String
     )
+
+    suspend fun getAllOrder(): ArrayList<Order>
 }

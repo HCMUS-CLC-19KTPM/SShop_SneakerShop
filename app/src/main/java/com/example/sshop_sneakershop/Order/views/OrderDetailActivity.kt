@@ -2,11 +2,13 @@ package com.example.sshop_sneakershop.Order.views
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop.Auth.views.SignInActivity
 import com.example.sshop_sneakershop.Homepage.ItemClickListener
+import com.example.sshop_sneakershop.Order.controllers.IOrderController
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.Product.models.Product
@@ -22,10 +24,11 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
 class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClickListener {
+    private lateinit var orderController: IOrderController
 
-    private lateinit var orderController: OrderController
     private val products: ArrayList<Product> = ArrayList()
     private var order: Order = Order()
+
     private lateinit var binding: ActivityOrderDetailBinding
 
     override fun onStart() {
@@ -38,12 +41,13 @@ class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClick
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityOrderDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        orderController = OrderController(null, this)
+
+        orderController = OrderController(this)
         val orderID = intent.getStringExtra("item-id").toString()
         orderController.onGetOrderById(orderID)
 
@@ -60,35 +64,10 @@ class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClick
             //IMPLEMENTS Update order status
             //Move to review
             val intent = Intent(this, ReviewListProduct::class.java)
+            intent.putExtra("order-id", orderID)
             startActivity(intent)
         }
     }
-
-//    @OptIn(DelicateCoroutinesApi::class)
-//    @SuppressLint("NotifyDataSetChanged", "SimpleDateFormat")
-//    private fun getOrder() {
-//        GlobalScope.launch(Dispatchers.Main) {
-//            val formatter = SimpleDateFormat("dd/MM/yyyy")
-//            val order = orderController.getOrderById("yy3U8c8oYyejCrhcXHJR")
-//            if (order != null) {
-//                products.addAll(order.cart)
-//            }
-//
-//            withContext(Dispatchers.Main) {
-//                if (order != null) {
-//                    estimateDateTextView.text = formatter.format(order.endDate)
-//                    deliveryDescriptionTextView.text = order.deliveryStatus
-//                    startDateTextView.text = formatter.format(order.startDate)
-//                    endDateTextView.text = formatter.format(order.endDate)
-//                    customerName.text = order.name
-//                    customerAddress.text = order.address
-//                    customerPhone.text = order.phone
-//                    totalCost.text = order.totalCost.toString()
-//                    productRecyclerView.adapter?.notifyDataSetChanged()
-//                }
-//            }
-//        }
-//    }
 
     @SuppressLint("SimpleDateFormat", "NotifyDataSetChanged", "SetTextI18n")
     override fun onGetOrderByIdSuccess(order: Order) {
@@ -107,9 +86,14 @@ class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClick
         df.roundingMode = RoundingMode.DOWN
         binding.orderDetailTextviewTotalCost.text = "$${df.format(this.order.totalCost)}"
         binding.orderDetailTextviewStatus.text = this.order.deliveryStatus
+
+        // Update update product recycler view
         products.clear()
         products.addAll(this.order.cart)
         binding.orderDetailRecyclerView.adapter?.notifyDataSetChanged()
+
+        // Check if this order is delivered successfully
+        binding.orderDetailButtonConfirm.isEnabled = order.deliveryStatus == "Completed"
     }
 
     override fun onGetOrderByIdFailed(message: String) {

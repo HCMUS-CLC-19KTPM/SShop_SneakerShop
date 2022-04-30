@@ -10,11 +10,21 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 
-class OrderController(
-    private val orderListActivity: IOrderListActivity? = null,
-    private val orderDetailActivity: IOrderDetailActivity? = null
-) : IOrderController {
+class OrderController : IOrderController {
     private val orderModel = OrderModel()
+
+    private var orderListActivity: IOrderListActivity? = null
+    private var orderDetailActivity: IOrderDetailActivity? = null
+
+    constructor()
+
+    constructor(orderListActivity: IOrderListActivity) {
+        this.orderListActivity = orderListActivity
+    }
+
+    constructor(orderDetailActivity: IOrderDetailActivity) {
+        this.orderDetailActivity = orderDetailActivity
+    }
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onGetAllOrders() {
@@ -97,8 +107,7 @@ class OrderController(
         }
     }
 
-    suspend fun getAllOrder() = orderModel.getAllOrders()
+    override suspend fun getAllOrder() = orderModel.getAllOrders()
     suspend fun getOrderById(id: String) = orderModel.getOrderById(id)
-
     suspend fun createOrder(order: Order) = orderModel.createOrder(order)
 }

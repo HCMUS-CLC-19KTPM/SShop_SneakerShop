@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop.Auth.views.SignInActivity
+import com.example.sshop_sneakershop.Order.controllers.IOrderController
 import com.example.sshop_sneakershop.Order.controllers.OrderController
 import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.R
@@ -22,10 +23,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class OrderListActivity : AppCompatActivity(), IOrderListActivity, OrderClickListener {
-    private lateinit var orderController: OrderController
-    private lateinit var binding: ActivityOrderListBinding
+    private lateinit var orderController: IOrderController
+
     private var orders: ArrayList<Order> = ArrayList()
     private var fullOrderList: ArrayList<Order> = ArrayList()
+
+    private lateinit var binding: ActivityOrderListBinding
     private lateinit var orderAdapter: OrderAdapter
 
     override fun onStart() {
