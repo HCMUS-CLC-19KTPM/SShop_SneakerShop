@@ -77,7 +77,7 @@
             android:name=".Account.views.AccountEditActivity"
             android:exported="true" />
 
-        <service android:name=".Notification.MyFirebaseInstanceIDService"
+        <service android:name=".Notification.controllers.FirebaseInstanceIdController"
                 android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

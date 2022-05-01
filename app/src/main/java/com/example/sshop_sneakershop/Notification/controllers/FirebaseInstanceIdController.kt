@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Notification
+package com.example.sshop_sneakershop.Notification.controllers
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -8,31 +8,29 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.RingtoneManager
-import android.net.Uri
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.example.sshop_sneakershop.Homepage.Home
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class MyFirebaseInstanceIDService : FirebaseMessagingService() {
+class FirebaseInstanceIdController : FirebaseMessagingService() {
 
-    private val TAG = "FireBaseMessagingService"
-    var NOTIFICATION_CHANNEL_ID = "net.larntech.notification"
-    val NOTIFICATION_ID = 100
+    companion object {
+        const val NOTIFICATION_CHANNEL_ID = "com.example.sshop_sneakershop"
+        const val NOTIFICATION_ID = 100
+    }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
         val title = remoteMessage.notification?.title
         val body = remoteMessage.notification?.body
-        var itemId: String? = null
-        if (remoteMessage.data.isNotEmpty()) {
-            itemId = remoteMessage.data["item-id"].toString()
-        }
-        showNotification(applicationContext, title, body, itemId)
+        val itemId: String?
+
+        remoteMessage.data.let { itemId = it["item-id"] }
+        itemId?.let { showNotification(applicationContext, title, body, it) }
     }
 
     override fun onNewToken(token: String) {
@@ -44,21 +42,19 @@ class MyFirebaseInstanceIDService : FirebaseMessagingService() {
         context: Context,
         title: String?,
         message: String?,
-        itemId: String?
+        itemId: String
     ) {
         val intent = Intent(context, ProductDetail::class.java)
         intent.putExtra("item-id", itemId)
-        intent.data = Uri.parse("custom://" + System.currentTimeMillis())
-        intent.action = "actionstring" + System.currentTimeMillis()
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
 
-        val pi =
+        val pendingIntent =
             PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
-        val notification: Notification =
+        val notification =
             NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
                 .setOngoing(true)
-                .setSmallIcon(R.drawable.logo_size_invert)
+                .setSmallIcon(R.drawable.logo_size)
                 .setLargeIcon(
                     BitmapFactory.decodeResource(
                         context.resources,
@@ -67,7 +63,7 @@ class MyFirebaseInstanceIDService : FirebaseMessagingService() {
                 )
                 .setContentText(message)
                 .setAutoCancel(true)
-                .setContentIntent(pi)
+                .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(Notification.CATEGORY_SERVICE)
                 .setWhen(System.currentTimeMillis())
