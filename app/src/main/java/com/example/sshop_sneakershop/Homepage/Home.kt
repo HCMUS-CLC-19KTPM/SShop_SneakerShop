@@ -1,8 +1,10 @@
 package com.example.sshop_sneakershop.Homepage
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -24,9 +26,11 @@ import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityNavigationBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
