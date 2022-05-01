@@ -17,6 +17,7 @@ import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.Payment
 import com.example.sshop_sneakershop.Auth.views.SignInActivity
+import com.example.sshop_sneakershop.Cart.CartActivity
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityUserBinding
 import com.google.firebase.auth.ktx.auth
@@ -71,6 +72,14 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
 
         //Back to home
         binding.profileToolbar.setNavigationOnClickListener { finish() }
+        binding.profileToolbar.setOnMenuItemClickListener { item->
+            when(item.itemId){
+                R.id.cart -> {
+                    startActivity(Intent(this, CartActivity::class.java))
+                }
+            }
+            true
+        }
 
         logoutBtn = findViewById(R.id.profile_button_logout)
         logoutBtn.setOnClickListener {

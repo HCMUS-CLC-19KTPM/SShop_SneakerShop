@@ -53,7 +53,8 @@ class Account(
             "address" to address,
             "phone" to phone,
             "gender" to gender,
-            "dob" to dob
+            "dob" to dob,
+            "avatar" to avatar
         )
     }
 }

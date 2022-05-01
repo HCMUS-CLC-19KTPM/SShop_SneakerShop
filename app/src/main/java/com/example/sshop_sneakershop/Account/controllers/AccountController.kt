@@ -1,13 +1,11 @@
 package com.example.sshop_sneakershop.Account.controllers
 
+import android.net.Uri
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.AccountModel
 import com.example.sshop_sneakershop.Account.views.IAccountActivity
 import com.example.sshop_sneakershop.Account.views.IAccountEditActivity
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class AccountController(
     private val accountActivity: IAccountActivity? = null,
@@ -45,6 +43,21 @@ class AccountController(
                 }
             } catch (e: Exception) {
                 accountActivity?.onGetUserFail("Error: ${e.message}")
+            }
+        }
+    }
+
+    override fun onUpdateAvatar(uri: Uri) {
+        GlobalScope.launch(Dispatchers.Main){
+            try{
+                val image = accountModel.uploadImage(uri)
+                if (image != null) {
+                    editActivity?.onUpdateAvatarSuccess(image)
+                } else {
+                    editActivity?.onUpdateAvatarFail("Error: Can't upload image")
+                }
+            }catch (e: Exception){
+                editActivity?.onUpdateAvatarFail("Error: ${e.message}")
             }
         }
     }

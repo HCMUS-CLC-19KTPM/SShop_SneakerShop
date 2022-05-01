@@ -1,12 +1,19 @@
 package com.example.sshop_sneakershop.Account.models
 
+import android.net.Uri
+import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AccountModel {
     private var db = Firebase.firestore
+    private var storageRef = Firebase.storage.reference
 
     suspend fun getUser(): Account? {
         var account: Account? = null
@@ -63,6 +70,25 @@ class AccountModel {
     }
 
     // Update
+    /**
+     * Update user's avatar
+     */
+    suspend fun uploadImage(imageUri: Uri): String? {
+        val formater = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+        val now = Date()
+        val fileName = formater.format(now)
+        var url = ""
+        try {
+            storageRef.child("account/${fileName}.jpg").putFile(imageUri).await()
+            val uri = storageRef.child("account/${fileName}.jpg").downloadUrl.await()
+            url = uri.toString()
+            Log.i("image-url", "1: ${url}")
+            return url
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
+    }
 
     /**
      * Update user's information
