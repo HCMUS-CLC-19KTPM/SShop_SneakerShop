@@ -3,6 +3,7 @@ package com.example.sshop_sneakershop.Product.models
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.sshop_sneakershop.Review.models.Review
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -12,7 +13,8 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class ProductModel {
-    private var db = Firebase.firestore
+    private val db = Firebase.firestore
+    private val auth = Firebase.auth
 
     /**
      * Get all products
@@ -24,6 +26,29 @@ class ProductModel {
             db.collection("product")
                 .limit(limit)
                 .orderBy("releaseDate", Query.Direction.DESCENDING)
+                .get()
+                .await()
+                .documents
+                .forEach {
+                    val product = it.toObject(Product::class.java)
+                    products.add(product!!)
+                }
+        } catch (e: Exception) {
+            Log.w(TAG, "Error getting documents.", e)
+        }
+
+        return products
+    }
+
+    /**
+     * Get viewed products
+     */
+    suspend fun getViewedProducts(limit: Long = 10_000): ArrayList<Product> {
+        val products = ArrayList<Product>()
+
+        try {
+            db.collection("viewed_product")
+                .limit(limit)
                 .get()
                 .await()
                 .documents
@@ -116,5 +141,26 @@ class ProductModel {
             return false
         }
         return true
+    }
+
+    /**
+     * Add product to viewed product list
+     */
+    @Throws(Exception::class)
+    suspend fun addViewedProduct(product: Product) {
+        try {
+            val ref = db.collection("viewed_product")
+                .document(auth.currentUser!!.uid)
+
+            if (ref.get().await().exists()) {
+                ref.update("products", FieldValue.arrayUnion(product)).await()
+            } else {
+                val products = ArrayList<Product>()
+                products.add(product)
+                ref.set(mapOf("products" to products)).await()
+            }
+        } catch (e: Exception) {
+            throw e
+        }
     }
 }

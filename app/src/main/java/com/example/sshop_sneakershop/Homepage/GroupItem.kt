@@ -9,10 +9,9 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.models.Product
-import com.example.sshop_sneakershop.Product.views.IProductView
+import com.example.sshop_sneakershop.Product.views.IProductActivity
 import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
@@ -22,7 +21,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class GroupItem : AppCompatActivity(), ItemClickListener, IProductView {
+class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
     private var productList: ArrayList<Product> = ArrayList()
     private var fullProductList: ArrayList<Product> = ArrayList()
     private lateinit var productController: ProductController
@@ -97,9 +96,13 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductView {
     }
 
     override fun onClick(product: Product) {
-        val intent = Intent(applicationContext, ProductDetail::class.java)
-        intent.putExtra("item-id", product.id)
-        startActivity(intent)
+        GlobalScope.launch(Dispatchers.Main) {
+            productController.addViewedProduct(product)
+
+            val intent = Intent(applicationContext, ProductDetail::class.java)
+            intent.putExtra("item-id", product.id)
+            startActivity(intent)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -134,7 +137,7 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductView {
         val searchItem = menu.findItem(R.id.search_icon)
         Log.i("searchView", "go here 1")
         val searchView = searchItem.actionView as SearchView
-        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE)
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false

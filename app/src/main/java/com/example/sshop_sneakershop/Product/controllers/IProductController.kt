@@ -8,6 +8,8 @@ interface IProductController {
     suspend fun getProductById(id: String): Product
     suspend fun getProductsByCategory(category: String): ArrayList<Product>
     suspend fun addReview(productID: String, userId: String, review: Review): Boolean
+    suspend fun addViewedProduct(product: Product)
+
     fun onGetAllProducts(limit: Long? = null)
     fun onGetProductById(id: String)
     fun onGetProductsByCategory(category: String)

@@ -1,10 +1,8 @@
 package com.example.sshop_sneakershop.Homepage
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -21,25 +19,20 @@ import com.example.sshop_sneakershop.Cart.CartActivity
 import com.example.sshop_sneakershop.Order.views.OrderListActivity
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.models.Product
-import com.example.sshop_sneakershop.Product.views.IProductView
+import com.example.sshop_sneakershop.Product.views.IProductActivity
 import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.Product.views.ViewedProductActivity
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityNavigationBinding
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.FirebaseMessaging
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import kotlin.collections.ArrayList
 
 class Home : AppCompatActivity(), ItemClickListener,
-    NavigationView.OnNavigationItemSelectedListener, IProductView {
+    NavigationView.OnNavigationItemSelectedListener, IProductActivity {
     //ViewPager
     private var mViewPager: ViewPager? = null
     private var images = intArrayOf(R.drawable.banner1, R.drawable.banner2, R.drawable.banner3)
@@ -154,10 +147,15 @@ class Home : AppCompatActivity(), ItemClickListener,
             super.onBackPressed()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onClick(product: Product) {
-        val intent = Intent(applicationContext, ProductDetail::class.java)
-        intent.putExtra("item-id", product.id)
-        startActivity(intent)
+        GlobalScope.launch(Dispatchers.Main) {
+            productController.addViewedProduct(product)
+
+            val intent = Intent(applicationContext, ProductDetail::class.java)
+            intent.putExtra("item-id", product.id)
+            startActivity(intent)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

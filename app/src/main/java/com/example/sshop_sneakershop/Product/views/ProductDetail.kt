@@ -22,7 +22,7 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
-class ProductDetail : AppCompatActivity(), ItemClickListener, IProductView {
+class ProductDetail : AppCompatActivity(), ItemClickListener, IProductActivity {
     private lateinit var binding: ActivityItemDetailBinding
     private lateinit var productList: ArrayList<Product>
     private val reviewList: ArrayList<Review> = ArrayList()
