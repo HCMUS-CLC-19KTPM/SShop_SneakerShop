@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
+            android:name=".Product.views.ViewedProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".Review.views.ReviewListProduct"
             android:exported="false" />
         <activity
@@ -77,8 +80,9 @@
             android:name=".Account.views.AccountEditActivity"
             android:exported="true" />
 
-        <service android:name=".Notification.controllers.FirebaseInstanceIdController"
-                android:exported="false">
+        <service
+            android:name=".Notification.controllers.FirebaseInstanceIdController"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

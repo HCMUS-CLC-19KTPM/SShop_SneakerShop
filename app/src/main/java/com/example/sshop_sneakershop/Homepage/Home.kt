@@ -24,6 +24,7 @@ import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.IProductView
 import com.example.sshop_sneakershop.Product.views.ProductAdapter
 import com.example.sshop_sneakershop.Product.views.ProductDetail
+import com.example.sshop_sneakershop.Product.views.ViewedProductActivity
 import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityNavigationBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -181,6 +182,10 @@ class Home : AppCompatActivity(), ItemClickListener,
             }
             R.id.nav_profile -> {
                 val intent = Intent(this, AccountActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_viewed_products -> {
+                val intent = Intent(this, ViewedProductActivity::class.java)
                 startActivity(intent)
             }
             R.id.nav_order -> {
