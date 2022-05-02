@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.R
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -21,6 +22,7 @@ class PaymentEditActivity : AppCompatActivity() {
 
     private lateinit var addPaymentBtn: FloatingActionButton
     private lateinit var listPaymentRcView: RecyclerView
+    private lateinit var toolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class PaymentEditActivity : AppCompatActivity() {
 
         addPaymentBtn = findViewById(R.id.editPayment_addCart_button)
         listPaymentRcView = findViewById(R.id.editPayment_atmList_RC)
+        toolbar = findViewById(R.id.editPayment_toolbar)
 
         GlobalScope.launch(Dispatchers.Main) {
             val account = accountController.getUser(auth.currentUser!!.email!!)
@@ -45,6 +48,23 @@ class PaymentEditActivity : AppCompatActivity() {
             val intent = Intent (this, AddPaymentActivity::class.java)
             startActivity(intent)
         }
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        GlobalScope.launch(Dispatchers.Main) {
+            val account = accountController.getUser(auth.currentUser!!.email!!)
+            if (account != null) {
+                val paymentList = account.payments
+                if (paymentList !== null) {
+                    val paymentAdapter = PaymentDetailItemAdapter(paymentList)
+                    listPaymentRcView.adapter = paymentAdapter
+                    listPaymentRcView.layoutManager = LinearLayoutManager(this@PaymentEditActivity)
+                }
+            }
+        }
     }
 }
