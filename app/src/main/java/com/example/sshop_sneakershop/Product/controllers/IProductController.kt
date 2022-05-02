@@ -13,4 +13,5 @@ interface IProductController {
     fun onGetAllProducts(limit: Long? = null)
     fun onGetProductById(id: String)
     fun onGetProductsByCategory(category: String)
+    fun onGetViewedProducts()
 }

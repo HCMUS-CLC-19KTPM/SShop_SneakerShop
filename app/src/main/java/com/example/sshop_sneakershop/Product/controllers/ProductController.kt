@@ -32,6 +32,18 @@ class ProductController : IProductController {
         return model.getAllProducts()
     }
 
+
+    /**
+     * Get product by category
+     */
+    override suspend fun getProductsByCategory(category: String): ArrayList<Product> {
+        if (category == "all") {
+            return model.getAllProducts()
+        }
+
+        return model.getProductsByCategory(category)
+    }
+
     override suspend fun addReview(productID: String, userId: String, review: Review): Boolean {
         return model.addReview(productID, userId, review)
     }
@@ -42,7 +54,6 @@ class ProductController : IProductController {
     override suspend fun addViewedProduct(product: Product) {
         model.addViewedProduct(product)
     }
-
 
     /**
      * Get all products 2
@@ -88,14 +99,18 @@ class ProductController : IProductController {
         }
     }
 
-    /**
-     * Get product by category
-     */
-    override suspend fun getProductsByCategory(category: String): ArrayList<Product> {
-        if (category == "all") {
-            return model.getAllProducts()
+    override fun onGetViewedProducts() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val products = model.getViewedProducts()
+                withContext(Dispatchers.Main) {
+                    viewedProductActivity?.onAddViewedProductsSuccess(products)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    viewedProductActivity?.onAddViewedProductsFailed("Error: ${e.message}")
+                }
+            }
         }
-
-        return model.getProductsByCategory(category)
     }
 }

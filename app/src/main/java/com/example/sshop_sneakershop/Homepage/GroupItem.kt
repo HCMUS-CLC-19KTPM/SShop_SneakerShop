@@ -22,31 +22,28 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
-    private var productList: ArrayList<Product> = ArrayList()
-    private var fullProductList: ArrayList<Product> = ArrayList()
     private lateinit var productController: ProductController
     private lateinit var productAdapter: ProductAdapter
-    private lateinit var category: String
+
     private lateinit var binding: ActivityGroupItemBinding
+
+    private lateinit var category: String
+    private val productList: ArrayList<Product> = ArrayList()
+    private val fullProductList: ArrayList<Product> = ArrayList()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
+        productController = ProductController(this)
+
         super.onCreate(savedInstanceState)
         binding = ActivityGroupItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        productList = ArrayList()
-        productController = ProductController(this)
 
         category = intent.getStringExtra("category-id").toString()
         binding.groupListToolbar.title = category
 
         val mainActivity = this
-//        binding.productRecyclerView.apply {
-//            layoutManager = GridLayoutManager(applicationContext, 2)
-//            adapter = ProductAdapter(productList, mainActivity, productList)
-//        }
-        binding.productRecyclerView.layoutManager =  GridLayoutManager(applicationContext, 2)
+        binding.productRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
         productAdapter = ProductAdapter(productList, mainActivity, fullProductList)
         binding.productRecyclerView.adapter = productAdapter
 
@@ -132,7 +129,8 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
         fullProductList.addAll(products)
         binding.productRecyclerView.adapter?.notifyDataSetChanged()
     }
-    override fun onCreateOptionsMenu(menu: Menu):Boolean {
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.top_app_bar_with_search, menu)
         val searchItem = menu.findItem(R.id.search_icon)
         Log.i("searchView", "go here 1")

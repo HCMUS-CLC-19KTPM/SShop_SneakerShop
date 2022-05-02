@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SShop_SneakerShop">
         <activity
             android:name=".Product.views.ViewedProductActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Review.views.ReviewListProduct"
             android:exported="false" />
