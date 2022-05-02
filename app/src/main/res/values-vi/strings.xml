@@ -88,4 +88,5 @@
     <string name="quantity1">Số lượng:</string>
     <string name="total_price1">Tổng giá:</string>
     <string name="viewed_products">Sản phẩm đã xem</string>
+    <string name="choose_payment_method">Chọn thẻ ngân hàng</string>
 </resources>

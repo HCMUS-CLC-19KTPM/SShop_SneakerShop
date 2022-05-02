@@ -36,7 +36,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_checkout_add_new_information_edittext_name"
+                android:id="@+id/fragment_checkout_add_new_information_textinputlayout_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -50,12 +50,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_add_new_information_title">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_checkout_add_new_information_edittext_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_checkout_add_new_information_edittext_phone"
+                android:id="@+id/fragment_checkout_add_new_information_textinputlayout_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -66,15 +67,16 @@
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_checkout_add_new_information_edittext_name">
+                app:layout_constraintTop_toBottomOf="@+id/fragment_checkout_add_new_information_textinputlayout_name">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_checkout_add_new_information_edittext_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_checkout_add_new_information_edittext_address"
+                android:id="@+id/fragment_checkout_add_new_information_textinputlayout_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -85,9 +87,10 @@
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_checkout_add_new_information_edittext_phone">
+                app:layout_constraintTop_toBottomOf="@+id/fragment_checkout_add_new_information_textinputlayout_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_checkout_add_new_information_edittext_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -100,15 +103,14 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="30dp"
                 android:backgroundTint="@color/primary"
+                android:textColor="@color/white"
                 android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textSize="18sp"
-                app:icon="@drawable/ic_baseline_file_upload_24"
-                app:iconGravity="textStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_checkout_add_new_information_edittext_address" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_checkout_add_new_information_textinputlayout_address" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 

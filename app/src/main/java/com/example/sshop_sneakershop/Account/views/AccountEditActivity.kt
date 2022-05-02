@@ -144,7 +144,12 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
 
         submitButton.setOnClickListener {
 //            updateUserInfo()
-            imageUri?.let { accountController.onUpdateAvatar(it) }
+            if (imageUri!=null){
+                imageUri?.let { accountController.onUpdateAvatar(it) }
+            }else{
+                updateUserInfo()
+            }
+
         }
         toolbar.setNavigationOnClickListener {
             finish()
