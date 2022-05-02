@@ -36,7 +36,7 @@
                 android:background="@color/primary"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                app:title="Home"
+                app:title="Profile"
                 app:titleTextColor="@color/white" />
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -59,13 +59,41 @@ class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClick
         binding.orderDetailToolbar.setNavigationOnClickListener {
             finish()
         }
+        binding.orderDetailButtonReport.setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Success")
+                .setMessage("Report successfully. Admin will contact to support you as soon as possible.")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                    finish()
+                }
+                .show()
+        }
 
         binding.orderDetailButtonConfirm.setOnClickListener {
             //IMPLEMENTS Update order status
             //Move to review
-            val intent = Intent(this, ReviewListProduct::class.java)
-            intent.putExtra("order-id", orderID)
-            startActivity(intent)
+            if (order.deliveryStatus == "On Delivery"){
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Warning")
+                    .setMessage("Your order has not been completed. Please wait for the admin to confirm completion to proceed with the review.")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            } else if(order.deliveryStatus == "Cancelled"){
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Warning")
+                    .setMessage("Your order has been cancelled. Please contact admin to get the reason.")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            } else{
+                val intent = Intent(this, ReviewListProduct::class.java)
+                intent.putExtra("order-id", orderID)
+                startActivity(intent)
+            }
         }
     }
 
@@ -93,7 +121,7 @@ class OrderDetailActivity : AppCompatActivity(), IOrderDetailActivity, ItemClick
         binding.orderDetailRecyclerView.adapter?.notifyDataSetChanged()
 
         // Check if this order is delivered successfully
-        binding.orderDetailButtonConfirm.isEnabled = order.deliveryStatus == "Completed"
+//        binding.orderDetailButtonConfirm.isEnabled = order.deliveryStatus == "Completed"
     }
 
     override fun onGetOrderByIdFailed(message: String) {

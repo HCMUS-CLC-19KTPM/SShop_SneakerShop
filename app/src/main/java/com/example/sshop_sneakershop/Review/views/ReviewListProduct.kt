@@ -1,7 +1,6 @@
 package com.example.sshop_sneakershop.Review.views
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +12,6 @@ import com.example.sshop_sneakershop.Order.models.Order
 import com.example.sshop_sneakershop.Order.views.IOrderDetailActivity
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.views.CustomProductAdapter
-import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.databinding.ActivityReviewListProductBinding
 
 class ReviewListProduct : AppCompatActivity(), ItemClickListener, IOrderDetailActivity {
@@ -46,9 +44,15 @@ class ReviewListProduct : AppCompatActivity(), ItemClickListener, IOrderDetailAc
     }
     override fun onClick(product: Product) {
         //Start review for single product
-        val intent = Intent(applicationContext, ProductDetail::class.java)
-        intent.putExtra("item-id", product.id)
-        startActivity(intent)
+//        val intent = Intent(applicationContext, ProductDetail::class.java)
+//        intent.putExtra("item-id", product.id)
+//        startActivity(intent)
+        val reviewBottomSheetDialog = ReviewBottomSheetDialog()
+        val bundle = Bundle()
+        bundle.putString("item-id", product.id)
+        bundle.putString("item-image", product.image)
+        reviewBottomSheetDialog.arguments = bundle
+        reviewBottomSheetDialog.show(supportFragmentManager, "reviewBottomSheetDialog")
     }
 
     @SuppressLint("NotifyDataSetChanged")

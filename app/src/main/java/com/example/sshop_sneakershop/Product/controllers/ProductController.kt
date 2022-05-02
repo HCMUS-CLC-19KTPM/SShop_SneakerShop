@@ -3,6 +3,7 @@ package com.example.sshop_sneakershop.Product.controllers
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.models.ProductModel
 import com.example.sshop_sneakershop.Product.views.IProductView
+import com.example.sshop_sneakershop.Review.models.Review
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,4 +74,9 @@ class ProductController(private val view: IProductView? = null) : IProductContro
 
         return model.getProductsByCategory(category)
     }
+
+    override suspend fun addReview(productID: String, userId: String, review: Review): Boolean {
+        return model.addReview(productID, userId, review)
+    }
+
 }
