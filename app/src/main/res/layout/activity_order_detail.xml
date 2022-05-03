@@ -32,7 +32,7 @@
                 android:id="@+id/order_detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
-                android:background="@color/primary"
+                android:background="?android:attr/colorPrimary"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:title="Order Status"
                 app:titleTextColor="@color/white" />
@@ -121,14 +121,14 @@
                         android:layout_marginBottom="8dp"
                         android:text="Report"
                         android:textAllCaps="false"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/order_detail_text_view_2"
-                        app:strokeColor="@color/primary" />
+                        app:strokeColor="?android:attr/textColorPrimary" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -201,7 +201,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Start Date:"
-                                android:textColor="@color/primary"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -224,7 +224,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Estimated Delivery Date:"
-                                android:textColor="@color/primary"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -247,7 +247,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Customer Name:"
-                                android:textColor="@color/primary"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -270,7 +270,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Address:"
-                                android:textColor="@color/primary"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -293,7 +293,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Phone Number:"
-                                android:textColor="@color/primary"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -316,7 +316,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Total Cost:"
-                                android:textColor="@color/primary"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -339,7 +339,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Status:"
-                                android:textColor="@color/primary"
+                                android:textColor="?android:attr/textColorPrimary"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -406,7 +406,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/primary"
+                android:backgroundTint="?android:attr/colorPrimary"
                 android:text="Review Order"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

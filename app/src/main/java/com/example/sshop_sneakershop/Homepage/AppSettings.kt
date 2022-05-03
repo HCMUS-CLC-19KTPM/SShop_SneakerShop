@@ -3,17 +3,11 @@ package com.example.sshop_sneakershop.Homepage
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.sshop_sneakershop.Product.models.Product
-import com.example.sshop_sneakershop.Product.views.ProductAdapter
-import com.example.sshop_sneakershop.R
 import com.example.sshop_sneakershop.databinding.ActivityAppSettingBinding
-import com.example.sshop_sneakershop.databinding.ActivitySearchBinding
 import java.util.*
+
 
 class AppSettings: AppCompatActivity() {
     private lateinit var binding: ActivityAppSettingBinding
@@ -45,15 +39,26 @@ class AppSettings: AppCompatActivity() {
             }
         }
 
+        val sharedPreferences = getSharedPreferences("dark_mode", MODE_PRIVATE)
+        binding.appSettingsSwitchDarkMode.setChecked(sharedPreferences.getBoolean("value", true))
+
         binding.appSettingsSwitchDarkMode.setOnCheckedChangeListener{
             compoundButton, isChecked ->
             if (compoundButton.isPressed) {
                 if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     recreate()
+                    val editor = getSharedPreferences("dark_mode", MODE_PRIVATE).edit()
+                    editor.putBoolean("value", true)
+                    editor.apply()
+                    binding.appSettingsSwitchDarkMode.setChecked(true)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     recreate()
+                    val editor = getSharedPreferences("dark_mode", MODE_PRIVATE).edit()
+                    editor.putBoolean("value", false)
+                    editor.apply()
+                    binding.appSettingsSwitchDarkMode.setChecked(false)
                 }
             }
         }

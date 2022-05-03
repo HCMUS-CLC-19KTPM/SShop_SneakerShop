@@ -54,6 +54,7 @@
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/quantity1"
-                    android:textColor="@color/primary"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/product_textview_description" />
@@ -96,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/total_price1"
-                    android:textColor="@color/primary"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />

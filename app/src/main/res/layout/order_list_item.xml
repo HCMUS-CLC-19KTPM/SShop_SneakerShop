@@ -71,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/start_date"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/estimated_delivery_date"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -117,7 +117,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/customer_name"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -140,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/address1"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -163,7 +163,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/phone_number1"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -186,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/total_cost"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -208,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/status"
-                        android:textColor="@color/primary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:textStyle="bold" />
 
                     <TextView

@@ -66,6 +66,7 @@
                 android:layout_marginTop="32dp"
                 android:text="Pretty long sample title"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/cardView4"

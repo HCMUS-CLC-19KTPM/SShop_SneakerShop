@@ -33,7 +33,7 @@
                 android:id="@+id/app_setting_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
-                android:background="@color/primary"
+                android:background="?android:attr/colorPrimary"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:title="@string/app_settings"
@@ -50,13 +50,13 @@
         android:layout_marginEnd="10dp"
         android:checked="true"
         android:text="@string/app_notifications_n"
-        android:textStyle="bold"
         android:textSize="16sp"
-        app:thumbTint="@color/primary"
-        app:trackTint="@color/faded_orange"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_settings_coordinator_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/app_settings_coordinator_layout"
+        app:thumbTint="?android:attr/textColorPrimary"
+        app:trackTint="@color/faded_orange" />
 
 
     <TextView
@@ -95,8 +95,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider4"
-        app:thumbTint="@color/primary"
-        app:trackTint="@color/faded_orange"/>
+        app:thumbTint="?android:attr/textColorPrimary"
+        app:trackTint="@color/faded_orange" />
 
     <TextView
         android:id="@+id/textView4"
@@ -134,8 +134,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider5"
-        app:thumbTint="@color/primary"
-        app:trackTint="@color/faded_orange"/>
+        app:thumbTint="?android:attr/textColorPrimary"
+        app:trackTint="@color/faded_orange" />
 
     <TextView
         android:id="@+id/textView5"
