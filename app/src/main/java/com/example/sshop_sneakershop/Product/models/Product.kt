@@ -1,8 +1,8 @@
 package com.example.sshop_sneakershop.Product.models
 
 import com.example.sshop_sneakershop.Review.models.Review
+import com.google.firebase.Timestamp
 import java.util.*
-import kotlin.collections.ArrayList
 
 class Product {
     var id: String = ""
@@ -30,7 +30,14 @@ class Product {
         this.image = image.toString()
     }
 
-    constructor(id: String, image: String, name: String, price: Double, quantity: Int, size: String) {
+    constructor(
+        id: String,
+        image: String,
+        name: String,
+        price: Double,
+        quantity: Int,
+        size: String
+    ) {
         this.id = id
         this.image = image
         this.name = name
@@ -120,6 +127,7 @@ class Product {
         this.rating = rating
         this.reviews = reviews
     }
+
     constructor(
         id: String,
         price: Double,
@@ -150,5 +158,23 @@ class Product {
         this.rating = rating
         this.discount = discount
         this.reviews = reviews
+    }
+
+    constructor(
+        id: String,
+        image: String?,
+        name: String,
+        category: String,
+        price: Double,
+        releaseDate: Date,
+        rating: Double
+    ) {
+        this.id = id
+        this.image = image
+        this.name = name
+        this.category = category
+        this.price = price
+        this.releaseDate = releaseDate
+        this.rating = rating
     }
 }

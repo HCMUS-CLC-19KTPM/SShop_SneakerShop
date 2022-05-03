@@ -2,8 +2,10 @@ package com.example.sshop_sneakershop.Account.views
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,11 @@ import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Auth.views.AccountChangePassActivity
 import com.example.sshop_sneakershop.Auth.views.SignInActivity
+import com.example.sshop_sneakershop.Cart.CartActivity
 import com.example.sshop_sneakershop.R
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mikhaellopez.circularimageview.CircularImageView
@@ -44,6 +50,9 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
 
     private lateinit var changePasswordButton: Button
     private lateinit var submitButton: Button
+    private lateinit var toolbar: MaterialToolbar
+    private lateinit var changeAvatarBtn: FloatingActionButton
+    private var imageUri: Uri? = null
 
     override fun onStart() {
         super.onStart()
@@ -72,6 +81,8 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
 
         changePasswordButton = findViewById(R.id.edit_profile_button_change_password)
         submitButton = findViewById(R.id.edit_profile_button_submit)
+        toolbar = findViewById(R.id.editProfile_toolbar)
+        changeAvatarBtn = findViewById(R.id.editProfile_button_change_avatar)
 
         genderEditText.setOnClickListener { spinner.performClick() }
         val type = arrayOf("Male", "Female", "Other")
@@ -127,12 +138,44 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
             val intent = Intent(this, AccountChangePassActivity::class.java)
             startActivity(intent)
         }
-
-        submitButton.setOnClickListener {
-            updateUserInfo()
+        changeAvatarBtn.setOnClickListener {
+            selectAvatar()
         }
 
+        submitButton.setOnClickListener {
+//            updateUserInfo()
+            if (imageUri!=null){
+                imageUri?.let { accountController.onUpdateAvatar(it) }
+            }else{
+                updateUserInfo()
+            }
+
+        }
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.cart -> {
+                    startActivity(Intent(this, CartActivity::class.java))
+                }
+            }
+            true
+        }
         accountController.onGetUser()
+    }
+    fun selectAvatar(){
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100)
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 100 && resultCode == RESULT_OK && data != null) {
+            imageUri = data.data!!
+            avatarImageView.setImageURI(imageUri)
+        }
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -171,6 +214,7 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
             account!!.gender = gender
             account!!.dob = dob
 
+            Log.i("image-url", "2: ${account!!.avatar}")
             accountController.onUpdateUserInfo(account!!)
         }
     }
@@ -208,6 +252,24 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
     }
 
     override fun onUpdateUserInfoFailed(message: String) {
+//        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Success")
+            .setMessage("Update profile successfully!")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                finish()
+            }
+            .show()
+    }
+
+
+    override fun onUpdateAvatarSuccess(imageURL: String) {
+        account!!.avatar = imageURL
+        updateUserInfo()
+    }
+
+    override fun onUpdateAvatarFail(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 

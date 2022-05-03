@@ -2,21 +2,57 @@ package com.example.sshop_sneakershop.Product.controllers
 
 import com.example.sshop_sneakershop.Product.models.Product
 import com.example.sshop_sneakershop.Product.models.ProductModel
-import com.example.sshop_sneakershop.Product.views.IProductView
+import com.example.sshop_sneakershop.Product.views.IProductActivity
+import com.example.sshop_sneakershop.Product.views.IViewedProductActivity
+import com.example.sshop_sneakershop.Review.models.Review
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ProductController(private val view: IProductView? = null) : IProductController {
-
+class ProductController : IProductController {
     private val model = ProductModel()
+    private var productActivity: IProductActivity? = null
+    private var viewedProductActivity: IViewedProductActivity? = null
+
+    constructor()
+
+    constructor(activity: IProductActivity? = null) {
+        this.productActivity = activity
+    }
+
+    constructor(activity: IViewedProductActivity? = null) {
+        this.viewedProductActivity = activity
+    }
 
     /**
      * Get all products
      */
     override suspend fun getAllProducts(): ArrayList<Product> {
         return model.getAllProducts()
+    }
+
+
+    /**
+     * Get product by category
+     */
+    override suspend fun getProductsByCategory(category: String): ArrayList<Product> {
+        if (category == "all") {
+            return model.getAllProducts()
+        }
+
+        return model.getProductsByCategory(category)
+    }
+
+    override suspend fun addReview(productID: String, userId: String, review: Review): Boolean {
+        return model.addReview(productID, userId, review)
+    }
+
+    /**
+     * Add viewed product
+     */
+    override suspend fun addViewedProduct(product: Product) {
+        model.addViewedProduct(product)
     }
 
     /**
@@ -30,7 +66,7 @@ class ProductController(private val view: IProductView? = null) : IProductContro
                 model.getAllProducts()
             }
             withContext(Dispatchers.Main) {
-                view?.onShowAllProducts(products)
+                productActivity?.onShowAllProducts(products)
             }
         }
     }
@@ -49,7 +85,7 @@ class ProductController(private val view: IProductView? = null) : IProductContro
         CoroutineScope(Dispatchers.Main).launch {
             val product = model.getProductById(id)
             withContext(Dispatchers.Main) {
-                view?.onShowProductDetail(product)
+                productActivity?.onShowProductDetail(product)
             }
         }
     }
@@ -58,19 +94,23 @@ class ProductController(private val view: IProductView? = null) : IProductContro
         CoroutineScope(Dispatchers.Main).launch {
             val products = if (category == "All") model.getAllProducts() else model.getProductsByCategory(category)
             withContext(Dispatchers.Main) {
-                view?.onShowProductsByCategory(products)
+                productActivity?.onShowProductsByCategory(products)
             }
         }
     }
 
-    /**
-     * Get product by category
-     */
-    override suspend fun getProductsByCategory(category: String): ArrayList<Product> {
-        if (category == "all") {
-            return model.getAllProducts()
+    override fun onGetViewedProducts() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val products = model.getViewedProducts()
+                withContext(Dispatchers.Main) {
+                    viewedProductActivity?.onAddViewedProductsSuccess(products)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    viewedProductActivity?.onAddViewedProductsFailed("Error: ${e.message}")
+                }
+            }
         }
-
-        return model.getProductsByCategory(category)
     }
 }

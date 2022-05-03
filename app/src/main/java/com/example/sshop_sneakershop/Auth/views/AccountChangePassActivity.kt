@@ -1,16 +1,20 @@
 package com.example.sshop_sneakershop.Auth.views
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import com.example.sshop_sneakershop.Auth.controllers.AuthController
 import com.example.sshop_sneakershop.Auth.controllers.IAuthController
+import com.example.sshop_sneakershop.Cart.CartActivity
 import com.example.sshop_sneakershop.R
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -26,6 +30,7 @@ class AccountChangePassActivity : AppCompatActivity(), IChangePasswordActivity {
     private lateinit var oldPassEditText: EditText
     private lateinit var newPassEditText: EditText
     private lateinit var confirmNewPassEditText: EditText
+    private lateinit var toolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +42,7 @@ class AccountChangePassActivity : AppCompatActivity(), IChangePasswordActivity {
         oldPassEditText = findViewById(R.id.changePass_input_oldPass)
         newPassEditText = findViewById(R.id.changePass_input_newPass)
         confirmNewPassEditText = findViewById(R.id.changePass_input_confirm_newPass)
+        toolbar = findViewById(R.id.changePass_toolbar)
 
 
         changePasswordButton.setOnClickListener {
@@ -64,7 +70,10 @@ class AccountChangePassActivity : AppCompatActivity(), IChangePasswordActivity {
                 }
             }
         }
-
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     override fun onChangePasswordSuccess(message: String) {

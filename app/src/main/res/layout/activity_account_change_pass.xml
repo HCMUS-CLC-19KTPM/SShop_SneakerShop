@@ -34,7 +34,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="@color/primary"
-                app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:title="Edit Profile"
                 app:titleTextColor="@color/white" />

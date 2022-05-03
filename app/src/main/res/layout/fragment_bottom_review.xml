@@ -30,25 +30,25 @@
         android:rating="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/review_product_image"
         tools:ignore="SpeakableTextPresentCheck">
 
     </RatingBar>
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/review_product_image"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:srcCompat="@drawable/shoe_detail" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/review_edittext_feedback"
+        android:id="@+id/review_text_input_layout"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="16dp"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/review_rating_bar">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signin_input_email"
+            android:id="@+id/review_edittext_feedback"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ellipsize="start"
@@ -84,5 +84,5 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_edittext_feedback" />
+        app:layout_constraintTop_toBottomOf="@+id/review_text_input_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,7 @@ interface IAccountEditActivity {
     // Update
     fun onUpdateUserInfoSuccess(account: Account)
     fun onUpdateUserInfoFailed(message: String)
+    fun onUpdateAvatarSuccess(imageURL: String)
+    fun onUpdateAvatarFail(message: String)
+
 }

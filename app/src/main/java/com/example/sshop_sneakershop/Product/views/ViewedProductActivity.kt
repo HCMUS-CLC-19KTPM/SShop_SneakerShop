@@ -1,31 +1,25 @@
-package com.example.sshop_sneakershop.Homepage
+package com.example.sshop_sneakershop.Product.views
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.inputmethod.EditorInfo
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.sshop_sneakershop.Homepage.ItemClickListener
 import com.example.sshop_sneakershop.Product.controllers.ProductController
 import com.example.sshop_sneakershop.Product.models.Product
-import com.example.sshop_sneakershop.Product.views.IProductActivity
-import com.example.sshop_sneakershop.Product.views.ProductAdapter
-import com.example.sshop_sneakershop.Product.views.ProductDetail
 import com.example.sshop_sneakershop.R
-import com.example.sshop_sneakershop.databinding.ActivityGroupItemBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.sshop_sneakershop.databinding.ActivityViewedProductBinding
 
-class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
+class ViewedProductActivity : AppCompatActivity(), ItemClickListener, IViewedProductActivity, IProductActivity {
     private lateinit var productController: ProductController
     private lateinit var productAdapter: ProductAdapter
 
-    private lateinit var binding: ActivityGroupItemBinding
+    private lateinit var binding: ActivityViewedProductBinding
 
     private lateinit var category: String
     private val productList: ArrayList<Product> = ArrayList()
@@ -33,32 +27,27 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
-        productController = ProductController(this)
+        productController = ProductController(this as IViewedProductActivity)
 
         super.onCreate(savedInstanceState)
-        binding = ActivityGroupItemBinding.inflate(layoutInflater)
+        binding = ActivityViewedProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        category = intent.getStringExtra("category-id").toString()
-        binding.groupListToolbar.title = category
-
         val mainActivity = this
-        binding.productRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
+        binding.viewedProductRecyclerView.layoutManager =  GridLayoutManager(applicationContext, 2)
         productAdapter = ProductAdapter(productList, mainActivity, fullProductList)
-        binding.productRecyclerView.adapter = productAdapter
+        binding.viewedProductRecyclerView.adapter = productAdapter
 
-        setSupportActionBar(binding.groupListToolbar)
-        binding.groupListToolbar.setNavigationOnClickListener {
+        setSupportActionBar(binding.viewedProductListToolbar)
+        binding.viewedProductListToolbar.setNavigationOnClickListener {
             finish()
         }
-
-        productController.onGetProductsByCategory(category)
 
         var stateLike = false
         var statePrice = false
         var stateTime = false
 
-        binding.likeSortButton.setOnClickListener {
+        binding.viewedProductLikeSortButton.setOnClickListener {
             stateLike = if (!stateLike) {
                 productList.sortBy { it.rating }
                 true
@@ -66,10 +55,10 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
                 productList.sortByDescending { it.rating }
                 false
             }
-            binding.productRecyclerView.adapter?.notifyDataSetChanged()
+            binding.viewedProductRecyclerView.adapter?.notifyDataSetChanged()
         }
 
-        binding.priceSortButton.setOnClickListener {
+        binding.viewedProductPriceSortButton.setOnClickListener {
             statePrice = if (!statePrice) {
                 productList.sortBy { it.price }
                 true
@@ -77,10 +66,10 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
                 productList.sortByDescending { it.price }
                 false
             }
-            binding.productRecyclerView.adapter?.notifyDataSetChanged()
+            binding.viewedProductRecyclerView.adapter?.notifyDataSetChanged()
         }
 
-        binding.dateSortButton.setOnClickListener {
+        binding.viewedProductDateSortButton.setOnClickListener {
             stateTime = if (!stateTime) {
                 productList.sortBy { it.releaseDate }
                 true
@@ -88,29 +77,29 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
                 productList.sortByDescending { it.releaseDate }
                 false
             }
-            binding.productRecyclerView.adapter?.notifyDataSetChanged()
+            binding.viewedProductRecyclerView.adapter?.notifyDataSetChanged()
         }
-    }
 
-    override fun onClick(product: Product) {
-        GlobalScope.launch(Dispatchers.Main) {
-            productController.addViewedProduct(product)
-
-            val intent = Intent(applicationContext, ProductDetail::class.java)
-            intent.putExtra("item-id", product.id)
-            startActivity(intent)
-        }
+        productController.onGetViewedProducts()
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun getProducts() {
-        GlobalScope.launch(Dispatchers.Main) {
-            productList.addAll(productController.getProductsByCategory(category))
+    override fun onAddViewedProductsSuccess(products: ArrayList<Product>) {
+        productList.clear()
+        fullProductList.clear()
+        productList.addAll(products)
+        fullProductList.addAll(products)
+        binding.viewedProductRecyclerView.adapter?.notifyDataSetChanged()
+    }
 
-            withContext(Dispatchers.Main) {
-                binding.productRecyclerView.adapter?.notifyDataSetChanged()
-            }
-        }
+    override fun onAddViewedProductsFailed(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onClick(product: Product) {
+        val intent = Intent(applicationContext, ProductDetail::class.java)
+        intent.putExtra("item-id", product.id)
+        startActivity(intent)
     }
 
     override fun onShowAllProducts(products: ArrayList<Product>) {
@@ -127,14 +116,14 @@ class GroupItem : AppCompatActivity(), ItemClickListener, IProductActivity {
         fullProductList.clear()
         productList.addAll(products)
         fullProductList.addAll(products)
-        binding.productRecyclerView.adapter?.notifyDataSetChanged()
+        binding.viewedProductRecyclerView.adapter?.notifyDataSetChanged()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_app_bar_with_search, menu)
-        val searchItem = menu.findItem(R.id.search_icon)
+        val searchItem = menu?.findItem(R.id.search_icon)
         Log.i("searchView", "go here 1")
-        val searchView = searchItem.actionView as SearchView
+        val searchView = searchItem?.actionView as SearchView
         searchView.imeOptions = EditorInfo.IME_ACTION_DONE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

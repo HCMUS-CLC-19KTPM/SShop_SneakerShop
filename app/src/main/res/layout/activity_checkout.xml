@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -34,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="?android:attr/colorPrimary"
-                app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:title="Checkout"
                 app:titleTextColor="@color/white" />
@@ -220,13 +220,50 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+            <View
+                android:id="@+id/divider8"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkout_recycler_view" />
+
+            <TextView
+                android:id="@+id/productName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/total"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider8" />
+
+            <TextView
+                android:id="@+id/checkout_tv_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="64dp"
+                android:text="$20.22"
+                android:textColor="@color/primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider8" />
+
             <Button
-                android:id="@+id/cart_button_confirm"
+                android:id="@+id/checkout_button_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="64dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/primary"
                 android:text="@string/checkout"
@@ -239,7 +276,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkout_recycler_view" />
+                app:layout_constraintTop_toBottomOf="@id/checkout_tv_total_price" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

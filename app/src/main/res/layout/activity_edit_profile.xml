@@ -36,7 +36,7 @@
                 android:background="?android:attr/colorPrimary"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                app:title="Profile"
+                app:title="Edit Profile"
                 app:titleTextColor="@color/white" />
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -71,6 +71,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_dob" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/editProfile_button_change_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                app:backgroundTint="@color/primary"
+                app:layout_constraintBottom_toBottomOf="@+id/editProfile_image_avatar"
+                app:layout_constraintEnd_toEndOf="@+id/editProfile_image_avatar"
+                app:srcCompat="@drawable/ic_baseline_add_24" />
 
             <TextView
                 android:id="@+id/editProfile_text_username"

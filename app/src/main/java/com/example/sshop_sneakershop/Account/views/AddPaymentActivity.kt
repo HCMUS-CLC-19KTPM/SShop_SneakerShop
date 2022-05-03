@@ -12,6 +12,7 @@ import com.example.sshop_sneakershop.Account.controllers.IAccountController
 import com.example.sshop_sneakershop.Account.models.Account
 import com.example.sshop_sneakershop.Account.models.Payment
 import com.example.sshop_sneakershop.R
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,7 @@ class AddPaymentActivity : AppCompatActivity() {
     private lateinit var radioGroup: RadioGroup
     private lateinit var cardTypeImageView: ImageView
     private lateinit var picker: DatePickerDialog
-
+    private lateinit var toolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         accountController = AccountController()
@@ -47,6 +48,7 @@ class AddPaymentActivity : AppCompatActivity() {
         editTextSince = findViewById(R.id.AddPayment_textInputET_since)
         submitBtn = findViewById(R.id.addPayment_button_save)
         cardTypeImageView = findViewById(R.id.AddPayment_CardType_IV)
+        toolbar = findViewById(R.id.addPayment_toolbar)
 
 
         radioGroup = findViewById(R.id.AddPayment_ChooseTypeCar_RG)
@@ -156,5 +158,6 @@ class AddPaymentActivity : AppCompatActivity() {
             }
 
         }
+        toolbar.setNavigationOnClickListener { finish() }
     }
 }

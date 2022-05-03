@@ -34,9 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="?android:attr/colorPrimary"
-                app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                app:title="Profile"
+                app:title="Manage Payment"
                 app:titleTextColor="@color/white" />
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

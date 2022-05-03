@@ -115,4 +115,6 @@
     <string name="remove">Remove</string>
     <string name="quantity1">Quantity:</string>
     <string name="total_price1">Total Price:</string>
+    <string name="viewed_products">Viewed Product</string>
+    <string name="choose_payment_method">Choose Payment Method</string>
 </resources>
