@@ -132,6 +132,7 @@
         android:layout_height="wrap_content"
         android:text="@string/remove"
         android:textAlignment="textEnd"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/paymentDetail_card"

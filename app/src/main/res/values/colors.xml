@@ -12,4 +12,5 @@
     <color name="gainsboro">#DCDCDC</color>
     <color name="dark_gray">#808080</color>
     <color name="green">#00FF00</color>
+    <color name="dark_theme">#383838</color>
 </resources>

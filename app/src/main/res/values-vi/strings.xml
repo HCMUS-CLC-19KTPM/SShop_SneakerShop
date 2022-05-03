@@ -9,11 +9,11 @@
     <string name="cart">Giỏ hàng</string>
     <string name="profile">Trang cá nhân</string>
     <string name="order">Đơn hàng</string>
-    <string name="language_n">Ngôn ngữ</string>
-    <string name="app_notifications_n">Thông báo</string>
+    <string name="language_n">Ngôn ngữ \n</string>
+    <string name="app_notifications_n">Thông báo \n</string>
     <string name="show_the_notification_contents">Nhận thông báo từ ứng dụng</string>
     <string name="support_for_vietnamese_and_english">Hỗ trợ Tiếng Việt và Tiếng Anh</string>
-    <string name="dark_mode">Chế độ tối</string>
+    <string name="dark_mode">Chế độ tối \n</string>
     <string name="support_for_dark_mode">Giảm độ chói và cho mắt bạn nghỉ ngơi</string>
     <string name="total">Tổng:</string>
     <string name="checkout">Thanh toán</string>

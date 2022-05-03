@@ -35,7 +35,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="?android:attr/colorPrimary"
         android:text="@string/sign_in"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -54,12 +54,12 @@
         android:layout_marginEnd="30dp"
         android:text="@string/sign_up"
         android:textAllCaps="false"
-        android:textColor="@color/primary"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_button_login"
-        app:strokeColor="@color/primary" />
+        app:strokeColor="?android:attr/colorPrimary" />
 
     <Button
         android:id="@+id/signin_button_register_with_google"
@@ -68,7 +68,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="?android:attr/colorPrimary"
         android:text="@string/sign_in_with_google"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -117,10 +117,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:hint="@string/email"
-        app:hintTextColor="@color/primary"
+        app:hintTextColor="?android:attr/textColorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:boxStrokeColor="@color/primary"
+        app:boxStrokeColor="?android:attr/textColorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -138,10 +138,10 @@
         android:layout_marginEnd="30dp"
         android:hint="@string/password"
         app:passwordToggleEnabled="true"
-        app:hintTextColor="@color/primary"
+        app:hintTextColor="?android:attr/textColorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:boxStrokeColor="@color/primary"
+        app:boxStrokeColor="?android:attr/textColorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/signin_edittext_input_email">
 
         <com.google.android.material.textfield.TextInputEditText
