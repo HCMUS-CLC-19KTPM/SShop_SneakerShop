@@ -1,6 +1,7 @@
 package com.example.sshop_sneakershop.Order.models
 
 import android.util.Log
+import com.example.sshop_sneakershop.Account.models.AccountModel
 import com.example.sshop_sneakershop.Product.models.Product
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
@@ -12,13 +13,12 @@ import kotlinx.coroutines.tasks.await
 
 class OrderModel {
     private val db = Firebase.firestore
-    private val userId = Firebase.auth.currentUser?.uid
 
     @Throws(Exception::class)
     suspend fun getAllOrders(): ArrayList<Order> {
         val orders = ArrayList<Order>()
         try {
-            db.collection("order").whereEqualTo("userId", userId)
+            db.collection("order").whereEqualTo("userId", AccountModel().getUser()?.id)
                 .orderBy("startDate", Query.Direction.DESCENDING).get().await().forEach {
                 val order = it.toObject(Order::class.java)
                 orders.add(order)
@@ -157,7 +157,7 @@ class OrderModel {
             }
 
             // Empty product list in cart when order is created
-            db.collection("cart").whereEqualTo("userId", userId).get().await().forEach {
+            db.collection("cart").whereEqualTo("userId", AccountModel().getUser()?.id).get().await().forEach {
                 it.reference.update("productList", ArrayList<Product>()).await()
             }
         } catch (e: Exception) {

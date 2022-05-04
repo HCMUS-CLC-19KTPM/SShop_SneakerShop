@@ -39,6 +39,8 @@ class OrderListActivity : AppCompatActivity(), IOrderListActivity, OrderClickLis
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
+
+        orderController.onGetAllOrders()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -53,12 +55,12 @@ class OrderListActivity : AppCompatActivity(), IOrderListActivity, OrderClickLis
         orderAdapter = OrderAdapter(orders, orderListActivity, fullOrderList)
         binding.orderListRecyclerView.adapter = orderAdapter
 
-        orderController.onGetAllOrders()
-
         setSupportActionBar(binding.orderListToolbar)
         binding.orderListToolbar.setNavigationOnClickListener {
             finish()
         }
+
+        orderController.onGetAllOrders()
     }
 
     @SuppressLint("NotifyDataSetChanged")
