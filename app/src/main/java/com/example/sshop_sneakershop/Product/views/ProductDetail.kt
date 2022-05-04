@@ -146,7 +146,6 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductActivity {
         val priceValue = product.price - (product.price * product.discount / 100)
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.DOWN
-//        val priceValue = product.price - 1.0
         binding.productPrice.text = "$${df.format(priceValue)}"
         val priceOldValue = product.price
         binding.productOldPrice.text = "$$priceOldValue"
@@ -166,7 +165,7 @@ class ProductDetail : AppCompatActivity(), ItemClickListener, IProductActivity {
         val radioGroup = binding.radioGroup
         var isChecked = false
         for (i in 0 until product.stock.size) {
-            if (product.stock[i] == 0) {
+            if (product.stock[i] <= 0) {
                 radioGroup.getChildAt(i).isEnabled = false
             } else if (product.stock[i] > 0 && !isChecked) {
                 radioGroup.check(radioGroup.getChildAt(i).id)

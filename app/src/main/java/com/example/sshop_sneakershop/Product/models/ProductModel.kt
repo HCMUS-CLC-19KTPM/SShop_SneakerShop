@@ -76,6 +76,7 @@ class ProductModel {
             Log.w(TAG, "Error getting documents.", e)
         }
 
+        products.reverse()
         return products
     }
 

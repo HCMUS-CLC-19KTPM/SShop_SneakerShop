@@ -30,17 +30,6 @@ class OrderModel {
         return orders
     }
 
-    //    @Throws(Exception::class)
-//    suspend fun getOrderById(id: String): Order? {
-//        val order: Order?
-//        try {
-//            order = db.collection("order").document(id).get().await().toObject(Order::class.java)
-//        } catch (e: Exception) {
-//            throw e
-//        }
-//
-//        return order
-//    }
     suspend fun getOrderById(id: String): Order {
         var order = Order()
         val products = ArrayList<Product>()
@@ -91,28 +80,48 @@ class OrderModel {
                     when (product.size) {
                         "US7" -> {
                             if (stock[0] > 0) {
-                                stock[0] = stock[0] - product.quantity
+                                val remainingStock = stock[0] - product.quantity
+                                if (remainingStock < 0) {
+                                    throw Exception("Remaining stock is ${stock[0]}, please reduce the quantity")
+                                } else {
+                                    stock[0] = remainingStock
+                                }
                             } else {
                                 throw Exception("Out of stock")
                             }
                         }
                         "US8" -> {
                             if (stock[1] > 0) {
-                                stock[1] = stock[1] - product.quantity
+                                val remainingStock = stock[1] - product.quantity
+                                if (remainingStock < 0) {
+                                    throw Exception("Remaining stock is ${stock[1]}, please reduce the quantity")
+                                } else {
+                                    stock[1] = remainingStock
+                                }
                             } else {
                                 throw Exception("Out of stock")
                             }
                         }
                         "US9" -> {
                             if (stock[2] > 0) {
-                                stock[2] = stock[2] - product.quantity
+                                val remainingStock = stock[2] - product.quantity
+                                if (remainingStock < 0) {
+                                    throw Exception("Remaining stock is ${stock[2]}, please reduce the quantity")
+                                } else {
+                                    stock[2] = remainingStock
+                                }
                             } else {
                                 throw Exception("Out of stock")
                             }
                         }
                         "US10" -> {
                             if (stock[3] > 0) {
-                                stock[3] = stock[3] - product.quantity
+                                val remainingStock = stock[3] - product.quantity
+                                if (remainingStock < 0) {
+                                    throw Exception("Remaining stock is ${stock[3]}, please reduce the quantity")
+                                } else {
+                                    stock[3] = remainingStock
+                                }
                             } else {
                                 throw Exception("Out of stock")
                             }
