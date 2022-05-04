@@ -65,11 +65,6 @@ class OrderModel {
     @Throws(Exception::class)
     suspend fun createOrder(order: Order): Order {
         try {
-            // Add order to database and get document's id
-            val id = db.collection("order").add(order).await().id
-            db.collection("order").document(id).update("id", id)
-            order.id = id
-
             // Sold product
             var stock: ArrayList<Int>
             for (product in order.cart) {
@@ -155,6 +150,11 @@ class OrderModel {
                     }
                 }
             }
+
+            // Add order to database and get document's id
+            val id = db.collection("order").add(order).await().id
+            db.collection("order").document(id).update("id", id)
+            order.id = id
 
             // Empty product list in cart when order is created
             db.collection("cart").whereEqualTo("userId", AccountModel().getUser()?.id).get().await().forEach {
