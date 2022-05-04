@@ -103,9 +103,11 @@
                 android:layout_height="48dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
-                android:text="1"
                 android:inputType="numberSigned"
+                android:text="1"
                 android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/minus" />
 
