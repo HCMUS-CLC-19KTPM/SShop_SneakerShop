@@ -20,13 +20,13 @@
 
     <ImageButton
         android:id="@+id/likeSortButton"
-        android:tooltipText="Likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:background="@color/white"
+        android:background="?android:attr/windowSplashScreenIconBackgroundColor"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:tooltipText="Likes"
         app:layout_constraintEnd_toStartOf="@+id/priceSortButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_sharp_thumb_up_24"
@@ -34,13 +34,13 @@
 
     <ImageButton
         android:id="@+id/priceSortButton"
-        android:tooltipText="Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:background="@color/white"
+        android:background="?android:attr/windowSplashScreenIconBackgroundColor"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:tooltipText="Price"
         app:layout_constraintEnd_toStartOf="@+id/dateSortButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_attach_money_24"
@@ -48,14 +48,14 @@
 
     <ImageButton
         android:id="@+id/dateSortButton"
-        android:tooltipText="Newest products"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="?android:attr/windowSplashScreenIconBackgroundColor"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:tooltipText="Newest products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_update_24"
