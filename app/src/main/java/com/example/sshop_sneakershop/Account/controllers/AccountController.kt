@@ -29,6 +29,13 @@ class AccountController(
     }
 
     /**
+     * Check if this email is already banned
+     */
+    suspend fun isBanned(): Boolean {
+        return accountModel.isBanned()
+    }
+
+    /**
      * Get user info by id using interface
      */
     @OptIn(DelicateCoroutinesApi::class)
@@ -47,6 +54,21 @@ class AccountController(
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
+    override fun onCheckIsBanned() {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val isBanned = accountModel.isBanned()
+                if (isBanned) {
+                    accountActivity?.onCheckIsBannedSuccess("Account is being banned")
+                }
+            } catch (e: Exception) {
+                accountActivity?.onCheckIsBannedFail("Error: ${e.message}")
+            }
+        }
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onUpdateAvatar(uri: Uri) {
         GlobalScope.launch(Dispatchers.Main){
             try{

@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop.Auth
+package com.example.sshop_sneakershop.Auth.services
 
 import android.content.ContentValues
 import android.util.Log
@@ -18,8 +18,14 @@ class AuthService {
         try {
             auth.signInWithEmailAndPassword(email, password).await()
 
+            // Check if this account is already verified
             if (!auth.currentUser!!.isEmailVerified) {
                 throw Exception("Account is not verified")
+            }
+
+            // Check if this account is already banned
+            if (!accountModel.getUser()!!.status) {
+                throw Exception("Account is being banned")
             }
         } catch (e: Exception) {
             Log.w("AuthService", "signInWithEmail:failure", e)
@@ -28,7 +34,7 @@ class AuthService {
     }
 
     @Throws(Exception::class)
-    suspend fun signInWithGoogle(credential: AuthCredential): String {
+    suspend fun signInWithGoogle(credential: AuthCredential) {
         try {
             auth.signInWithCredential(credential).await()
 
@@ -38,9 +44,12 @@ class AuthService {
             }
             Log.d("AuthService", "signInWithCredential:success")
 
-            return "Login Success"
+            // Check if this account is already banned
+            if (!accountModel.getUser()!!.status) {
+                throw Exception("Account is being banned")
+            }
         } catch (e: Exception) {
-            Log.w(ContentValues.TAG, "signInWithCredential:failure", e)
+            Log.e(ContentValues.TAG, "signInWithCredential:failure", e)
             throw e
         }
     }

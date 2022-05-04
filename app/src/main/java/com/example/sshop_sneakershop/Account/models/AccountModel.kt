@@ -46,6 +46,26 @@ class AccountModel {
         return account
     }
 
+    suspend fun isBanned(): Boolean {
+        var isBanned = false
+        val email: String? = Firebase.auth.currentUser?.email
+
+        try {
+            db.collection("account").whereEqualTo("email", email).get().await()
+                .documents.forEach {
+                    isBanned = !it.toObject(Account::class.java)!!.status
+                }
+        } catch (e: Exception) {
+            throw e
+        }
+
+        if (isBanned) {
+            Firebase.auth.signOut()
+        }
+
+        return isBanned
+    }
+
     suspend fun getPayments(id: String): ArrayList<Payment>? {
         var payments: ArrayList<Payment>? = null
 

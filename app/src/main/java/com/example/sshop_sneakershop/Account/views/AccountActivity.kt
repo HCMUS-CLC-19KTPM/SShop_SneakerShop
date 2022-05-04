@@ -58,6 +58,9 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
             finish()
         }
 
+        // Check if this user is being banned
+        accountController.onCheckIsBanned()
+
         // TODO: Get latest account info
         accountController.onGetUser()
     }
@@ -72,8 +75,8 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
 
         //Back to home
         binding.profileToolbar.setNavigationOnClickListener { finish() }
-        binding.profileToolbar.setOnMenuItemClickListener { item->
-            when(item.itemId){
+        binding.profileToolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
                 R.id.cart -> {
                     startActivity(Intent(this, CartActivity::class.java))
                 }
@@ -96,7 +99,7 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
 
     /**
      * Create account's profile info
-      */
+     */
     private fun createAccountProfile() {
         avatarImageView = binding.profileImageAvatar
         usernameTextView = binding.profileTextUsername
@@ -198,11 +201,22 @@ class AccountActivity : AppCompatActivity(), IAccountActivity {
         // Payment list
         account.payments?.let {
             paymentList.clear()
-            paymentList.addAll(it) }
+            paymentList.addAll(it)
+        }
         paymentRcView.adapter?.notifyDataSetChanged()
     }
 
     override fun onGetUserFail(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCheckIsBannedSuccess(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, SignInActivity::class.java))
+        finish()
+    }
+
+    override fun onCheckIsBannedFail(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 

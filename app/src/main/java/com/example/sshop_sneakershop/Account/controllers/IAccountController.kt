@@ -7,6 +7,7 @@ interface IAccountController {
     suspend fun getUser(email: String): Account?
 
     fun onGetUser()
+    fun onCheckIsBanned()
     fun onUpdateAvatar(uri: Uri)
     fun onUpdateUserInfo(account: Account)
     fun onUpdateUserPayment(account: Account)
