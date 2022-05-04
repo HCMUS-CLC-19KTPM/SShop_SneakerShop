@@ -12,8 +12,6 @@
         <!-- Background color for surface widgets. -->
         <item name="colorSurface">@color/dark_theme</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <item name="colorControlNormal">@color/black</item>
-
     </style>
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <!-- 2. -->

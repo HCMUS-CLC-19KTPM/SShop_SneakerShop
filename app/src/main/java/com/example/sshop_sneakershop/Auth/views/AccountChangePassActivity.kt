@@ -15,6 +15,7 @@ import com.example.sshop_sneakershop.Auth.controllers.IAuthController
 import com.example.sshop_sneakershop.Cart.CartActivity
 import com.example.sshop_sneakershop.R
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -77,40 +78,21 @@ class AccountChangePassActivity : AppCompatActivity(), IChangePasswordActivity {
     }
 
     override fun onChangePasswordSuccess(message: String) {
-        Log.d("AccountChangePassActivity", message)
-        val alertDialog: AlertDialog = this.let {
-            val builder = AlertDialog.Builder(it)
-            builder.apply {
-                setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
-                    finish()
-                })
-                // Set other dialog properties
-                setIcon(R.drawable.ic_baseline_done_outline_24)
-                setTitle(message)
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Update password")
+            .setMessage(message)
+            .setPositiveButton("Ok") { dialog, which ->
+                finish()
             }
-            // Create the AlertDialog
-            builder.create()
-        }
-        if (alertDialog != null) {
-            alertDialog.show()
-        }    }
+            .show()
+    }
 
     override fun onChangePasswordFailed(message: String) {
-        Log.d("AccountChangePassActivity", message)
-        val alertDialog: AlertDialog? = this.let {
-            val builder = AlertDialog.Builder(it)
-            builder.apply {
-                setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
-                })
-                // Set other dialog properties
-                setIcon(android.R.drawable.ic_dialog_alert)
-                setTitle(message)
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Update password")
+            .setMessage(message)
+            .setPositiveButton("Ok") { dialog, which ->
             }
-            // Create the AlertDialog
-            builder.create()
-        }
-        if (alertDialog != null) {
-            alertDialog.show()
-        }
+            .show()
     }
 }
