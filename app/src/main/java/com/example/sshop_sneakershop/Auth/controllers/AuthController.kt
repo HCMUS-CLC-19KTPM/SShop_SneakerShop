@@ -1,7 +1,7 @@
 package com.example.sshop_sneakershop.Auth.controllers
 
 import android.util.Log
-import com.example.sshop_sneakershop.Auth.AuthService
+import com.example.sshop_sneakershop.Auth.services.AuthService
 import com.example.sshop_sneakershop.Auth.views.ISignInActivity
 import com.example.sshop_sneakershop.Auth.views.IChangePasswordActivity
 import com.example.sshop_sneakershop.Auth.views.IForgotPasswordActivity
@@ -60,10 +60,10 @@ class AuthController : IAuthController {
     override fun onSignInWithGoogle(credential: AuthCredential) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val result = authService.signInWithGoogle(credential)
-                signInActivity?.onLoginSuccess(result)
+                authService.signInWithGoogle(credential)
+                signInActivity?.onLoginSuccess("Login success")
             } catch (e: Exception) {
-                signInActivity?.onLoginFailed("${e.message}")
+                signInActivity?.onLoginFailed("Error: ${e.message}")
             }
         }
     }

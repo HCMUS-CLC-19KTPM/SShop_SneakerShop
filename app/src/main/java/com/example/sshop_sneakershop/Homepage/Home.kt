@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.example.sshop_sneakershop.Account.controllers.AccountController
 import com.example.sshop_sneakershop.Account.views.AccountActivity
 import com.example.sshop_sneakershop.Auth.views.SignInActivity
 import com.example.sshop_sneakershop.Cart.CartActivity
@@ -31,7 +32,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
-
 class Home : AppCompatActivity(), ItemClickListener,
     NavigationView.OnNavigationItemSelectedListener, IProductActivity {
     //ViewPager
@@ -45,13 +45,16 @@ class Home : AppCompatActivity(), ItemClickListener,
 
     private lateinit var bindings: ActivityNavigationBinding
 
-
     override fun onStart() {
         super.onStart()
-        val auth = Firebase.auth
-        if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
-            startActivity(Intent(this, SignInActivity::class.java))
-            finish()
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val auth = Firebase.auth
+            val isBanned = AccountController().isBanned()
+            if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified || isBanned) {
+                startActivity(Intent(applicationContext, SignInActivity::class.java))
+                finish()
+            }
         }
     }
 

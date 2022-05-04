@@ -237,6 +237,16 @@ class AccountEditActivity : AppCompatActivity(), IAccountActivity, IAccountEditA
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    override fun onCheckIsBannedSuccess(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, SignInActivity::class.java))
+        finish()
+    }
+
+    override fun onCheckIsBannedFail(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onUpdateUserInfoSuccess(account: Account) {
         if (!TextUtils.isEmpty(account.avatar)) Picasso.get()
             .load(account.avatar).into(avatarImageView)

@@ -6,6 +6,8 @@ interface IAccountActivity {
     // Get
     fun onGetUserSuccess(account: Account)
     fun onGetUserFail(message: String)
+    fun onCheckIsBannedSuccess(message: String? = null)
+    fun onCheckIsBannedFail(message: String? = null)
 
     fun onUpdateUserPaymentSuccess(account: Account)
     fun onUpdateUserPaymentFail(message: String)
