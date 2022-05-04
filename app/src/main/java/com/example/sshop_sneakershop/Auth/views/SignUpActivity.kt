@@ -39,8 +39,9 @@ class SignUpActivity : AppCompatActivity(), ISignUpActivity {
         }
     }
 
-    override fun onSignUpSuccess() {
-        startActivity(Intent(this, Home::class.java))
+    override fun onSignUpSuccess(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, SignInActivity::class.java))
         finish()
     }
 

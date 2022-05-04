@@ -77,11 +77,10 @@ class AuthController : IAuthController {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 authService.signUp(email, password, confirmPassword)
-                authService.signIn(email, password)
 
-                signUpActivity?.onSignUpSuccess()
+                signUpActivity?.onSignUpSuccess("Check your email to verify your account")
             } catch (e: Exception) {
-                signUpActivity?.onSignUpFailed("${e.message}")
+                signUpActivity?.onSignUpFailed("Error: ${e.message}")
             }
         }
     }

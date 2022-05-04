@@ -33,7 +33,7 @@ class OrderModel {
     suspend fun getOrderById(id: String): Order {
         var order = Order()
         val products = ArrayList<Product>()
-        var product = Product()
+        var product: Product
         try {
             db.collection("order").document(id).get().await()
                 .toObject(Order::class.java)
