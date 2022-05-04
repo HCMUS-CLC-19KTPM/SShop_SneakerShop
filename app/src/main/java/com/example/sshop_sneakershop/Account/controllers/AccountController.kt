@@ -17,7 +17,6 @@ class AccountController(
     /**
      * Get user info by email
      *
-     * @param email
      * @return Account
      */
     suspend fun getUser(): Account? {
