@@ -126,7 +126,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <Button
-        android:id="@+id/PaymentDetail_button_editInfo"
+        android:id="@+id/PaymentDetail_button_remove_card"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

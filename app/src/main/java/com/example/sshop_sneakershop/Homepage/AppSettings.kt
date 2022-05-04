@@ -11,7 +11,6 @@ import java.util.*
 
 class AppSettings: AppCompatActivity() {
     private lateinit var binding: ActivityAppSettingBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAppSettingBinding.inflate(layoutInflater)
@@ -38,9 +37,12 @@ class AppSettings: AppCompatActivity() {
 
             }
         }
-
-        val sharedPreferences = getSharedPreferences("dark_mode", MODE_PRIVATE)
-        binding.appSettingsSwitchDarkMode.setChecked(sharedPreferences.getBoolean("value", true))
+        var isNightmode = true
+        val checkedItem = SharedPreferences(this).darkMode
+        if (checkedItem == 0) {
+            isNightmode = false
+        }
+        binding.appSettingsSwitchDarkMode.setChecked(isNightmode)
 
         binding.appSettingsSwitchDarkMode.setOnCheckedChangeListener{
             compoundButton, isChecked ->
@@ -48,16 +50,12 @@ class AppSettings: AppCompatActivity() {
                 if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     recreate()
-                    val editor = getSharedPreferences("dark_mode", MODE_PRIVATE).edit()
-                    editor.putBoolean("value", true)
-                    editor.apply()
+                    SharedPreferences(this).darkMode = 1
                     binding.appSettingsSwitchDarkMode.setChecked(true)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     recreate()
-                    val editor = getSharedPreferences("dark_mode", MODE_PRIVATE).edit()
-                    editor.putBoolean("value", false)
-                    editor.apply()
+                    SharedPreferences(this).darkMode = 0
                     binding.appSettingsSwitchDarkMode.setChecked(false)
                 }
             }

@@ -21,7 +21,7 @@ class ChoosePaymentMethodDialog :BottomSheetDialogFragment(){
     private lateinit var accountController: AccountController
     private val auth = Firebase.auth
 //    private var mListener: BottomSheetListener? = null
-    private lateinit var paymentAdapter: PaymentDetailItemAdapter
+    private lateinit var paymentAdapter: PaymentItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +36,7 @@ class ChoosePaymentMethodDialog :BottomSheetDialogFragment(){
             if (account != null) {
                 val paymentList = account.payments
                 if (paymentList !== null) {
-                    paymentAdapter = PaymentDetailItemAdapter(paymentList)
+                    paymentAdapter = PaymentItemAdapter(paymentList)
                     recyclerView.adapter = paymentAdapter
                     recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 }
