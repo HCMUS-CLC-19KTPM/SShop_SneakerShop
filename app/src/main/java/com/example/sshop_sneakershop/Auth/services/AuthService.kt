@@ -40,7 +40,9 @@ class AuthService {
 
             val email: String? = auth.currentUser!!.email
             if (accountModel.getUser(email!!) == null) {
-                accountModel.insertUser(Account(email))
+                val newAccount = Account(email)
+                newAccount.id = auth.uid!!
+                accountModel.insertUser(newAccount)
             }
             Log.d("AuthService", "signInWithCredential:success")
 
