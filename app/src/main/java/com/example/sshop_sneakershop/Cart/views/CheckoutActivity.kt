@@ -93,15 +93,25 @@ class CheckoutActivity : AppCompatActivity(), ICartView, IOrderListActivity, Ite
     }
 
     private fun confirmOrder() {
-        // Create order
-        orderController.onCreateOrder(
-            customerInfo[0],
-            customerInfo[1],
-            customerInfo[2],
-            productsInCart,
-            cart.totalCost,
-            customerInfo[3]
-        )
+        if(customerInfo[0] == "" || customerInfo[1] == "" || customerInfo[2] == "" || customerInfo[3] == "") {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Error")
+                .setMessage("Please fill in all the information")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        } else {
+            // Create order
+            orderController.onCreateOrder(
+                customerInfo[0],
+                customerInfo[1],
+                customerInfo[2],
+                productsInCart,
+                cart.totalCost,
+                customerInfo[3]
+            )
+        }
     }
 
     private fun addNewCustomerInfo() {
